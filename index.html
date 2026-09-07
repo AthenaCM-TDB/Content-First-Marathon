@@ -803,7 +803,400 @@ footer{
   /* =========================
    RESPONSIVE
 ========================= */
+/* =========================
+   HERO HORIZONTAL SLIDER
+========================= */
 
+.hero-title-row{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:50px;
+  align-items:end;
+  margin-bottom:34px;
+}
+
+.hero-copy{
+  max-width:650px;
+  margin:0 0 8px;
+}
+
+
+/* SLIDER WRAPPER */
+
+.hero-slider-wrap{
+  position:relative;
+  margin-top:15px;
+}
+
+
+/* HORIZONTAL SLIDER */
+
+.hero-slider{
+  display:flex;
+  gap:16px;
+
+  overflow-x:auto;
+  overflow-y:hidden;
+
+  scroll-behavior:smooth;
+  scroll-snap-type:x mandatory;
+
+  padding:10px 4px 28px;
+
+  scrollbar-width:none;
+}
+
+.hero-slider::-webkit-scrollbar{
+  display:none;
+}
+
+
+/* CARD */
+
+.hero-slide{
+  position:relative;
+
+  flex:0 0
+    clamp(
+      280px,
+      36vw,
+      430px
+    );
+
+  min-height:370px;
+
+  border:1px solid var(--line);
+  border-radius:22px;
+
+  overflow:hidden;
+
+  cursor:pointer;
+
+  scroll-snap-align:start;
+
+  background:
+    linear-gradient(
+      145deg,
+      #1d1d22,
+      #111114
+    );
+
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+.hero-slide:hover{
+  transform:translateY(-6px);
+
+  border-color:#55555d;
+
+  box-shadow:
+    0 25px 55px
+    rgba(0,0,0,.4);
+}
+
+
+/* FIRST / TOP CARD */
+
+.hero-slide.rank-1{
+
+  background:
+
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(243,184,63,.35),
+      transparent 35%
+    ),
+
+    linear-gradient(
+      145deg,
+      #292215,
+      #111114
+    );
+
+  border-color:
+    rgba(243,184,63,.45);
+}
+
+
+/* BIG NUMBER */
+
+.slide-number{
+
+  position:absolute;
+
+  top:16px;
+  left:17px;
+
+  font-size:11px;
+
+  font-weight:950;
+
+  color:#85828a;
+
+  z-index:2;
+}
+
+
+/* BADGE */
+
+.slide-badge{
+
+  position:absolute;
+
+  top:15px;
+  right:15px;
+
+  padding:7px 9px;
+
+  border-radius:7px;
+
+  background:
+    rgba(229,57,53,.95);
+
+  color:white;
+
+  font-size:9px;
+
+  font-weight:950;
+
+  letter-spacing:.03em;
+
+  z-index:2;
+}
+
+
+/* ICON */
+
+.slide-icon{
+
+  position:absolute;
+
+  right:23px;
+  top:78px;
+
+  font-size:75px;
+
+  opacity:.75;
+
+  filter:
+    drop-shadow(
+      0 12px 22px
+      rgba(0,0,0,.4)
+    );
+}
+
+
+/* CONTENT */
+
+.slide-content{
+
+  position:absolute;
+
+  left:24px;
+  right:24px;
+  bottom:24px;
+
+  z-index:2;
+}
+
+
+/* FADE */
+
+.hero-slide:after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.85) 0%,
+      rgba(0,0,0,.35) 48%,
+      transparent 75%
+    );
+
+  pointer-events:none;
+}
+
+
+.slide-content > *{
+  position:relative;
+  z-index:2;
+}
+
+
+/* SMALL LABEL */
+
+.slide-label{
+
+  font-size:10px;
+
+  font-weight:900;
+
+  color:
+    var(--gold2);
+
+  letter-spacing:.08em;
+
+  margin-bottom:8px;
+}
+
+
+/* TITLE */
+
+.slide-content h2{
+
+  margin:0;
+
+  max-width:330px;
+
+  font-size:
+    clamp(
+      25px,
+      3vw,
+      38px
+    );
+
+  line-height:.96;
+
+  letter-spacing:-.045em;
+}
+
+
+/* DESCRIPTION */
+
+.slide-content p{
+
+  margin:11px 0 16px;
+
+  max-width:300px;
+
+  font-size:13px;
+
+  color:#bab7bd;
+}
+
+
+/* LINK */
+
+.slide-link{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:6px;
+
+  font-size:12px;
+
+  color:var(--gold2);
+
+  font-weight:900;
+}
+
+
+/* LEFT / RIGHT BUTTON */
+
+.slider-arrow{
+
+  position:absolute;
+
+  top:50%;
+
+  transform:
+    translateY(-50%);
+
+  z-index:10;
+
+  width:44px;
+  height:44px;
+
+  border-radius:50%;
+
+  border:1px solid
+    rgba(255,255,255,.16);
+
+  background:
+    rgba(12,12,14,.82);
+
+  color:white;
+
+  font-size:30px;
+
+  line-height:1;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  backdrop-filter:blur(8px);
+
+  transition:.2s;
+}
+
+.slider-arrow:hover{
+
+  background:
+    var(--gold);
+
+  color:#111;
+
+  border-color:
+    var(--gold);
+}
+
+
+.slider-prev{
+  left:-17px;
+}
+
+
+.slider-next{
+  right:-17px;
+}
+
+
+/* PROGRESS */
+
+.slider-progress{
+
+  display:flex;
+
+  gap:5px;
+
+  margin-top:0;
+
+  padding-left:4px;
+}
+
+.slider-dot{
+
+  width:22px;
+  height:3px;
+
+  border-radius:10px;
+
+  background:
+    #34343a;
+
+  transition:.25s;
+}
+
+.slider-dot.active{
+
+  width:42px;
+
+  background:
+    var(--gold);
+}
 @media(max-width:900px){
 
   .grid{
@@ -824,7 +1217,28 @@ footer{
 }
 
 @media(max-width:620px){
+.hero-title-row{
+  grid-template-columns:1fr;
+  gap:18px;
+}
 
+.hero-copy{
+  font-size:15px;
+}
+
+.hero-slide{
+  flex-basis:82vw;
+  min-height:340px;
+}
+
+.slider-arrow{
+  display:none;
+}
+
+.hero-slider{
+  padding-left:0;
+  padding-right:18px;
+}
   .container{
     width:min(100% - 24px,var(--max));
   }
@@ -931,7 +1345,7 @@ footer{
 
 
 <!-- =========================
-     HERO
+     HERO / FEATURED SLIDER
 ========================= -->
 
 <section class="hero">
@@ -943,67 +1357,328 @@ footer{
       Bảng xếp hạng tháng 09/2026
     </div>
 
-    <h1>
-      LƯỚT.<br>
-      PICK.<br>
-      CHỐT.
-    </h1>
+    <div class="hero-title-row">
 
-    <p class="hero-copy">
+      <div>
+        <h1>
+          LƯỚT.<br>
+          PICK.<br>
+          CHỐT.
+        </h1>
+      </div>
 
-      Những
-      <strong>
-        kèo Athena đang muốn team Sale & Account “bỏ giỏ”
-      </strong>
-      ngay lúc này.
+      <p class="hero-copy">
 
-      Insight, câu chuyện bán hàng và gói đề xuất đã có sẵn.
+        Những kèo Athena đang muốn team Sale & Account
+        <strong>“bỏ giỏ” ngay lúc này.</strong>
 
-      Việc còn lại:
-      <strong>
-        pick đúng kèo → xách đi pitch.
-      </strong>
+        Insight, câu chuyện bán hàng và gói đề xuất đã có sẵn.
 
-    </p>
+        <strong>Pick đúng kèo → xách đi pitch.</strong>
 
-    <div class="hero-actions">
+      </p>
+
+    </div>
+
+
+    <!-- =========================
+         HORIZONTAL FEATURE SLIDER
+    ========================= -->
+
+    <div class="hero-slider-wrap">
 
       <button
-        class="cta"
-        onclick="scrollToId('products')"
+        class="slider-arrow slider-prev"
+        onclick="slideFeatured(-1)"
+        aria-label="Xem sản phẩm trước"
       >
-        🔥 Xem kèo đang hot
+        ‹
       </button>
 
-      <button
-        class="cta alt"
-        onclick="scrollToId('playlists')"
+
+      <div
+        class="hero-slider"
+        id="featuredSlider"
       >
-        Lướt tuyển tập
+
+        <!-- CARD 1 -->
+
+        <article
+          class="hero-slide featured-slide rank-1"
+          onclick="openProduct(0)"
+        >
+
+          <div class="slide-number">
+            #01
+          </div>
+
+          <div class="slide-badge">
+            🔥 ĐANG ĐƯỢC ĐẨY
+          </div>
+
+          <div class="slide-icon">
+            🛍️
+          </div>
+
+          <div class="slide-content">
+
+            <div class="slide-label">
+              KÈO ĐANG LÊN
+            </div>
+
+            <h2>
+              SHOPPERTAINMENT
+            </h2>
+
+            <p>
+              Biến nội dung thành cuộc chơi
+              có lý do để mua.
+            </p>
+
+            <span class="slide-link">
+              Xem kèo →
+            </span>
+
+          </div>
+
+        </article>
+
+
+        <!-- CARD 2 -->
+
+        <article
+          class="hero-slide"
+          onclick="openProduct(1)"
+        >
+
+          <div class="slide-number">
+            #02
+          </div>
+
+          <div class="slide-badge">
+            ⭐ ATHENA BÁN TỐT
+          </div>
+
+          <div class="slide-icon">
+            🎤
+          </div>
+
+          <div class="slide-content">
+
+            <div class="slide-label">
+              KÈO TẠO ĐỘ TIN CẬY
+            </div>
+
+            <h2>
+              ĐẶT NGƯỜI ẢNH HƯỞNG
+            </h2>
+
+            <p>
+              Mượn đúng người,
+              nói đúng chuyện.
+            </p>
+
+            <span class="slide-link">
+              Xem kèo →
+            </span>
+
+          </div>
+
+        </article>
+
+
+        <!-- CARD 3 -->
+
+        <article
+          class="hero-slide"
+          onclick="openProduct(2)"
+        >
+
+          <div class="slide-number">
+            #03
+          </div>
+
+          <div class="slide-badge">
+            🔥 ĐANG ĐƯỢC ĐẨY
+          </div>
+
+          <div class="slide-icon">
+            📣
+          </div>
+
+          <div class="slide-content">
+
+            <div class="slide-label">
+              KÈO PHỦ SÓNG
+            </div>
+
+            <h2>
+              ĐẶT NỘI DUNG MẠNG XÃ HỘI
+            </h2>
+
+            <p>
+              Phủ sóng đúng chỗ,
+              gặp đúng người.
+            </p>
+
+            <span class="slide-link">
+              Xem kèo →
+            </span>
+
+          </div>
+
+        </article>
+
+
+        <!-- CARD 4 -->
+
+        <article
+          class="hero-slide"
+          onclick="openProduct(3)"
+        >
+
+          <div class="slide-number">
+            #04
+          </div>
+
+          <div class="slide-badge">
+            ⭐ ATHENA BÁN TỐT
+          </div>
+
+          <div class="slide-icon">
+            📰
+          </div>
+
+          <div class="slide-content">
+
+            <div class="slide-label">
+              KÈO XÂY UY TÍN
+            </div>
+
+            <h2>
+              NỘI DUNG BIÊN TẬP
+            </h2>
+
+            <p>
+              Kèo xây uy tín,
+              càng chơi càng có giá.
+            </p>
+
+            <span class="slide-link">
+              Xem kèo →
+            </span>
+
+          </div>
+
+        </article>
+
+
+        <!-- CARD 5 -->
+
+        <article
+          class="hero-slide"
+          onclick="openProduct(4)"
+        >
+
+          <div class="slide-number">
+            #05
+          </div>
+
+          <div class="slide-badge">
+            🚀 KÈO BÀO DOANH THU
+          </div>
+
+          <div class="slide-icon">
+            🚀
+          </div>
+
+          <div class="slide-content">
+
+            <div class="slide-label">
+              KÈO SẢN PHẨM
+            </div>
+
+            <h2>
+              TIẾP THỊ SẢN PHẨM
+            </h2>
+
+            <p>
+              Biến sản phẩm thành
+              nhân vật chính.
+            </p>
+
+            <span class="slide-link">
+              Xem kèo →
+            </span>
+
+          </div>
+
+        </article>
+
+
+        <!-- CARD 6 -->
+
+        <article
+          class="hero-slide"
+          onclick="openProduct(5)"
+        >
+
+          <div class="slide-number">
+            #06
+          </div>
+
+          <div class="slide-badge">
+            🎯 KÈO GÁNH TEAM
+          </div>
+
+          <div class="slide-icon">
+            🛒
+          </div>
+
+          <div class="slide-content">
+
+            <div class="slide-label">
+              KÈO CHUYỂN ĐỔI
+            </div>
+
+            <h2>
+              THƯƠNG MẠI MẠNG XÃ HỘI
+            </h2>
+
+            <p>
+              Lướt thấy —
+              thích — mua.
+            </p>
+
+            <span class="slide-link">
+              Xem kèo →
+            </span>
+
+          </div>
+
+        </article>
+
+      </div>
+
+
+      <button
+        class="slider-arrow slider-next"
+        onclick="slideFeatured(1)"
+        aria-label="Xem sản phẩm tiếp theo"
+      >
+        ›
       </button>
 
     </div>
 
 
-    <div class="hero-meta">
+    <!-- SLIDER POSITION -->
 
-      <span class="pill">
-        🔥 Đang được đẩy
-      </span>
+    <div
+      class="slider-progress"
+      id="sliderProgress"
+    ></div>
 
-      <span class="pill">
-        ⭐ Athena bán tốt
-      </span>
-
-      <span class="pill">
-        🚀 Kèo bào doanh thu
-      </span>
-
-      <span class="pill">
-        🎯 Kèo gánh team
-      </span>
-
-    </div>
 
   </div>
 
@@ -2368,6 +3043,161 @@ function applySearch(){
   render(filtered);
 
 }
+  /* =========================
+   FEATURED SLIDER
+========================= */
+
+const featuredSlider =
+  document.getElementById("featuredSlider");
+
+const sliderProgress =
+  document.getElementById("sliderProgress");
+
+const featuredSlides =
+  document.querySelectorAll(".hero-slide");
+
+
+/*
+  Tạo thanh chỉ số
+*/
+
+featuredSlides.forEach((slide,index)=>{
+
+  const dot =
+    document.createElement("span");
+
+  dot.className =
+    "slider-dot";
+
+  dot.addEventListener(
+    "click",
+    ()=>{
+      goToFeatured(index);
+    }
+  );
+
+  sliderProgress.appendChild(dot);
+
+});
+
+
+const sliderDots =
+  document.querySelectorAll(".slider-dot");
+
+
+/*
+  Chuyển đến sản phẩm
+*/
+
+function goToFeatured(index){
+
+  const slide =
+    featuredSlides[index];
+
+  if(!slide) return;
+
+  featuredSlider.scrollTo({
+
+    left:
+      slide.offsetLeft -
+      featuredSlider.offsetLeft,
+
+    behavior:"smooth"
+
+  });
+
+}
+
+
+/*
+  Nút trái / phải
+*/
+
+function slideFeatured(direction){
+
+  const cardWidth =
+    featuredSlides[0].offsetWidth + 16;
+
+  featuredSlider.scrollBy({
+
+    left:
+      cardWidth * direction,
+
+    behavior:"smooth"
+
+  });
+
+}
+
+
+/*
+  Cập nhật thanh chỉ số
+*/
+
+function updateSliderProgress(){
+
+  const scrollLeft =
+    featuredSlider.scrollLeft;
+
+  let activeIndex = 0;
+
+  featuredSlides.forEach(
+    (slide,index)=>{
+
+      const distance =
+        Math.abs(
+          slide.offsetLeft -
+          featuredSlider.offsetLeft -
+          scrollLeft
+        );
+
+      if(
+        distance <
+        Math.abs(
+          featuredSlides[activeIndex].offsetLeft -
+          featuredSlider.offsetLeft -
+          scrollLeft
+        )
+      ){
+
+        activeIndex = index;
+
+      }
+
+    }
+  );
+
+
+  sliderDots.forEach(
+    (dot,index)=>{
+
+      dot.classList.toggle(
+        "active",
+        index === activeIndex
+      );
+
+    }
+  );
+
+}
+
+
+featuredSlider.addEventListener(
+  "scroll",
+  updateSliderProgress
+);
+
+window.addEventListener(
+  "resize",
+  updateSliderProgress
+);
+
+
+/*
+  Active ban đầu
+*/
+
+updateSliderProgress();
 </script>
 
 
