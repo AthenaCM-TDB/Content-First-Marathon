@@ -4,47 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Athena Showcase — Products worth selling now</title>
+  <title>Athena Tuyển Chọn — Những sản phẩm đáng bán nhất lúc này</title>
 
   <meta
     name="description"
-    content="Athena Showcase — Khám phá những sản phẩm đáng bán nhất của Athena ngay lúc này."
+    content="Athena Tuyển Chọn — Nơi Sale và Account khám phá những sản phẩm nổi bật, câu chuyện bán hàng và gói sản phẩm đáng chú ý của Athena."
   />
 
   <style>
+
     /* =========================================================
-       ATHENA SHOWCASE
-       V1 — Single file landing page
+       ATHENA TUYỂN CHỌN
+       Trang giới thiệu và khám phá sản phẩm
        ========================================================= */
 
     :root {
-      --bg: #080808;
-      --bg-soft: #101010;
-      --bg-card: #151515;
-      --bg-card-2: #1b1b1b;
 
-      --text: #f5f5f5;
-      --text-soft: #a7a7a7;
-      --text-muted: #707070;
+      --nen: #080808;
+      --nen-nhe: #101010;
+      --the: #151515;
+      --the-2: #1b1b1b;
 
-      --white: #ffffff;
-      --line: rgba(255,255,255,.10);
+      --chu: #f5f5f5;
+      --chu-nhe: #a7a7a7;
+      --chu-mo: #707070;
 
-      --accent: #ff3b30;
-      --accent-2: #ff6b35;
-      --yellow: #ffd166;
-      --green: #54d17a;
-      --blue: #5b8cff;
-      --purple: #9b6cff;
+      --trang: #ffffff;
 
-      --radius: 18px;
-      --radius-lg: 28px;
+      --do: #ff3b30;
+      --cam: #ff6b35;
+      --vang: #ffd166;
+      --xanh-la: #54d17a;
+      --xanh-duong: #5b8cff;
+      --tim: #9b6cff;
 
-      --max-width: 1440px;
+      --vien: rgba(255,255,255,.10);
 
-      --shadow:
+      --bo-tron: 18px;
+      --bo-tron-lon: 28px;
+
+      --chieu-rong: 1440px;
+
+      --bong:
         0 20px 70px rgba(0,0,0,.45);
     }
+
 
     * {
       box-sizing: border-box;
@@ -52,11 +56,14 @@
       padding: 0;
     }
 
+
     html {
       scroll-behavior: smooth;
     }
 
+
     body {
+
       font-family:
         Inter,
         -apple-system,
@@ -67,96 +74,148 @@
         Arial,
         sans-serif;
 
-      background: var(--bg);
-      color: var(--text);
+      background: var(--nen);
+      color: var(--chu);
+
       line-height: 1.5;
+
       overflow-x: hidden;
     }
 
+
     button,
-    input {
+    input,
+    select,
+    textarea {
       font: inherit;
     }
+
 
     button {
       cursor: pointer;
     }
+
 
     a {
       color: inherit;
       text-decoration: none;
     }
 
+
     /* =========================================================
-       GLOBAL
+       KHUNG CHUNG
        ========================================================= */
 
-    .container {
-      width: min(calc(100% - 48px), var(--max-width));
+    .khung {
+
+      width:
+        min(
+          calc(100% - 48px),
+          var(--chieu-rong)
+        );
+
       margin: 0 auto;
     }
 
-    .section {
+
+    .phan {
+
       padding: 90px 0;
     }
 
-    .eyebrow {
+
+    .nhan {
+
       display: inline-flex;
+
       align-items: center;
+
       gap: 8px;
 
       font-size: 11px;
+
       font-weight: 800;
+
       letter-spacing: .16em;
+
       text-transform: uppercase;
 
-      color: var(--text-muted);
+      color: var(--chu-mo);
+
       margin-bottom: 14px;
     }
 
-    .eyebrow-dot {
+
+    .nhan-diem {
+
       width: 7px;
       height: 7px;
+
       border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 18px rgba(255,59,48,.7);
+
+      background: var(--do);
+
+      box-shadow:
+        0 0 18px rgba(255,59,48,.7);
     }
 
-    .section-heading {
+
+    .tieu-de-khu-vuc {
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: end;
+
       gap: 30px;
+
       margin-bottom: 34px;
     }
 
-    .section-title {
-      font-size: clamp(32px, 4vw, 58px);
+
+    .tieu-de {
+
+      font-size:
+        clamp(
+          32px,
+          4vw,
+          58px
+        );
+
       line-height: .95;
+
       letter-spacing: -.055em;
+
       font-weight: 850;
     }
 
-    .section-description {
+
+    .mo-ta-khu-vuc {
+
       max-width: 440px;
-      color: var(--text-soft);
+
+      color: var(--chu-nhe);
+
       font-size: 15px;
+
       line-height: 1.65;
     }
 
-    .muted {
-      color: var(--text-muted);
-    }
 
     /* =========================================================
-       NAVBAR
+       THANH ĐIỀU HƯỚNG
        ========================================================= */
 
-    .navbar {
+    .thanh-dieu-huong {
+
       position: fixed;
+
       top: 0;
       left: 0;
+
       width: 100%;
+
       z-index: 1000;
 
       background:
@@ -170,21 +229,31 @@
       backdrop-filter: blur(10px);
     }
 
-    .nav-inner {
+
+    .noi-dung-dieu-huong {
+
       height: 78px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
     }
 
-    .brand {
+
+    .thuong-hieu {
+
       display: flex;
+
       align-items: center;
+
       gap: 12px;
     }
 
-    .brand-mark {
+
+    .dau-thuong-hieu {
+
       width: 34px;
       height: 34px;
 
@@ -193,59 +262,86 @@
       background:
         linear-gradient(
           135deg,
-          var(--accent),
-          var(--accent-2)
+          var(--do),
+          var(--cam)
         );
 
       display: grid;
+
       place-items: center;
 
       font-size: 15px;
+
       font-weight: 900;
 
       box-shadow:
         0 8px 30px rgba(255,59,48,.25);
     }
 
-    .brand-name {
+
+    .ten-thuong-hieu {
+
       font-weight: 850;
+
       font-size: 15px;
+
       letter-spacing: -.02em;
     }
 
-    .brand-sub {
+
+    .mo-ta-thuong-hieu {
+
       font-size: 10px;
-      color: var(--text-muted);
+
+      color: var(--chu-mo);
+
       letter-spacing: .12em;
+
       text-transform: uppercase;
+
       margin-top: 1px;
     }
 
-    .nav-links {
+
+    .lien-ket-dieu-huong {
+
       display: flex;
+
       align-items: center;
+
       gap: 28px;
     }
 
-    .nav-links a {
+
+    .lien-ket-dieu-huong a {
+
       font-size: 12px;
-      color: var(--text-soft);
+
+      color: var(--chu-nhe);
+
       transition: .2s ease;
     }
 
-    .nav-links a:hover {
-      color: var(--white);
+
+    .lien-ket-dieu-huong a:hover {
+
+      color: var(--trang);
     }
 
-    .nav-search {
+
+    .o-tim-kiem {
+
       width: 220px;
       height: 38px;
 
-      border: 1px solid var(--line);
+      border: 1px solid var(--vien);
+
       border-radius: 100px;
 
       display: flex;
+
       align-items: center;
+
       gap: 9px;
 
       padding: 0 14px;
@@ -253,31 +349,43 @@
       background: rgba(255,255,255,.045);
     }
 
-    .nav-search span {
-      color: var(--text-muted);
+
+    .o-tim-kiem span {
+
+      color: var(--chu-mo);
+
       font-size: 13px;
     }
 
-    .nav-search input {
+
+    .o-tim-kiem input {
+
       width: 100%;
+
       border: 0;
+
       outline: 0;
 
       background: transparent;
-      color: var(--text);
+
+      color: var(--chu);
 
       font-size: 12px;
     }
 
+
     /* =========================================================
-       HERO
+       KHU VỰC MỞ ĐẦU
        ========================================================= */
 
-    .hero {
+    .phan-mo-dau {
+
       min-height: 760px;
 
       position: relative;
+
       display: flex;
+
       align-items: center;
 
       overflow: hidden;
@@ -295,25 +403,11 @@
         );
     }
 
-    .hero::before {
-      content: "";
+
+    .luoi-nen {
+
       position: absolute;
-      inset: 0;
 
-      background:
-        linear-gradient(
-          90deg,
-          rgba(8,8,8,1) 0%,
-          rgba(8,8,8,.92) 35%,
-          rgba(8,8,8,.45) 70%,
-          rgba(8,8,8,.9) 100%
-        );
-
-      z-index: 1;
-    }
-
-    .hero-grid {
-      position: absolute;
       inset: 0;
 
       opacity: .15;
@@ -340,84 +434,144 @@
         );
     }
 
-    .hero-inner {
+
+    .phan-mo-dau::before {
+
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(8,8,8,1) 0%,
+          rgba(8,8,8,.92) 35%,
+          rgba(8,8,8,.45) 70%,
+          rgba(8,8,8,.9) 100%
+        );
+    }
+
+
+    .noi-dung-mo-dau {
+
       position: relative;
+
       z-index: 2;
 
       display: grid;
+
       grid-template-columns: 1fr 1fr;
 
       gap: 70px;
+
       align-items: center;
 
       padding-top: 70px;
     }
 
-    .hero-copy {
+
+    .noi-dung-mo-dau-trai {
+
       max-width: 700px;
     }
 
-    .hero-kicker {
+
+    .dong-trang-thai {
+
       display: flex;
+
       align-items: center;
+
       gap: 10px;
 
-      color: var(--text-soft);
+      color: var(--chu-nhe);
 
       font-size: 11px;
+
       font-weight: 800;
+
       letter-spacing: .17em;
+
       text-transform: uppercase;
 
       margin-bottom: 24px;
     }
 
-    .live-dot {
+
+    .diem-truc-tuyen {
+
       width: 8px;
       height: 8px;
+
       border-radius: 50%;
-      background: var(--accent);
+
+      background: var(--do);
 
       box-shadow:
         0 0 0 5px rgba(255,59,48,.12),
         0 0 22px rgba(255,59,48,.7);
     }
 
-    .hero-title {
-      font-size: clamp(58px, 7vw, 105px);
+
+    .tieu-de-mo-dau {
+
+      font-size:
+        clamp(
+          58px,
+          7vw,
+          105px
+        );
+
       line-height: .82;
+
       letter-spacing: -.075em;
+
       font-weight: 900;
 
       margin-bottom: 32px;
     }
 
-    .hero-title span {
+
+    .tieu-de-mo-dau span {
+
       display: block;
     }
 
-    .hero-title .accent {
-      color: var(--accent);
+
+    .tieu-de-mo-dau .mau-do {
+
+      color: var(--do);
     }
 
-    .hero-description {
+
+    .mo-ta-mo-dau {
+
       max-width: 570px;
 
-      color: var(--text-soft);
+      color: var(--chu-nhe);
 
       font-size: 17px;
+
       line-height: 1.7;
 
       margin-bottom: 34px;
     }
 
-    .hero-actions {
+
+    .nhom-nut {
+
       display: flex;
+
       flex-wrap: wrap;
+
       gap: 12px;
     }
 
-    .btn {
+
+    .nut {
+
       min-height: 48px;
 
       padding: 0 20px;
@@ -427,11 +581,15 @@
       border: 1px solid transparent;
 
       display: inline-flex;
+
       align-items: center;
+
       justify-content: center;
+
       gap: 9px;
 
       font-size: 12px;
+
       font-weight: 800;
 
       transition:
@@ -440,48 +598,69 @@
         border-color .2s ease;
     }
 
-    .btn:hover {
+
+    .nut:hover {
+
       transform: translateY(-2px);
     }
 
-    .btn-primary {
-      background: var(--white);
+
+    .nut-chinh {
+
+      background: var(--trang);
+
       color: #080808;
     }
 
-    .btn-primary:hover {
+
+    .nut-chinh:hover {
+
       background: #eaeaea;
     }
 
-    .btn-dark {
+
+    .nut-phu {
+
       background: rgba(255,255,255,.05);
-      border-color: var(--line);
-      color: var(--white);
+
+      border-color: var(--vien);
+
+      color: var(--trang);
     }
 
-    .btn-dark:hover {
+
+    .nut-phu:hover {
+
       background: rgba(255,255,255,.09);
     }
 
+
     /* =========================================================
-       HERO POSTER
+       ÁP PHÍCH SẢN PHẨM NỔI BẬT
        ========================================================= */
 
-    .hero-poster-wrap {
+    .khung-ap-phich {
+
       position: relative;
 
       display: flex;
+
       justify-content: center;
+
       align-items: center;
     }
 
-    .hero-poster {
+
+    .ap-phich {
+
       width: min(470px, 100%);
+
       aspect-ratio: 4 / 5;
 
       border-radius: 26px;
 
       position: relative;
+
       overflow: hidden;
 
       background:
@@ -504,14 +683,23 @@
       transform: rotate(3deg);
 
       transition: transform .4s ease;
+
+      cursor: pointer;
     }
 
-    .hero-poster:hover {
-      transform: rotate(0deg) translateY(-8px);
+
+    .ap-phich:hover {
+
+      transform:
+        rotate(0deg)
+        translateY(-8px);
     }
 
-    .poster-noise {
+
+    .hat-nhieu {
+
       position: absolute;
+
       inset: 0;
 
       opacity: .16;
@@ -525,7 +713,9 @@
         );
     }
 
-    .poster-circle {
+
+    .vong-tron-ap-phich {
+
       position: absolute;
 
       width: 340px;
@@ -543,29 +733,43 @@
         0 0 0 100px rgba(255,255,255,.015);
     }
 
-    .poster-content {
+
+    .noi-dung-ap-phich {
+
       position: absolute;
+
       inset: 0;
 
       padding: 34px;
 
       display: flex;
+
       flex-direction: column;
+
       justify-content: space-between;
     }
 
-    .poster-top {
+
+    .dau-ap-phich {
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
 
       font-size: 10px;
+
       font-weight: 800;
+
       letter-spacing: .14em;
+
       text-transform: uppercase;
     }
 
-    .poster-badge {
+
+    .nhan-noi-bat {
+
       padding: 7px 10px;
 
       border-radius: 100px;
@@ -575,20 +779,34 @@
       backdrop-filter: blur(10px);
     }
 
-    .poster-title {
+
+    .tieu-de-ap-phich {
+
       max-width: 350px;
 
-      font-size: clamp(42px, 5vw, 70px);
+      font-size:
+        clamp(
+          42px,
+          5vw,
+          70px
+        );
+
       line-height: .86;
+
       letter-spacing: -.07em;
+
       font-weight: 900;
     }
 
-    .poster-title small {
+
+    .tieu-de-ap-phich small {
+
       display: block;
 
       font-size: 12px;
+
       letter-spacing: .15em;
+
       text-transform: uppercase;
 
       margin-bottom: 15px;
@@ -596,21 +814,31 @@
       opacity: .7;
     }
 
-    .poster-bottom {
+
+    .chan-ap-phich {
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: end;
     }
 
-    .poster-meta {
+
+    .thong-tin-ap-phich {
+
       font-size: 10px;
+
       line-height: 1.6;
 
       color: rgba(255,255,255,.65);
     }
 
-    .poster-number {
+
+    .so-ap-phich {
+
       font-size: 80px;
+
       font-weight: 900;
 
       line-height: .7;
@@ -618,35 +846,44 @@
       opacity: .12;
     }
 
+
     /* =========================================================
-       FEATURED PRODUCTS
+       SẢN PHẨM NỔI BẬT
        ========================================================= */
 
-    .featured-section {
+    .phan-noi-bat {
+
       padding-top: 70px;
     }
 
-    .carousel {
+
+    .luoi-san-pham {
+
       display: grid;
 
       grid-template-columns:
-        repeat(4, minmax(250px, 1fr));
+        repeat(
+          4,
+          minmax(250px, 1fr)
+        );
 
       gap: 18px;
     }
 
-    .product-card {
+
+    .the-san-pham {
+
       position: relative;
 
       min-height: 420px;
 
-      border-radius: var(--radius-lg);
+      border-radius: var(--bo-tron-lon);
 
       overflow: hidden;
 
-      background: var(--bg-card);
+      background: var(--the);
 
-      border: 1px solid var(--line);
+      border: 1px solid var(--vien);
 
       cursor: pointer;
 
@@ -656,22 +893,28 @@
         box-shadow .3s ease;
     }
 
-    .product-card:hover {
+
+    .the-san-pham:hover {
+
       transform: translateY(-8px);
 
       border-color:
         rgba(255,255,255,.22);
 
-      box-shadow: var(--shadow);
+      box-shadow: var(--bong);
     }
 
-    .product-visual {
+
+    .hinh-san-pham {
+
       height: 260px;
 
       position: relative;
+
       overflow: hidden;
 
       display: flex;
+
       align-items: flex-end;
 
       padding: 22px;
@@ -684,7 +927,10 @@
         );
     }
 
-    .product-card:nth-child(1) .product-visual {
+
+    .the-san-pham:nth-child(1)
+    .hinh-san-pham {
+
       background:
         radial-gradient(
           circle at 75% 30%,
@@ -698,7 +944,10 @@
         );
     }
 
-    .product-card:nth-child(2) .product-visual {
+
+    .the-san-pham:nth-child(2)
+    .hinh-san-pham {
+
       background:
         radial-gradient(
           circle at 30% 25%,
@@ -712,7 +961,10 @@
         );
     }
 
-    .product-card:nth-child(3) .product-visual {
+
+    .the-san-pham:nth-child(3)
+    .hinh-san-pham {
+
       background:
         radial-gradient(
           circle at 75% 20%,
@@ -726,7 +978,10 @@
         );
     }
 
-    .product-card:nth-child(4) .product-visual {
+
+    .the-san-pham:nth-child(4)
+    .hinh-san-pham {
+
       background:
         radial-gradient(
           circle at 50% 35%,
@@ -740,7 +995,9 @@
         );
     }
 
-    .visual-shape {
+
+    .hinh-trang-tri {
+
       position: absolute;
 
       width: 180px;
@@ -748,98 +1005,133 @@
 
       border-radius: 50%;
 
-      border: 1px solid rgba(255,255,255,.16);
+      border:
+        1px solid
+        rgba(255,255,255,.16);
 
       right: -50px;
       top: 30px;
     }
 
-    .visual-shape::after {
+
+    .hinh-trang-tri::after {
+
       content: "";
 
       position: absolute;
+
       inset: 30px;
 
       border-radius: 50%;
 
-      border: 1px solid rgba(255,255,255,.12);
+      border:
+        1px solid
+        rgba(255,255,255,.12);
     }
 
-    .product-label {
+
+    .nhan-san-pham {
+
       position: relative;
+
       z-index: 2;
 
       padding: 7px 10px;
 
       border-radius: 100px;
 
-      background: rgba(0,0,0,.35);
+      background:
+        rgba(0,0,0,.35);
 
       backdrop-filter: blur(8px);
 
       font-size: 9px;
+
       font-weight: 800;
 
       letter-spacing: .12em;
+
       text-transform: uppercase;
     }
 
-    .product-content {
+
+    .noi-dung-san-pham {
+
       padding: 22px;
     }
 
-    .product-name {
+
+    .ten-san-pham {
+
       font-size: 24px;
+
       line-height: 1;
+
       letter-spacing: -.045em;
+
       font-weight: 850;
 
       margin-bottom: 10px;
     }
 
-    .product-tagline {
-      color: var(--text-soft);
+
+    .mo-ta-san-pham {
+
+      color: var(--chu-nhe);
 
       font-size: 12px;
+
       line-height: 1.55;
 
       min-height: 38px;
     }
 
-    .product-footer {
+
+    .chan-san-pham {
+
       margin-top: 18px;
 
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
 
-      color: var(--text-muted);
+      color: var(--chu-mo);
 
       font-size: 10px;
+
       font-weight: 700;
+
       text-transform: uppercase;
+
       letter-spacing: .08em;
     }
 
-    .arrow {
+
+    .mui-ten {
+
       width: 30px;
       height: 30px;
 
       border-radius: 50%;
 
-      border: 1px solid var(--line);
+      border: 1px solid var(--vien);
 
       display: grid;
+
       place-items: center;
 
-      color: var(--white);
+      color: var(--trang);
     }
 
+
     /* =========================================================
-       COLLECTIONS
+       TUYỂN TẬP
        ========================================================= */
 
-    .collection-grid {
+    .luoi-tuyen-tap {
+
       display: grid;
 
       grid-template-columns:
@@ -848,13 +1140,16 @@
       gap: 18px;
     }
 
-    .collection-card {
+
+    .the-tuyen-tap {
+
       min-height: 230px;
 
       padding: 28px;
 
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
+      border: 1px solid var(--vien);
+
+      border-radius: var(--bo-tron);
 
       background:
         linear-gradient(
@@ -864,6 +1159,7 @@
         );
 
       position: relative;
+
       overflow: hidden;
 
       cursor: pointer;
@@ -871,18 +1167,25 @@
       transition: .25s ease;
     }
 
-    .collection-card:hover {
+
+    .the-tuyen-tap:hover {
+
       transform: translateY(-5px);
-      border-color: rgba(255,255,255,.22);
+
+      border-color:
+        rgba(255,255,255,.22);
     }
 
-    .collection-number {
+
+    .so-tuyen-tap {
+
       position: absolute;
 
       right: 20px;
       bottom: -15px;
 
       font-size: 130px;
+
       font-weight: 900;
 
       color: rgba(255,255,255,.035);
@@ -890,14 +1193,19 @@
       line-height: 1;
     }
 
-    .collection-icon {
+
+    .bieu-tuong-tuyen-tap {
+
       font-size: 22px;
 
       margin-bottom: 34px;
     }
 
-    .collection-title {
+
+    .ten-tuyen-tap {
+
       font-size: 28px;
+
       line-height: 1;
 
       letter-spacing: -.05em;
@@ -907,21 +1215,27 @@
       margin-bottom: 10px;
     }
 
-    .collection-description {
+
+    .mo-ta-tuyen-tap {
+
       max-width: 300px;
 
-      color: var(--text-soft);
+      color: var(--chu-nhe);
 
       font-size: 12px;
+
       line-height: 1.6;
     }
 
+
     /* =========================================================
-       FILTER
+       BỘ LỌC
        ========================================================= */
 
-    .filter-row {
+    .hang-bo-loc {
+
       display: flex;
+
       gap: 8px;
 
       overflow-x: auto;
@@ -931,43 +1245,52 @@
       scrollbar-width: none;
     }
 
-    .filter-row::-webkit-scrollbar {
+
+    .hang-bo-loc::-webkit-scrollbar {
+
       display: none;
     }
 
-    .filter-btn {
+
+    .nut-bo-loc {
+
       flex: 0 0 auto;
 
-      border: 1px solid var(--line);
+      border: 1px solid var(--vien);
 
       background: transparent;
 
-      color: var(--text-soft);
+      color: var(--chu-nhe);
 
       border-radius: 100px;
 
       padding: 10px 16px;
 
       font-size: 11px;
+
       font-weight: 750;
 
       transition: .2s ease;
     }
 
-    .filter-btn:hover,
-    .filter-btn.active {
+
+    .nut-bo-loc:hover,
+    .nut-bo-loc.dang-chon {
+
       color: #080808;
 
-      background: var(--white);
+      background: var(--trang);
 
-      border-color: var(--white);
+      border-color: var(--trang);
     }
 
+
     /* =========================================================
-       CTA
+       LỜI KÊU GỌI
        ========================================================= */
 
-    .final-cta {
+    .phan-keu-goi {
+
       padding: 120px 0;
 
       position: relative;
@@ -982,12 +1305,14 @@
         );
     }
 
-    .cta-box {
+
+    .hop-keu-goi {
+
       min-height: 400px;
 
       border-radius: 32px;
 
-      border: 1px solid var(--line);
+      border: 1px solid var(--vien);
 
       background:
         linear-gradient(
@@ -997,9 +1322,11 @@
         );
 
       display: flex;
+
       flex-direction: column;
 
       align-items: center;
+
       justify-content: center;
 
       text-align: center;
@@ -1007,10 +1334,17 @@
       padding: 60px;
     }
 
-    .cta-title {
+
+    .tieu-de-keu-goi {
+
       max-width: 850px;
 
-      font-size: clamp(48px, 7vw, 92px);
+      font-size:
+        clamp(
+          48px,
+          7vw,
+          92px
+        );
 
       line-height: .87;
 
@@ -1021,48 +1355,61 @@
       margin-bottom: 25px;
     }
 
-    .cta-title span {
-      color: var(--accent);
+
+    .tieu-de-keu-goi span {
+
+      color: var(--do);
     }
 
-    .cta-description {
+
+    .mo-ta-keu-goi {
+
       max-width: 570px;
 
-      color: var(--text-soft);
+      color: var(--chu-nhe);
 
       font-size: 15px;
+
       line-height: 1.7;
 
       margin-bottom: 30px;
     }
 
+
     /* =========================================================
-       FOOTER
+       CHÂN TRANG
        ========================================================= */
 
     footer {
-      border-top: 1px solid var(--line);
+
+      border-top: 1px solid var(--vien);
 
       padding: 30px 0 40px;
 
-      color: var(--text-muted);
+      color: var(--chu-mo);
 
       font-size: 10px;
     }
 
-    .footer-inner {
+
+    .noi-dung-chan-trang {
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
 
       gap: 20px;
     }
 
+
     /* =========================================================
-       PRODUCT MODAL
+       CỬA SỔ CHI TIẾT SẢN PHẨM
        ========================================================= */
 
-    .modal {
+    .cua-so {
+
       position: fixed;
 
       inset: 0;
@@ -1080,11 +1427,15 @@
       padding: 40px 20px;
     }
 
-    .modal.open {
+
+    .cua-so.mo {
+
       display: block;
     }
 
-    .modal-panel {
+
+    .bang-cua-so {
+
       width: min(1050px, 100%);
 
       margin: 50px auto;
@@ -1093,29 +1444,42 @@
 
       background: #111;
 
-      border: 1px solid var(--line);
+      border: 1px solid var(--vien);
 
       box-shadow:
         0 50px 120px rgba(0,0,0,.75);
 
       overflow: hidden;
 
-      animation: modalIn .25s ease;
+      animation:
+        mo-cua-so .25s ease;
     }
 
-    @keyframes modalIn {
+
+    @keyframes mo-cua-so {
+
       from {
+
         opacity: 0;
-        transform: translateY(25px) scale(.98);
+
+        transform:
+          translateY(25px)
+          scale(.98);
       }
 
       to {
+
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+          translateY(0)
+          scale(1);
       }
     }
 
-    .modal-hero {
+
+    .dau-cua-so {
+
       min-height: 390px;
 
       position: relative;
@@ -1123,6 +1487,7 @@
       padding: 50px;
 
       display: flex;
+
       align-items: end;
 
       background:
@@ -1138,7 +1503,9 @@
         );
     }
 
-    .modal-close {
+
+    .nut-dong-cua-so {
+
       position: absolute;
 
       right: 20px;
@@ -1149,31 +1516,46 @@
 
       border-radius: 50%;
 
-      border: 1px solid rgba(255,255,255,.15);
+      border:
+        1px solid
+        rgba(255,255,255,.15);
 
-      background: rgba(0,0,0,.3);
+      background:
+        rgba(0,0,0,.3);
 
-      color: var(--white);
+      color: var(--trang);
 
       font-size: 18px;
     }
 
-    .modal-category {
-      color: rgba(255,255,255,.6);
+
+    .phan-loai-cua-so {
+
+      color:
+        rgba(255,255,255,.6);
 
       font-size: 10px;
+
       font-weight: 800;
 
       letter-spacing: .15em;
+
       text-transform: uppercase;
 
       margin-bottom: 14px;
     }
 
-    .modal-title {
+
+    .tieu-de-cua-so {
+
       max-width: 700px;
 
-      font-size: clamp(48px, 7vw, 86px);
+      font-size:
+        clamp(
+          48px,
+          7vw,
+          86px
+        );
 
       line-height: .86;
 
@@ -1182,32 +1564,41 @@
       font-weight: 900;
     }
 
-    .modal-body {
+
+    .than-cua-so {
+
       padding: 50px;
     }
 
-    .story-grid {
+
+    .luoi-cau-chuyen {
+
       display: grid;
 
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns:
+        1.1fr .9fr;
 
       gap: 50px;
     }
 
-    .story-main h3,
-    .story-side h3 {
+
+    .khu-cau-chuyen h3,
+    .khu-thong-tin h3 {
+
       font-size: 11px;
 
       letter-spacing: .14em;
 
       text-transform: uppercase;
 
-      color: var(--text-muted);
+      color: var(--chu-mo);
 
       margin-bottom: 14px;
     }
 
-    .story-main h2 {
+
+    .khu-cau-chuyen h2 {
+
       font-size: 32px;
 
       line-height: 1.05;
@@ -1217,8 +1608,10 @@
       margin-bottom: 16px;
     }
 
-    .story-main p {
-      color: var(--text-soft);
+
+    .khu-cau-chuyen p {
+
+      color: var(--chu-nhe);
 
       font-size: 14px;
 
@@ -1227,7 +1620,9 @@
       margin-bottom: 30px;
     }
 
-    .sales-story {
+
+    .cau-chuyen-ban-hang {
+
       padding: 24px;
 
       border-radius: 18px;
@@ -1239,13 +1634,17 @@
           rgba(255,255,255,.03)
         );
 
-      border: 1px solid rgba(255,59,48,.18);
+      border:
+        1px solid
+        rgba(255,59,48,.18);
 
       margin-top: 25px;
     }
 
-    .sales-story-label {
-      color: var(--accent);
+
+    .nhan-cau-chuyen {
+
+      color: var(--do);
 
       font-size: 10px;
 
@@ -1258,7 +1657,9 @@
       margin-bottom: 12px;
     }
 
-    .sales-story-text {
+
+    .noi-dung-cau-chuyen {
+
       font-size: 18px;
 
       line-height: 1.45;
@@ -1266,22 +1667,28 @@
       letter-spacing: -.02em;
     }
 
-    .info-list {
+
+    .danh-sach-thong-tin {
+
       display: grid;
 
       gap: 20px;
     }
 
-    .info-item {
+
+    .muc-thong-tin {
+
       padding-bottom: 20px;
 
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--vien);
     }
 
-    .info-label {
+
+    .nhan-thong-tin {
+
       font-size: 10px;
 
-      color: var(--text-muted);
+      color: var(--chu-mo);
 
       text-transform: uppercase;
 
@@ -1290,21 +1697,31 @@
       margin-bottom: 8px;
     }
 
-    .info-value {
+
+    .gia-tri-thong-tin {
+
       font-size: 14px;
 
-      color: var(--text-soft);
+      color: var(--chu-nhe);
     }
 
-    .package-section {
+
+    /* =========================================================
+       GÓI BÁN
+       ========================================================= */
+
+    .khu-goi-ban {
+
       margin-top: 50px;
 
       padding-top: 45px;
 
-      border-top: 1px solid var(--line);
+      border-top: 1px solid var(--vien);
     }
 
-    .package-title {
+
+    .tieu-de-goi-ban {
+
       font-size: 28px;
 
       letter-spacing: -.04em;
@@ -1312,7 +1729,9 @@
       margin-bottom: 22px;
     }
 
-    .package-grid {
+
+    .luoi-goi-ban {
+
       display: grid;
 
       grid-template-columns:
@@ -1321,17 +1740,22 @@
       gap: 12px;
     }
 
-    .package-card {
+
+    .the-goi-ban {
+
       padding: 22px;
 
       border-radius: 16px;
 
-      border: 1px solid var(--line);
+      border: 1px solid var(--vien);
 
-      background: rgba(255,255,255,.025);
+      background:
+        rgba(255,255,255,.025);
     }
 
-    .package-card.featured {
+
+    .the-goi-ban.noi-bat {
+
       border-color:
         rgba(255,59,48,.4);
 
@@ -1339,14 +1763,18 @@
         rgba(255,59,48,.06);
     }
 
-    .package-name {
+
+    .ten-goi-ban {
+
       font-weight: 800;
 
       margin-bottom: 10px;
     }
 
-    .package-items {
-      color: var(--text-soft);
+
+    .danh-sach-goi {
+
+      color: var(--chu-nhe);
 
       font-size: 12px;
 
@@ -1355,13 +1783,17 @@
       margin-bottom: 18px;
     }
 
-    .package-price {
+
+    .gia-goi {
+
       font-size: 12px;
 
-      color: var(--text-muted);
+      color: var(--chu-mo);
     }
 
-    .modal-actions {
+
+    .nut-hanh-dong-cua-so {
+
       display: flex;
 
       flex-wrap: wrap;
@@ -1371,71 +1803,182 @@
       margin-top: 40px;
     }
 
+
     /* =========================================================
-       RESPONSIVE
+       CỬA SỔ GỬI NHU CẦU
+       ========================================================= */
+
+    .o-bieu-mau {
+
+      display: grid;
+
+      gap: 14px;
+    }
+
+
+    .o-bieu-mau input,
+    .o-bieu-mau select,
+    .o-bieu-mau textarea {
+
+      width: 100%;
+
+      padding: 0 16px;
+
+      background: #191919;
+
+      border:
+        1px solid
+        var(--vien);
+
+      border-radius: 12px;
+
+      color: white;
+
+      outline: none;
+    }
+
+
+    .o-bieu-mau input,
+    .o-bieu-mau select {
+
+      height: 52px;
+    }
+
+
+    .o-bieu-mau textarea {
+
+      min-height: 110px;
+
+      padding-top: 15px;
+
+      padding-bottom: 15px;
+
+      resize: vertical;
+    }
+
+
+    .thong-bao-thanh-cong {
+
+      display: none;
+
+      margin-top: 20px;
+
+      padding: 18px;
+
+      border-radius: 14px;
+
+      background:
+        rgba(84,209,122,.08);
+
+      border:
+        1px solid
+        rgba(84,209,122,.2);
+
+      color: #8de8a8;
+
+      font-size: 13px;
+    }
+
+
+    /* =========================================================
+       ĐIỆN THOẠI
        ========================================================= */
 
     @media (max-width: 1100px) {
 
-      .hero-inner {
+      .noi-dung-mo-dau {
+
         grid-template-columns: 1fr;
       }
 
-      .hero-poster-wrap {
+
+      .khung-ap-phich {
+
         display: none;
       }
 
-      .carousel {
+
+      .luoi-san-pham {
+
         grid-template-columns:
-          repeat(2, minmax(0, 1fr));
+          repeat(
+            2,
+            minmax(0,1fr)
+          );
       }
 
-      .collection-grid {
+
+      .luoi-tuyen-tap {
+
         grid-template-columns:
-          repeat(2, 1fr);
+          repeat(2,1fr);
       }
 
     }
 
+
     @media (max-width: 760px) {
 
-      .container {
-        width: min(calc(100% - 28px), var(--max-width));
+      .khung {
+
+        width:
+          min(
+            calc(100% - 28px),
+            var(--chieu-rong)
+          );
       }
 
-      .nav-links {
+
+      .lien-ket-dieu-huong {
+
         display: none;
       }
 
-      .nav-search {
+
+      .o-tim-kiem {
+
         width: 145px;
       }
 
-      .hero {
+
+      .phan-mo-dau {
+
         min-height: 720px;
       }
 
-      .hero-title {
+
+      .tieu-de-mo-dau {
+
         font-size: 62px;
       }
 
-      .hero-description {
+
+      .mo-ta-mo-dau {
+
         font-size: 15px;
       }
 
-      .section {
+
+      .phan {
+
         padding: 65px 0;
       }
 
-      .section-heading {
+
+      .tieu-de-khu-vuc {
+
         display: block;
       }
 
-      .section-description {
+
+      .mo-ta-khu-vuc {
+
         margin-top: 18px;
       }
 
-      .carousel {
+
+      .luoi-san-pham {
+
         display: flex;
 
         overflow-x: auto;
@@ -1445,41 +1988,57 @@
         padding-bottom: 12px;
       }
 
-      .product-card {
+
+      .the-san-pham {
+
         min-width: 280px;
 
         scroll-snap-align: start;
       }
 
-      .collection-grid {
+
+      .luoi-tuyen-tap {
+
         grid-template-columns: 1fr;
       }
 
-      .story-grid {
+
+      .luoi-cau-chuyen {
+
         grid-template-columns: 1fr;
 
         gap: 35px;
       }
 
-      .modal-hero {
+
+      .dau-cua-so {
+
         min-height: 300px;
 
         padding: 30px;
       }
 
-      .modal-body {
+
+      .than-cua-so {
+
         padding: 30px 22px;
       }
 
-      .package-grid {
+
+      .luoi-goi-ban {
+
         grid-template-columns: 1fr;
       }
 
-      .cta-box {
+
+      .hop-keu-goi {
+
         padding: 40px 22px;
       }
 
-      .footer-inner {
+
+      .noi-dung-chan-trang {
+
         align-items: flex-start;
 
         flex-direction: column;
@@ -1490,64 +2049,73 @@
   </style>
 </head>
 
+
 <body>
 
+
   <!-- =======================================================
-       NAVIGATION
+       THANH ĐIỀU HƯỚNG
        ======================================================= -->
 
-  <header class="navbar">
+  <header class="thanh-dieu-huong">
 
-    <div class="container nav-inner">
+    <div class="khung noi-dung-dieu-huong">
 
-      <a href="#" class="brand">
 
-        <div class="brand-mark">
+      <a
+        href="#"
+        class="thuong-hieu"
+      >
+
+        <div class="dau-thuong-hieu">
           A
         </div>
 
+
         <div>
-          <div class="brand-name">
-            ATHENA SHOWCASE
+
+          <div class="ten-thuong-hieu">
+            ATHENA TUYỂN CHỌN
           </div>
 
-          <div class="brand-sub">
-            Products worth selling now
+          <div class="mo-ta-thuong-hieu">
+            Những sản phẩm đáng bán lúc này
           </div>
+
         </div>
 
       </a>
 
 
-      <nav class="nav-links">
+      <nav class="lien-ket-dieu-huong">
 
-        <a href="#now-showing">
-          Now Showing
+        <a href="#dang-hien-thi">
+          Đang nổi bật
         </a>
 
-        <a href="#collections">
-          Collections
+        <a href="#tuyen-tap">
+          Tuyển tập
         </a>
 
-        <a href="#best">
-          Bestsellers
+        <a href="#kham-pha">
+          Khám phá
         </a>
 
-        <a href="#contact">
-          Product Team
+        <a href="#lien-he">
+          Hỗ trợ bán hàng
         </a>
 
       </nav>
 
 
-      <div class="nav-search">
+      <div class="o-tim-kiem">
 
         <span>⌕</span>
 
         <input
           type="text"
-          id="searchInput"
-          placeholder="Search product..."
+          id="oTimKiem"
+          placeholder="Tìm sản phẩm..."
         />
 
       </div>
@@ -1559,72 +2127,78 @@
 
 
   <!-- =======================================================
-       HERO
+       NỘI DUNG CHÍNH
        ======================================================= -->
 
   <main>
 
-    <section class="hero">
 
-      <div class="hero-grid"></div>
+    <!-- =====================================================
+         MỞ ĐẦU
+         ===================================================== -->
+
+    <section class="phan-mo-dau">
+
+      <div class="luoi-nen"></div>
 
 
-      <div class="container hero-inner">
+      <div class="khung noi-dung-mo-dau">
 
-        <div class="hero-copy">
 
-          <div class="hero-kicker">
+        <div class="noi-dung-mo-dau-trai">
 
-            <span class="live-dot"></span>
 
-            ATHENA PRODUCT SHOWCASE
+          <div class="dong-trang-thai">
 
-            <span>·</span>
+            <span class="diem-truc-tuyen"></span>
 
-            SEPTEMBER 2026
+            TUYỂN CHỌN THÁNG 09 / 2026
 
           </div>
 
 
-          <h1 class="hero-title">
+          <h1 class="tieu-de-mo-dau">
 
-            <span>SEE.</span>
+            <span>NHÌN.</span>
 
-            <span class="accent">
-              WANT.
+            <span class="mau-do">
+              THẤY.
             </span>
 
-            <span>SELL.</span>
+            <span>BÁN.</span>
 
           </h1>
 
 
-          <p class="hero-description">
+          <p class="mo-ta-mo-dau">
 
             Những sản phẩm đặc biệt Athena muốn
-            Sale & Account nhìn thấy ngay lúc này —
-            cùng sales story, khách hàng phù hợp và
-            package sẵn sàng để mang vào cuộc trò chuyện.
+            Sale và Account nhìn thấy ngay lúc này —
+            cùng câu chuyện bán hàng, khách hàng
+            phù hợp và gói bán sẵn sàng để mang
+            vào cuộc trò chuyện.
 
           </p>
 
 
-          <div class="hero-actions">
+          <div class="nhom-nut">
+
 
             <a
-              href="#now-showing"
-              class="btn btn-primary"
+              href="#dang-hien-thi"
+              class="nut nut-chinh"
             >
               🔥 Xem sản phẩm nổi bật
             </a>
 
 
             <a
-              href="#collections"
-              class="btn btn-dark"
+              href="#tuyen-tap"
+              class="nut nut-phu"
             >
-              Khám phá collections
+              Khám phá tuyển tập
             </a>
+
 
           </div>
 
@@ -1632,60 +2206,64 @@
 
 
 
-        <!-- HERO FEATURED POSTER -->
+        <!-- ÁP PHÍCH SẢN PHẨM -->
 
-        <div class="hero-poster-wrap">
+        <div class="khung-ap-phich">
 
           <div
-            class="hero-poster"
-            onclick="openProduct('product-marketing')"
+            class="ap-phich"
+            onclick="
+              moSanPham(
+                'tiep-thi-san-pham'
+              )
+            "
           >
 
-            <div class="poster-noise"></div>
+            <div class="hat-nhieu"></div>
 
-            <div class="poster-circle"></div>
+            <div class="vong-tron-ap-phich"></div>
 
 
-            <div class="poster-content">
+            <div class="noi-dung-ap-phich">
 
-              <div class="poster-top">
+
+              <div class="dau-ap-phich">
 
                 <span>
-                  ATHENA ORIGINAL
+                  SẢN PHẨM NỔI BẬT
                 </span>
 
-                <span class="poster-badge">
-                  FEATURED
+                <span class="nhan-noi-bat">
+                  ĐỀ XUẤT
                 </span>
 
               </div>
 
 
-              <div class="poster-title">
+              <div class="tieu-de-ap-phich">
 
                 <small>
-                  Product Marketing
+                  Tiếp thị sản phẩm
                 </small>
 
-                The
-                Launch
-                Machine
+                CÂU CHUYỆN
+                LỚN
 
               </div>
 
 
-              <div class="poster-bottom">
+              <div class="chan-ap-phich">
 
-                <div class="poster-meta">
+                <div class="thong-tin-ap-phich">
 
-                  PRODUCT MARKETING<br>
-                  STRATEGIC PRODUCT<br>
-                  Q3 / Q4 2026
+                  TIẾP THỊ SẢN PHẨM<br>
+                  SẢN PHẨM CHIẾN LƯỢC<br>
+                  QUÝ 3 / QUÝ 4 — 2026
 
                 </div>
 
 
-                <div class="poster-number">
+                <div class="so-ap-phich">
                   01
                 </div>
 
@@ -1704,40 +2282,43 @@
 
 
     <!-- =====================================================
-         NOW SHOWING
+         ĐANG NỔI BẬT
          ===================================================== -->
 
     <section
-      class="section featured-section"
-      id="now-showing"
+      class="phan phan-noi-bat"
+      id="dang-hien-thi"
     >
 
-      <div class="container">
+      <div class="khung">
 
-        <div class="section-heading">
+
+        <div class="tieu-de-khu-vuc">
+
 
           <div>
 
-            <div class="eyebrow">
+            <div class="nhan">
 
-              <span class="eyebrow-dot"></span>
+              <span class="nhan-diem"></span>
 
-              Now Showing
+              Đang nổi bật
 
             </div>
 
-            <h2 class="section-title">
-              Worth a look.
+
+            <h2 class="tieu-de">
+              Đáng để xem.
             </h2>
 
           </div>
 
 
-          <p class="section-description">
+          <p class="mo-ta-khu-vuc">
 
             Những sản phẩm Athena đang muốn
-            Sales & Account chú ý nhất trong
-            thời điểm hiện tại.
+            Sale và Account chú ý nhất
+            trong thời điểm hiện tại.
 
           </p>
 
@@ -1746,51 +2327,58 @@
 
 
         <div
-          class="carousel"
-          id="productGrid"
+          class="luoi-san-pham"
+          id="luoiSanPham"
         >
 
 
-          <!-- PRODUCT 01 -->
+          <!-- SẢN PHẨM 01 -->
 
           <article
-            class="product-card"
-            data-product="product-marketing"
-            data-category="strategic"
-            onclick="openProduct('product-marketing')"
+            class="the-san-pham"
+            data-san-pham="tiep-thi-san-pham"
+            data-nhom="chien-luoc"
+            onclick="
+              moSanPham(
+                'tiep-thi-san-pham'
+              )
+            "
           >
 
-            <div class="product-visual">
+            <div class="hinh-san-pham">
 
-              <div class="visual-shape"></div>
+              <div class="hinh-trang-tri"></div>
 
-              <span class="product-label">
-                🔥 Strategic
+              <span class="nhan-san-pham">
+                🔥 Sản phẩm chiến lược
               </span>
 
             </div>
 
 
-            <div class="product-content">
+            <div class="noi-dung-san-pham">
 
-              <h3 class="product-name">
-                Product Marketing
+              <h3 class="ten-san-pham">
+                Tiếp thị sản phẩm
               </h3>
 
-              <p class="product-tagline">
+
+              <p class="mo-ta-san-pham">
+
                 Biến một sản phẩm thành
                 một câu chuyện đủ lớn
                 để thị trường chú ý.
+
               </p>
 
 
-              <div class="product-footer">
+              <div class="chan-san-pham">
 
                 <span>
-                  Product / Launch
+                  Ra mắt / Tăng trưởng
                 </span>
 
-                <span class="arrow">
+                <span class="mui-ten">
                   →
                 </span>
 
@@ -1802,46 +2390,53 @@
 
 
 
-          <!-- PRODUCT 02 -->
+          <!-- SẢN PHẨM 02 -->
 
           <article
-            class="product-card"
-            data-product="social-booking"
-            data-category="hot"
-            onclick="openProduct('social-booking')"
+            class="the-san-pham"
+            data-san-pham="dat-bai-tren-mang-xa-hoi"
+            data-nhom="nong"
+            onclick="
+              moSanPham(
+                'dat-bai-tren-mang-xa-hoi'
+              )
+            "
           >
 
-            <div class="product-visual">
+            <div class="hinh-san-pham">
 
-              <div class="visual-shape"></div>
+              <div class="hinh-trang-tri"></div>
 
-              <span class="product-label">
-                🔥 Hot
+              <span class="nhan-san-pham">
+                🔥 Đang được đẩy
               </span>
 
             </div>
 
 
-            <div class="product-content">
+            <div class="noi-dung-san-pham">
 
-              <h3 class="product-name">
-                Social Booking
+              <h3 class="ten-san-pham">
+                Đặt bài trên mạng xã hội
               </h3>
 
-              <p class="product-tagline">
+
+              <p class="mo-ta-san-pham">
+
                 Đưa câu chuyện thương hiệu
                 xuất hiện đúng nơi khách hàng
                 đang trò chuyện.
+
               </p>
 
 
-              <div class="product-footer">
+              <div class="chan-san-pham">
 
                 <span>
-                  Social / Reach
+                  Mạng xã hội / Lan tỏa
                 </span>
 
-                <span class="arrow">
+                <span class="mui-ten">
                   →
                 </span>
 
@@ -1853,46 +2448,53 @@
 
 
 
-          <!-- PRODUCT 03 -->
+          <!-- SẢN PHẨM 03 -->
 
           <article
-            class="product-card"
-            data-product="editorial"
-            data-category="bestseller"
-            onclick="openProduct('editorial')"
+            class="the-san-pham"
+            data-san-pham="noi-dung-bien-tap"
+            data-nhom="ban-chay"
+            onclick="
+              moSanPham(
+                'noi-dung-bien-tap'
+              )
+            "
           >
 
-            <div class="product-visual">
+            <div class="hinh-san-pham">
 
-              <div class="visual-shape"></div>
+              <div class="hinh-trang-tri"></div>
 
-              <span class="product-label">
-                ⭐ Bestseller
+              <span class="nhan-san-pham">
+                ⭐ Bán tốt
               </span>
 
             </div>
 
 
-            <div class="product-content">
+            <div class="noi-dung-san-pham">
 
-              <h3 class="product-name">
-                Editorial Content
+              <h3 class="ten-san-pham">
+                Nội dung biên tập
               </h3>
 
-              <p class="product-tagline">
+
+              <p class="mo-ta-san-pham">
+
                 Biến chuyên môn và câu chuyện
                 thương hiệu thành nội dung
                 có giá trị với độc giả.
+
               </p>
 
 
-              <div class="product-footer">
+              <div class="chan-san-pham">
 
                 <span>
-                  Trust / Authority
+                  Uy tín / Chuyên môn
                 </span>
 
-                <span class="arrow">
+                <span class="mui-ten">
                   →
                 </span>
 
@@ -1904,46 +2506,53 @@
 
 
 
-          <!-- PRODUCT 04 -->
+          <!-- SẢN PHẨM 04 -->
 
           <article
-            class="product-card"
-            data-product="social-ecom"
-            data-category="growth"
-            onclick="openProduct('social-ecom')"
+            class="the-san-pham"
+            data-san-pham="thuong-mai-mang-xa-hoi"
+            data-nhom="tang-truong"
+            onclick="
+              moSanPham(
+                'thuong-mai-mang-xa-hoi'
+              )
+            "
           >
 
-            <div class="product-visual">
+            <div class="hinh-san-pham">
 
-              <div class="visual-shape"></div>
+              <div class="hinh-trang-tri"></div>
 
-              <span class="product-label">
-                🚀 Growth
+              <span class="nhan-san-pham">
+                🚀 Tăng trưởng
               </span>
 
             </div>
 
 
-            <div class="product-content">
+            <div class="noi-dung-san-pham">
 
-              <h3 class="product-name">
-                Social Ecom
+              <h3 class="ten-san-pham">
+                Thương mại mạng xã hội
               </h3>
 
-              <p class="product-tagline">
-                Kết nối content, social
+
+              <p class="mo-ta-san-pham">
+
+                Kết nối nội dung, mạng xã hội
                 và hành vi mua hàng
                 trong cùng một hành trình.
+
               </p>
 
 
-              <div class="product-footer">
+              <div class="chan-san-pham">
 
                 <span>
-                  Social / Conversion
+                  Mạng xã hội / Chuyển đổi
                 </span>
 
-                <span class="arrow">
+                <span class="mui-ten">
                   →
                 </span>
 
@@ -1963,36 +2572,39 @@
 
 
     <!-- =====================================================
-         COLLECTIONS
+         TUYỂN TẬP
          ===================================================== -->
 
     <section
-      class="section"
-      id="collections"
+      class="phan"
+      id="tuyen-tap"
     >
 
-      <div class="container">
+      <div class="khung">
 
-        <div class="section-heading">
+
+        <div class="tieu-de-khu-vuc">
+
 
           <div>
 
-            <div class="eyebrow">
+            <div class="nhan">
 
-              <span class="eyebrow-dot"></span>
+              <span class="nhan-diem"></span>
 
-              Collections
+              Tuyển tập
 
             </div>
 
-            <h2 class="section-title">
-              Find your angle.
+
+            <h2 class="tieu-de">
+              Chọn góc của bạn.
             </h2>
 
           </div>
 
 
-          <p class="section-description">
+          <p class="mo-ta-khu-vuc">
 
             Không cần nhớ toàn bộ danh mục.
             Chọn đúng “ngăn kéo” và khám phá
@@ -2005,28 +2617,33 @@
 
 
 
-        <div class="collection-grid">
+        <div class="luoi-tuyen-tap">
 
 
           <div
-            class="collection-card"
-            onclick="filterProducts('hot')"
+            class="the-tuyen-tap"
+            onclick="
+              locSanPham('nong')
+            "
           >
 
-            <div class="collection-icon">
+            <div class="bieu-tuong-tuyen-tap">
               🔥
             </div>
 
-            <h3 class="collection-title">
-              Now Showing
+            <h3 class="ten-tuyen-tap">
+              Đang được đẩy
             </h3>
 
-            <p class="collection-description">
-              Những sản phẩm TĐB muốn Sales
-              chú ý ngay trong thời điểm này.
+            <p class="mo-ta-tuyen-tap">
+
+              Những sản phẩm TĐB muốn
+              Sale chú ý ngay trong
+              thời điểm này.
+
             </p>
 
-            <div class="collection-number">
+            <div class="so-tuyen-tap">
               01
             </div>
 
@@ -2035,25 +2652,29 @@
 
 
           <div
-            class="collection-card"
-            onclick="filterProducts('new')"
+            class="the-tuyen-tap"
+            onclick="
+              locSanPham('moi')
+            "
           >
 
-            <div class="collection-icon">
+            <div class="bieu-tuong-tuyen-tap">
               🆕
             </div>
 
-            <h3 class="collection-title">
-              Just Dropped
+            <h3 class="ten-tuyen-tap">
+              Mới ra mắt
             </h3>
 
-            <p class="collection-description">
-              Sản phẩm mới, proposition mới,
-              hoặc những thứ Sales có thể
+            <p class="mo-ta-tuyen-tap">
+
+              Sản phẩm mới, gói mới hoặc
+              những thứ Sale có thể
               chưa biết đến.
+
             </p>
 
-            <div class="collection-number">
+            <div class="so-tuyen-tap">
               02
             </div>
 
@@ -2062,25 +2683,29 @@
 
 
           <div
-            class="collection-card"
-            onclick="filterProducts('bestseller')"
+            class="the-tuyen-tap"
+            onclick="
+              locSanPham('ban-chay')
+            "
           >
 
-            <div class="collection-icon">
+            <div class="bieu-tuong-tuyen-tap">
               ⭐
             </div>
 
-            <h3 class="collection-title">
-              Athena's Best
+            <h3 class="ten-tuyen-tap">
+              Athena bán tốt
             </h3>
 
-            <p class="collection-description">
+            <p class="mo-ta-tuyen-tap">
+
               Những sản phẩm đã chứng minh
               khả năng bán và đáng được
-              đưa vào nhiều cuộc pitch hơn.
+              đưa vào nhiều cuộc chào bán hơn.
+
             </p>
 
-            <div class="collection-number">
+            <div class="so-tuyen-tap">
               03
             </div>
 
@@ -2089,24 +2714,29 @@
 
 
           <div
-            class="collection-card"
-            onclick="filterProducts('hidden')"
+            class="the-tuyen-tap"
+            onclick="
+              locSanPham('tiem-an')
+            "
           >
 
-            <div class="collection-icon">
+            <div class="bieu-tuong-tuyen-tap">
               💎
             </div>
 
-            <h3 class="collection-title">
-              Hidden Gems
+            <h3 class="ten-tuyen-tap">
+              Viên ngọc ẩn
             </h3>
 
-            <p class="collection-description">
-              Những sản phẩm chất lượng nhưng
-              chưa được biết đến đủ nhiều.
+            <p class="mo-ta-tuyen-tap">
+
+              Những sản phẩm chất lượng
+              nhưng chưa được biết đến
+              đủ nhiều.
+
             </p>
 
-            <div class="collection-number">
+            <div class="so-tuyen-tap">
               04
             </div>
 
@@ -2115,25 +2745,29 @@
 
 
           <div
-            class="collection-card"
-            onclick="filterProducts('growth')"
+            class="the-tuyen-tap"
+            onclick="
+              locSanPham('tang-truong')
+            "
           >
 
-            <div class="collection-icon">
+            <div class="bieu-tuong-tuyen-tap">
               🚀
             </div>
 
-            <h3 class="collection-title">
-              Growth
+            <h3 class="ten-tuyen-tap">
+              Tăng trưởng
             </h3>
 
-            <p class="collection-description">
-              Những sản phẩm có khả năng mở
-              thêm doanh thu hoặc cross-sell
-              trong client hiện hữu.
+            <p class="mo-ta-tuyen-tap">
+
+              Những sản phẩm có khả năng
+              mở thêm doanh thu hoặc
+              bán thêm cho khách hàng hiện hữu.
+
             </p>
 
-            <div class="collection-number">
+            <div class="so-tuyen-tap">
               05
             </div>
 
@@ -2142,25 +2776,29 @@
 
 
           <div
-            class="collection-card"
-            onclick="filterProducts('strategic')"
+            class="the-tuyen-tap"
+            onclick="
+              locSanPham('chien-luoc')
+            "
           >
 
-            <div class="collection-icon">
+            <div class="bieu-tuong-tuyen-tap">
               🎯
             </div>
 
-            <h3 class="collection-title">
-              Strategic
+            <h3 class="ten-tuyen-tap">
+              Sản phẩm chiến lược
             </h3>
 
-            <p class="collection-description">
+            <p class="mo-ta-tuyen-tap">
+
               Những sản phẩm Athena muốn
-              thị trường và Sales biết đến
+              thị trường và Sale biết đến
               nhiều hơn.
+
             </p>
 
-            <div class="collection-number">
+            <div class="so-tuyen-tap">
               06
             </div>
 
@@ -2176,39 +2814,43 @@
 
 
     <!-- =====================================================
-         PRODUCT DISCOVERY
+         KHÁM PHÁ
          ===================================================== -->
 
     <section
-      class="section"
-      id="best"
+      class="phan"
+      id="kham-pha"
     >
 
-      <div class="container">
+      <div class="khung">
 
-        <div class="section-heading">
+
+        <div class="tieu-de-khu-vuc">
+
 
           <div>
 
-            <div class="eyebrow">
+            <div class="nhan">
 
-              <span class="eyebrow-dot"></span>
+              <span class="nhan-diem"></span>
 
-              Explore
+              Khám phá
 
             </div>
 
-            <h2 class="section-title">
-              What's your play?
+
+            <h2 class="tieu-de">
+              Bạn đang có cơ hội gì?
             </h2>
 
           </div>
 
 
-          <p class="section-description">
+          <p class="mo-ta-khu-vuc">
 
-            Lọc nhanh theo góc bán để tìm sản phẩm
-            phù hợp với khách hàng đang có.
+            Lọc nhanh theo góc bán để tìm
+            sản phẩm phù hợp với khách hàng
+            đang có trong tay.
 
           </p>
 
@@ -2216,49 +2858,68 @@
 
 
 
-        <div class="filter-row">
+        <div class="hang-bo-loc">
+
 
           <button
-            class="filter-btn active"
-            onclick="filterProducts('all', this)"
+            class="nut-bo-loc dang-chon"
+            onclick="
+              locSanPham('tat-ca', this)
+            "
           >
-            All Products
+            Tất cả sản phẩm
           </button>
 
-          <button
-            class="filter-btn"
-            onclick="filterProducts('hot', this)"
-          >
-            🔥 Hot Now
-          </button>
 
           <button
-            class="filter-btn"
-            onclick="filterProducts('strategic', this)"
+            class="nut-bo-loc"
+            onclick="
+              locSanPham('nong', this)
+            "
           >
-            🎯 Strategic
+            🔥 Đang được đẩy
           </button>
 
-          <button
-            class="filter-btn"
-            onclick="filterProducts('bestseller', this)"
-          >
-            ⭐ Bestsellers
-          </button>
 
           <button
-            class="filter-btn"
-            onclick="filterProducts('growth', this)"
+            class="nut-bo-loc"
+            onclick="
+              locSanPham('chien-luoc', this)
+            "
           >
-            🚀 Growth
+            🎯 Sản phẩm chiến lược
           </button>
 
+
           <button
-            class="filter-btn"
-            onclick="filterProducts('new', this)"
+            class="nut-bo-loc"
+            onclick="
+              locSanPham('ban-chay', this)
+            "
           >
-            🆕 New
+            ⭐ Athena bán tốt
           </button>
+
+
+          <button
+            class="nut-bo-loc"
+            onclick="
+              locSanPham('tang-truong', this)
+            "
+          >
+            🚀 Tăng trưởng
+          </button>
+
+
+          <button
+            class="nut-bo-loc"
+            onclick="
+              locSanPham('moi', this)
+            "
+          >
+            🆕 Mới ra mắt
+          </button>
+
 
         </div>
 
@@ -2269,47 +2930,53 @@
 
 
     <!-- =====================================================
-         FINAL CTA
+         LỜI KÊU GỌI
          ===================================================== -->
 
     <section
-      class="final-cta"
-      id="contact"
+      class="phan-keu-goi"
+      id="lien-he"
     >
 
-      <div class="container">
+      <div class="khung">
 
-        <div class="cta-box">
 
-          <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Need a little help?
+        <div class="hop-keu-goi">
+
+
+          <div class="nhan">
+
+            <span class="nhan-diem"></span>
+
+            Cần hỗ trợ?
+
           </div>
 
 
-          <h2 class="cta-title">
+          <h2 class="tieu-de-keu-goi">
 
-            Saw something
-            <span>worth selling?</span>
+            Thấy sản phẩm
+            <span>đáng bán?</span>
 
           </h2>
 
 
-          <p class="cta-description">
+          <p class="mo-ta-keu-goi">
 
             Nếu bạn nhìn thấy một sản phẩm phù hợp
-            với khách hàng của mình, hãy gửi request.
-            TĐB / Product Team sẽ hỗ trợ tiếp.
+            với khách hàng của mình, hãy gửi nhu cầu.
+            TĐB hoặc đội sản phẩm sẽ hỗ trợ tiếp.
 
           </p>
 
 
           <button
-            class="btn btn-primary"
-            onclick="openInterestForm()"
+            class="nut nut-chinh"
+            onclick="moBieuMau"
           >
             💬 Tôi muốn bán sản phẩm này
           </button>
+
 
         </div>
 
@@ -2322,24 +2989,25 @@
 
 
   <!-- =======================================================
-       PRODUCT MODAL
+       CỬA SỔ CHI TIẾT SẢN PHẨM
        ======================================================= -->
 
   <div
-    class="modal"
-    id="productModal"
+    class="cua-so"
+    id="cuaSoSanPham"
   >
 
-    <div class="modal-panel">
+    <div class="bang-cua-so">
+
 
       <div
-        class="modal-hero"
-        id="modalHero"
+        class="dau-cua-so"
+        id="dauCuaSo"
       >
 
         <button
-          class="modal-close"
-          onclick="closeProduct()"
+          class="nut-dong-cua-so"
+          onclick="dongSanPham()"
         >
           ×
         </button>
@@ -2348,18 +3016,18 @@
         <div>
 
           <div
-            class="modal-category"
-            id="modalCategory"
+            class="phan-loai-cua-so"
+            id="phanLoaiCuaSo"
           >
-            Strategic Product
+            Sản phẩm chiến lược
           </div>
 
 
           <h2
-            class="modal-title"
-            id="modalTitle"
+            class="tieu-de-cua-so"
+            id="tieuDeCuaSo"
           >
-            Product Marketing
+            Tiếp thị sản phẩm
           </h2>
 
         </div>
@@ -2367,49 +3035,59 @@
       </div>
 
 
-      <div class="modal-body">
 
-        <div class="story-grid">
+      <div class="than-cua-so">
 
 
-          <div class="story-main">
+        <div class="luoi-cau-chuyen">
+
+
+          <div class="khu-cau-chuyen">
+
 
             <h3>
-              The Story
+              Câu chuyện
             </h3>
 
 
-            <h2 id="modalStoryTitle">
+            <h2 id="tieuDeCauChuyen">
               Biến sản phẩm thành
               một câu chuyện lớn.
             </h2>
 
 
-            <p id="modalStory">
-              Product Marketing giúp thương hiệu
-              xây dựng một proposition đủ rõ,
-              đủ khác biệt và đủ lớn để thị trường
+            <p id="noiDungCauChuyen">
+
+              Tiếp thị sản phẩm giúp thương hiệu
+              xác định đề xuất giá trị, xây dựng
+              câu chuyện và tạo một chiến dịch
+              đủ lớn để sản phẩm được thị trường
               chú ý.
+
             </p>
 
 
-            <div class="sales-story">
 
-              <div class="sales-story-label">
-                💬 Sales Story
+            <div class="cau-chuyen-ban-hang">
+
+
+              <div class="nhan-cau-chuyen">
+                💬 Câu chuyện bán hàng
               </div>
 
 
               <div
-                class="sales-story-text"
-                id="modalSalesStory"
+                class="noi-dung-cau-chuyen"
+                id="cauChuyenBanHang"
               >
-                “Nếu brand đang chuẩn bị launch
-                một sản phẩm mới, thay vì chỉ
-                truyền thông sản phẩm, Athena có
-                thể giúp biến chính sản phẩm đó
-                thành một câu chuyện lớn hơn để
-                thị trường chú ý.”
+
+                “Nếu thương hiệu đang chuẩn bị
+                ra mắt một sản phẩm mới, thay vì
+                chỉ truyền thông về sản phẩm,
+                Athena có thể giúp biến chính
+                sản phẩm đó thành một câu chuyện
+                lớn hơn để thị trường chú ý.”
+
               </div>
 
             </div>
@@ -2418,81 +3096,82 @@
 
 
 
-          <div class="story-side">
+          <div class="khu-thong-tin">
+
 
             <h3>
-              At a glance
+              Thông tin nhanh
             </h3>
 
 
-            <div class="info-list">
+            <div class="danh-sach-thong-tin">
 
 
-              <div class="info-item">
+              <div class="muc-thong-tin">
 
-                <div class="info-label">
-                  Perfect for
+                <div class="nhan-thong-tin">
+                  Phù hợp khi
                 </div>
 
                 <div
-                  class="info-value"
-                  id="modalPerfect"
+                  class="gia-tri-thong-tin"
+                  id="phuHopKhi"
                 >
-                  Launch · Re-launch ·
-                  New proposition
+                  Ra mắt · Tái ra mắt ·
+                  Đề xuất mới
                 </div>
 
               </div>
 
 
 
-              <div class="info-item">
+              <div class="muc-thong-tin">
 
-                <div class="info-label">
-                  Best clients
+                <div class="nhan-thong-tin">
+                  Khách hàng phù hợp
                 </div>
 
                 <div
-                  class="info-value"
-                  id="modalClients"
+                  class="gia-tri-thong-tin"
+                  id="khachHangPhuHop"
                 >
-                  FMCG · Banking ·
-                  Real Estate
+                  FMCG · Ngân hàng ·
+                  Bất động sản
                 </div>
 
               </div>
 
 
 
-              <div class="info-item">
+              <div class="muc-thong-tin">
 
-                <div class="info-label">
-                  Sales angle
+                <div class="nhan-thong-tin">
+                  Góc chào bán
                 </div>
 
                 <div
-                  class="info-value"
-                  id="modalAngle"
+                  class="gia-tri-thong-tin"
+                  id="gocChaoBan"
                 >
-                  Start with the product
-                  business problem.
+                  Bắt đầu từ bài toán kinh doanh
+                  của sản phẩm.
                 </div>
 
               </div>
 
 
 
-              <div class="info-item">
+              <div class="muc-thong-tin">
 
-                <div class="info-label">
-                  Product owner
+                <div class="nhan-thong-tin">
+                  Đội phụ trách
                 </div>
 
                 <div
-                  class="info-value"
-                  id="modalOwner"
+                  class="gia-tri-thong-tin"
+                  id="doiPhuTrach"
                 >
-                  Athena Product Team
+                  Đội Tiếp thị sản phẩm
                 </div>
 
               </div>
@@ -2506,71 +3185,88 @@
 
 
 
-        <!-- PACKAGES -->
+        <!-- =================================================
+             GÓI BÁN
+             ================================================= -->
 
-        <div class="package-section">
+        <div class="khu-goi-ban">
 
-          <h3 class="package-title">
-            What can I sell?
+
+          <h3 class="tieu-de-goi-ban">
+            Có thể chào theo gói nào?
           </h3>
 
 
-          <div class="package-grid">
+          <div class="luoi-goi-ban">
 
 
-            <div class="package-card">
+            <div class="the-goi-ban">
 
-              <div class="package-name">
-                Core
+              <div class="ten-goi-ban">
+                Gói cơ bản
               </div>
 
-              <div class="package-items">
-                Product Marketing
+
+              <div class="danh-sach-goi">
+
+                Tiếp thị sản phẩm
+
               </div>
 
-              <div class="package-price">
-                Starting from XXXM
-              </div>
 
-            </div>
-
-
-
-            <div class="package-card featured">
-
-              <div class="package-name">
-                Amplified
-              </div>
-
-              <div class="package-items">
-                Product Marketing<br>
-                + Social Booking<br>
-                + Editorial Content
-              </div>
-
-              <div class="package-price">
-                Starting from XXXM
+              <div class="gia-goi">
+                Từ XXX triệu
               </div>
 
             </div>
 
 
 
-            <div class="package-card">
+            <div
+              class="the-goi-ban noi-bat"
+            >
 
-              <div class="package-name">
-                Full Campaign
+              <div class="ten-goi-ban">
+                Gói khuếch đại
               </div>
 
-              <div class="package-items">
-                Product Marketing<br>
-                + Social<br>
-                + KOL<br>
-                + E-commerce
+
+              <div class="danh-sach-goi">
+
+                Tiếp thị sản phẩm<br>
+                + Đặt bài trên mạng xã hội<br>
+                + Nội dung biên tập
+
               </div>
 
-              <div class="package-price">
-                Starting from XXXM
+
+              <div class="gia-goi">
+                Từ XXX triệu
+              </div>
+
+            </div>
+
+
+
+            <div class="the-goi-ban">
+
+              <div class="ten-goi-ban">
+                Gói toàn diện
+              </div>
+
+
+              <div class="danh-sach-goi">
+
+                Tiếp thị sản phẩm<br>
+                + Mạng xã hội<br>
+                + Người ảnh hưởng<br>
+                + Thương mại điện tử
+
+              </div>
+
+
+              <div class="gia-goi">
+                Từ XXX triệu
               </div>
 
             </div>
@@ -2579,30 +3275,33 @@
           </div>
 
 
-          <div class="modal-actions">
+
+          <div class="nut-hanh-dong-cua-so">
+
 
             <button
-              class="btn btn-primary"
-              onclick="copySalesStory()"
+              class="nut nut-chinh"
+              onclick="saoChepCauChuyen()"
             >
-              📋 Copy Sales Story
+              📋 Sao chép câu chuyện bán hàng
             </button>
 
 
             <button
-              class="btn btn-dark"
-              onclick="openInterestForm()"
+              class="nut nut-phu"
+              onclick="moBieuMau()"
             >
-              💬 I'm Interested
+              💬 Tôi muốn bán sản phẩm này
             </button>
 
 
             <button
-              class="btn btn-dark"
-              onclick="closeProduct()"
+              class="nut nut-phu"
+              onclick="dongSanPham()"
             >
-              Close
+              Đóng
             </button>
+
 
           </div>
 
@@ -2617,32 +3316,36 @@
 
 
   <!-- =======================================================
-       INTEREST FORM MODAL
+       CỬA SỔ GỬI NHU CẦU
        ======================================================= -->
 
   <div
-    class="modal"
-    id="interestModal"
+    class="cua-so"
+    id="cuaSoNhuCau"
   >
 
     <div
-      class="modal-panel"
+      class="bang-cua-so"
       style="max-width:650px;"
     >
 
-      <div class="modal-body">
+      <div class="than-cua-so">
+
 
         <button
-          class="modal-close"
-          onclick="closeInterestForm()"
+          class="nut-dong-cua-so"
+          onclick="dongBieuMau()"
         >
           ×
         </button>
 
 
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Product Interest
+        <div class="nhan">
+
+          <span class="nhan-diem"></span>
+
+          Đăng ký quan tâm
+
         </div>
 
 
@@ -2654,124 +3357,95 @@
             margin-bottom:18px;
           "
         >
+
           Tôi muốn
-          <span style="color:var(--accent)">
+          <span
+            style="
+              color:var(--do)
+            "
+          >
             bán sản phẩm này.
           </span>
+
         </h2>
 
 
         <p
           style="
-            color:var(--text-soft);
+            color:var(--chu-nhe);
             font-size:14px;
             margin-bottom:30px;
           "
         >
+
           Chỉ cần để lại một vài thông tin.
-          Request sẽ được gửi về TĐB /
-          Product Team để hỗ trợ tiếp.
+          Nhu cầu sẽ được chuyển về TĐB /
+          đội sản phẩm để hỗ trợ tiếp.
+
         </p>
 
 
         <form
-          id="interestForm"
-          onsubmit="submitInterest(event)"
+          id="bieuMauQuanTam"
+          onsubmit="
+            guiNhuCau(event)
+          "
         >
 
-          <div
-            style="
-              display:grid;
-              gap:14px;
-            "
-          >
+
+          <div class="o-bieu-mau">
+
 
             <input
-              id="saleName"
+              id="tenNguoiBan"
               required
               placeholder="Tên Sale / Account"
-              style="
-                width:100%;
-                height:52px;
-                padding:0 16px;
-                background:#191919;
-                border:1px solid var(--line);
-                border-radius:12px;
-                color:white;
-                outline:none;
-              "
             />
 
 
             <input
-              id="clientName"
-              placeholder="Brand / Client"
-              style="
-                width:100%;
-                height:52px;
-                padding:0 16px;
-                background:#191919;
-                border:1px solid var(--line);
-                border-radius:12px;
-                color:white;
-                outline:none;
-              "
+              id="tenKhachHang"
+              placeholder="Thương hiệu / Khách hàng"
             />
 
 
-            <select
-              id="packageChoice"
-              style="
-                width:100%;
-                height:52px;
-                padding:0 16px;
-                background:#191919;
-                border:1px solid var(--line);
-                border-radius:12px;
-                color:white;
-                outline:none;
-              "
-            >
+            <select id="chonGoiBan">
 
-              <option value="Core">
-                Core Package
+              <option value="Gói cơ bản">
+                Gói cơ bản
               </option>
 
-              <option value="Amplified">
-                Amplified Package
+              <option value="Gói khuếch đại">
+                Gói khuếch đại
               </option>
 
-              <option value="Full Campaign">
-                Full Campaign
+              <option value="Gói toàn diện">
+                Gói toàn diện
               </option>
 
             </select>
 
 
             <textarea
-              id="interestNote"
-              placeholder="Ghi chú nhanh về cơ hội..."
-              style="
-                width:100%;
-                min-height:110px;
-                padding:15px 16px;
-                background:#191919;
-                border:1px solid var(--line);
-                border-radius:12px;
-                color:white;
-                outline:none;
-                resize:vertical;
+              id="ghiChuNhuCau"
+              placeholder="
+                Ghi chú nhanh về cơ hội...
+                Ví dụ: Khách hàng đang chuẩn bị
+                ra mắt sản phẩm mới trong tháng 10.
               "
             ></textarea>
 
 
             <button
               type="submit"
-              class="btn btn-primary"
+              class="nut nut-chinh"
               style="width:100%;"
             >
-              🚀 Gửi request
+
+              🚀 Gửi nhu cầu
+
             </button>
+
 
           </div>
 
@@ -2779,21 +3453,15 @@
 
 
         <div
-          id="formSuccess"
-          style="
-            display:none;
-            margin-top:20px;
-            padding:18px;
-            border-radius:14px;
-            background:rgba(84,209,122,.08);
-            border:1px solid rgba(84,209,122,.2);
-            color:#8de8a8;
-            font-size:13px;
-          "
+          class="thong-bao-thanh-cong"
+          id="thongBaoThanhCong"
         >
-          ✓ Request đã được ghi nhận.
-          TĐB sẽ tiếp nhận và phản hồi.
+
+          ✓ Đã ghi nhận nhu cầu.
+          TĐB sẽ tiếp nhận và hỗ trợ.
+
         </div>
+
 
       </div>
 
@@ -2804,19 +3472,21 @@
 
 
   <!-- =======================================================
-       FOOTER
+       CHÂN TRANG
        ======================================================= -->
 
   <footer>
 
-    <div class="container footer-inner">
+    <div
+      class="khung noi-dung-chan-trang"
+    >
 
       <div>
-        © 2026 ATHENA SHOWCASE
+        © 2026 ATHENA TUYỂN CHỌN
       </div>
 
       <div>
-        Products worth selling now.
+        Những sản phẩm đáng bán nhất lúc này.
       </div>
 
     </div>
@@ -2826,133 +3496,138 @@
 
 
   <!-- =======================================================
-       JAVASCRIPT
+       DỮ LIỆU SẢN PHẨM
        ======================================================= -->
 
   <script>
 
-    /* =======================================================
-       PRODUCT DATA
-       ======================================================= */
+    const sanPham = {
 
-    const products = {
 
-      "product-marketing": {
+      "tiep-thi-san-pham": {
 
-        name: "Product Marketing",
+        ten:
+          "Tiếp thị sản phẩm",
 
-        category: "Strategic Product",
+        phanLoai:
+          "Sản phẩm chiến lược",
 
-        storyTitle:
+        tieuDeCauChuyen:
           "Biến sản phẩm thành một câu chuyện lớn.",
 
-        story:
-          "Product Marketing giúp thương hiệu xác định proposition, xây dựng câu chuyện và tạo một campaign đủ lớn để sản phẩm được thị trường chú ý.",
+        noiDungCauChuyen:
+          "Tiếp thị sản phẩm giúp thương hiệu xác định đề xuất giá trị, xây dựng câu chuyện và tạo một chiến dịch đủ lớn để sản phẩm được thị trường chú ý.",
 
-        salesStory:
-          "“Nếu brand đang chuẩn bị launch một sản phẩm mới, thay vì chỉ truyền thông sản phẩm, Athena có thể giúp biến chính sản phẩm đó thành một câu chuyện lớn hơn để thị trường chú ý.”",
+        cauChuyenBanHang:
+          "“Nếu thương hiệu đang chuẩn bị ra mắt một sản phẩm mới, thay vì chỉ truyền thông về sản phẩm, Athena có thể giúp biến chính sản phẩm đó thành một câu chuyện lớn hơn để thị trường chú ý.”",
 
-        perfect:
-          "Launch · Re-launch · New proposition · Category competition",
+        phuHopKhi:
+          "Ra mắt · Tái ra mắt · Đề xuất mới · Cạnh tranh ngành hàng",
 
-        clients:
-          "FMCG · Banking · Real Estate · Consumer Tech",
+        khachHangPhuHop:
+          "FMCG · Ngân hàng · Bất động sản · Công nghệ tiêu dùng",
 
-        angle:
-          "Bắt đầu từ business problem của sản phẩm, không bắt đầu từ media placement.",
+        gocChaoBan:
+          "Bắt đầu từ bài toán kinh doanh của sản phẩm, không bắt đầu từ kênh truyền thông.",
 
-        owner:
-          "Athena Product Marketing Team"
+        doiPhuTrach:
+          "Đội Tiếp thị sản phẩm"
 
       },
 
 
-      "social-booking": {
+      "dat-bai-tren-mang-xa-hoi": {
 
-        name: "Social Booking",
+        ten:
+          "Đặt bài trên mạng xã hội",
 
-        category: "Hot Product",
+        phanLoai:
+          "Sản phẩm đang được đẩy",
 
-        storyTitle:
+        tieuDeCauChuyen:
           "Đưa câu chuyện thương hiệu vào đúng cuộc trò chuyện.",
 
-        story:
-          "Social Booking giúp thương hiệu xuất hiện trong những conversation đang diễn ra trên social, tạo reach, buzz và sự chú ý cho campaign.",
+        noiDungCauChuyen:
+          "Đặt bài trên mạng xã hội giúp thương hiệu xuất hiện trong những cuộc trò chuyện đang diễn ra, tạo độ phủ, sự quan tâm và chú ý cho chiến dịch.",
 
-        salesStory:
-          "“Nếu brand cần tạo buzz nhanh trên social, mình có thể đưa câu chuyện vào đúng những cộng đồng và conversation mà khách hàng đang quan tâm.”",
+        cauChuyenBanHang:
+          "“Nếu thương hiệu cần tạo sự chú ý nhanh trên mạng xã hội, Athena có thể đưa câu chuyện vào đúng những cộng đồng và cuộc trò chuyện mà khách hàng đang quan tâm.”",
 
-        perfect:
-          "Campaign · Product launch · Mega Sale · Brand buzz",
+        phuHopKhi:
+          "Chiến dịch · Ra mắt sản phẩm · Mùa mua sắm · Tạo độ nóng",
 
-        clients:
-          "FMCG · Retail · Banking · Consumer Tech",
+        khachHangPhuHop:
+          "FMCG · Bán lẻ · Ngân hàng · Công nghệ tiêu dùng",
 
-        angle:
-          "Bán bằng opportunity tạo conversation và reach.",
+        gocChaoBan:
+          "Bán từ cơ hội tạo cuộc trò chuyện và độ phủ.",
 
-        owner:
-          "Athena Social Team"
-
-      },
-
-
-      "editorial": {
-
-        name: "Editorial Content",
-
-        category: "Bestseller",
-
-        storyTitle:
-          "Biến chuyên môn thương hiệu thành authority.",
-
-        story:
-          "Editorial Content giúp thương hiệu xây dựng credibility thông qua những câu chuyện, góc nhìn và nội dung có giá trị với độc giả.",
-
-        salesStory:
-          "“Nếu brand không chỉ muốn được nhìn thấy mà còn muốn được tin tưởng, Editorial có thể giúp xây dựng authority thông qua câu chuyện và chuyên môn.”",
-
-        perfect:
-          "Thought leadership · Trust · Reputation · Brand story",
-
-        clients:
-          "Banking · Real Estate · Technology · FMCG",
-
-        angle:
-          "Bán từ nhu cầu xây dựng trust và authority.",
-
-        owner:
-          "Athena Editorial Team"
+        doiPhuTrach:
+          "Đội Mạng xã hội"
 
       },
 
 
-      "social-ecom": {
+      "noi-dung-bien-tap": {
 
-        name: "Social Ecom",
+        ten:
+          "Nội dung biên tập",
 
-        category: "Growth Product",
+        phanLoai:
+          "Sản phẩm bán tốt",
 
-        storyTitle:
-          "Kết nối content với hành vi mua hàng.",
+        tieuDeCauChuyen:
+          "Biến chuyên môn thương hiệu thành uy tín.",
 
-        story:
-          "Social Ecom kết nối social content với hành trình commerce, giúp thương hiệu không dừng lại ở attention mà hướng tới conversion.",
+        noiDungCauChuyen:
+          "Nội dung biên tập giúp thương hiệu xây dựng độ tin cậy thông qua những câu chuyện, góc nhìn và nội dung có giá trị với độc giả.",
 
-        salesStory:
-          "“Nếu brand đang có traffic và content nhưng muốn kéo gần hơn tới hành vi mua, Social Ecom là lớp conversion đáng xem.”",
+        cauChuyenBanHang:
+          "“Nếu thương hiệu không chỉ muốn được nhìn thấy mà còn muốn được tin tưởng, nội dung biên tập có thể giúp xây dựng uy tín thông qua câu chuyện và chuyên môn.”",
 
-        perfect:
-          "E-commerce · Mega Sale · Conversion · Retail",
+        phuHopKhi:
+          "Xây dựng chuyên môn · Uy tín · Danh tiếng · Câu chuyện thương hiệu",
 
-        clients:
-          "FMCG · Retail · Consumer Tech · E-commerce",
+        khachHangPhuHop:
+          "Ngân hàng · Bất động sản · Công nghệ · FMCG",
 
-        angle:
-          "Bán từ khoảng cách giữa attention và conversion.",
+        gocChaoBan:
+          "Bán từ nhu cầu xây dựng niềm tin và vị thế thương hiệu.",
 
-        owner:
-          "Athena Social Ecom Team"
+        doiPhuTrach:
+          "Đội Nội dung biên tập"
+
+      },
+
+
+      "thuong-mai-mang-xa-hoi": {
+
+        ten:
+          "Thương mại mạng xã hội",
+
+        phanLoai:
+          "Sản phẩm tăng trưởng",
+
+        tieuDeCauChuyen:
+          "Kết nối nội dung với hành vi mua hàng.",
+
+        noiDungCauChuyen:
+          "Thương mại mạng xã hội kết nối nội dung, mạng xã hội và hành trình mua hàng, giúp thương hiệu không dừng lại ở sự chú ý mà hướng tới chuyển đổi.",
+
+        cauChuyenBanHang:
+          "“Nếu thương hiệu đang có nội dung và lượng truy cập nhưng muốn kéo gần hơn tới hành vi mua hàng, thương mại mạng xã hội là lớp chuyển đổi đáng xem.”",
+
+        phuHopKhi:
+          "Thương mại điện tử · Mùa mua sắm · Chuyển đổi · Bán lẻ",
+
+        khachHangPhuHop:
+          "FMCG · Bán lẻ · Công nghệ tiêu dùng · Thương mại điện tử",
+
+        gocChaoBan:
+          "Bán từ khoảng cách giữa sự chú ý và hành vi mua hàng.",
+
+        doiPhuTrach:
+          "Đội Thương mại mạng xã hội"
 
       }
 
@@ -2960,120 +3635,177 @@
 
 
     /* =======================================================
-       OPEN PRODUCT
+       BIẾN ĐANG CHỌN
        ======================================================= */
 
-    let currentProduct = null;
+    let sanPhamDangChon = null;
 
-
-    function openProduct(productId) {
-
-      const product = products[productId];
-
-      if (!product) return;
-
-      currentProduct = productId;
-
-
-      document.getElementById("modalCategory").textContent =
-        product.category;
-
-      document.getElementById("modalTitle").textContent =
-        product.name;
-
-      document.getElementById("modalStoryTitle").textContent =
-        product.storyTitle;
-
-      document.getElementById("modalStory").textContent =
-        product.story;
-
-      document.getElementById("modalSalesStory").textContent =
-        product.salesStory;
-
-      document.getElementById("modalPerfect").textContent =
-        product.perfect;
-
-      document.getElementById("modalClients").textContent =
-        product.clients;
-
-      document.getElementById("modalAngle").textContent =
-        product.angle;
-
-      document.getElementById("modalOwner").textContent =
-        product.owner;
-
-
-      document
-        .getElementById("productModal")
-        .classList.add("open");
-
-
-      document.body.style.overflow = "hidden";
-
-    }
 
 
     /* =======================================================
-       CLOSE PRODUCT
+       MỞ SẢN PHẨM
        ======================================================= */
 
-    function closeProduct() {
+    function moSanPham(maSanPham) {
+
+      const sanPhamDuocChon =
+        sanPham[maSanPham];
+
+
+      if (!sanPhamDuocChon) {
+        return;
+      }
+
+
+      sanPhamDangChon = maSanPham;
+
 
       document
-        .getElementById("productModal")
-        .classList.remove("open");
+        .getElementById("phanLoaiCuaSo")
+        .textContent =
+        sanPhamDuocChon.phanLoai;
 
-      document.body.style.overflow = "";
+
+      document
+        .getElementById("tieuDeCuaSo")
+        .textContent =
+        sanPhamDuocChon.ten;
+
+
+      document
+        .getElementById("tieuDeCauChuyen")
+        .textContent =
+        sanPhamDuocChon.tieuDeCauChuyen;
+
+
+      document
+        .getElementById("noiDungCauChuyen")
+        .textContent =
+        sanPhamDuocChon.noiDungCauChuyen;
+
+
+      document
+        .getElementById("cauChuyenBanHang")
+        .textContent =
+        sanPhamDuocChon.cauChuyenBanHang;
+
+
+      document
+        .getElementById("phuHopKhi")
+        .textContent =
+        sanPhamDuocChon.phuHopKhi;
+
+
+      document
+        .getElementById("khachHangPhuHop")
+        .textContent =
+        sanPhamDuocChon.khachHangPhuHop;
+
+
+      document
+        .getElementById("gocChaoBan")
+        .textContent =
+        sanPhamDuocChon.gocChaoBan;
+
+
+      document
+        .getElementById("doiPhuTrach")
+        .textContent =
+        sanPhamDuocChon.doiPhuTrach;
+
+
+      document
+        .getElementById("cuaSoSanPham")
+        .classList.add("mo");
+
+
+      document.body.style.overflow =
+        "hidden";
 
     }
+
 
 
     /* =======================================================
-       INTEREST FORM
+       ĐÓNG SẢN PHẨM
        ======================================================= */
 
-    function openInterestForm() {
-
-      closeProduct();
+    function dongSanPham() {
 
       document
-        .getElementById("interestModal")
-        .classList.add("open");
+        .getElementById("cuaSoSanPham")
+        .classList.remove("mo");
 
-      document.body.style.overflow = "hidden";
+
+      document.body.style.overflow =
+        "";
 
     }
 
-
-    function closeInterestForm() {
-
-      document
-        .getElementById("interestModal")
-        .classList.remove("open");
-
-      document.body.style.overflow = "";
-
-    }
 
 
     /* =======================================================
-       COPY SALES STORY
+       MỞ BIỂU MẪU
        ======================================================= */
 
-    function copySalesStory() {
+    function moBieuMau() {
 
-      if (!currentProduct) return;
+      dongSanPham();
 
-      const text =
-        products[currentProduct].salesStory;
+
+      document
+        .getElementById("cuaSoNhuCau")
+        .classList.add("mo");
+
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+
+
+
+    /* =======================================================
+       ĐÓNG BIỂU MẪU
+       ======================================================= */
+
+    function dongBieuMau() {
+
+      document
+        .getElementById("cuaSoNhuCau")
+        .classList.remove("mo");
+
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+
+    /* =======================================================
+       SAO CHÉP CÂU CHUYỆN BÁN HÀNG
+       ======================================================= */
+
+    function saoChepCauChuyen() {
+
+      if (!sanPhamDangChon) {
+        return;
+      }
+
+
+      const noiDung =
+        sanPham[
+          sanPhamDangChon
+        ].cauChuyenBanHang;
 
 
       navigator.clipboard
-        .writeText(text)
+        .writeText(noiDung)
         .then(() => {
 
           alert(
-            "✓ Sales Story đã được copy."
+            "✓ Đã sao chép câu chuyện bán hàng."
           );
 
         });
@@ -3081,58 +3813,76 @@
     }
 
 
+
     /* =======================================================
-       FILTER PRODUCTS
+       LỌC SẢN PHẨM
        ======================================================= */
 
-    function filterProducts(category, button) {
+    function locSanPham(
+      nhom,
+      nutDangChon
+    ) {
 
-      const cards =
+      const cacThe =
         document.querySelectorAll(
-          ".product-card"
+          ".the-san-pham"
         );
 
 
       document
-        .querySelectorAll(".filter-btn")
-        .forEach(btn => {
+        .querySelectorAll(
+          ".nut-bo-loc"
+        )
+        .forEach(
+          function(nut) {
 
-          btn.classList.remove("active");
+            nut.classList.remove(
+              "dang-chon"
+            );
 
-        });
+          }
+        );
 
 
-      if (button) {
+      if (nutDangChon) {
 
-        button.classList.add("active");
+        nutDangChon.classList.add(
+          "dang-chon"
+        );
 
       }
 
 
-      cards.forEach(card => {
+      cacThe.forEach(
+        function(the) {
 
-        const cardCategory =
-          card.dataset.category;
+          const nhomThe =
+            the.dataset.nhom;
 
 
-        if (
-          category === "all" ||
-          cardCategory === category
-        ) {
+          if (
+            nhom === "tat-ca" ||
+            nhomThe === nhom
+          ) {
 
-          card.style.display = "";
+            the.style.display =
+              "";
 
-        } else {
+          } else {
 
-          card.style.display = "none";
+            the.style.display =
+              "none";
+
+          }
 
         }
-
-      });
+      );
 
 
       document
-        .getElementById("now-showing")
+        .getElementById(
+          "dang-hien-thi"
+        )
         .scrollIntoView({
           behavior: "smooth"
         });
@@ -3140,150 +3890,200 @@
     }
 
 
+
     /* =======================================================
-       SEARCH
+       TÌM KIẾM
        ======================================================= */
 
     document
-      .getElementById("searchInput")
+      .getElementById(
+        "oTimKiem"
+      )
       .addEventListener(
         "input",
-        function () {
+        function() {
 
-          const keyword =
+          const tuKhoa =
             this.value
               .toLowerCase()
               .trim();
 
 
-          const cards =
+          const cacThe =
             document.querySelectorAll(
-              ".product-card"
+              ".the-san-pham"
             );
 
 
-          cards.forEach(card => {
+          cacThe.forEach(
+            function(the) {
 
-            const text =
-              card.innerText.toLowerCase();
+              const noiDung =
+                the.innerText
+                  .toLowerCase();
 
 
-            if (
-              !keyword ||
-              text.includes(keyword)
-            ) {
+              if (
+                !tuKhoa ||
+                noiDung.includes(tuKhoa)
+              ) {
 
-              card.style.display = "";
+                the.style.display =
+                  "";
 
-            } else {
+              } else {
 
-              card.style.display = "none";
+                the.style.display =
+                  "none";
+
+              }
 
             }
-
-          });
+          );
 
         }
       );
 
 
+
     /* =======================================================
-       SUBMIT INTEREST
+       GỬI NHU CẦU
        ======================================================= */
 
-    function submitInterest(event) {
+    function guiNhuCau(suKien) {
 
-      event.preventDefault();
+      suKien.preventDefault();
 
 
-      const sale =
-        document.getElementById(
-          "saleName"
-        ).value;
+      const tenNguoiBan =
+        document
+          .getElementById(
+            "tenNguoiBan"
+          )
+          .value;
 
-      const client =
-        document.getElementById(
-          "clientName"
-        ).value;
 
-      const packageChoice =
-        document.getElementById(
-          "packageChoice"
-        ).value;
+      const tenKhachHang =
+        document
+          .getElementById(
+            "tenKhachHang"
+          )
+          .value;
 
-      const note =
-        document.getElementById(
-          "interestNote"
-        ).value;
+
+      const goiBan =
+        document
+          .getElementById(
+            "chonGoiBan"
+          )
+          .value;
+
+
+      const ghiChu =
+        document
+          .getElementById(
+            "ghiChuNhuCau"
+          )
+          .value;
+
+
+      /*
+        ------------------------------------------------------
+        PHẦN KẾT NỐI TELEGRAM
+
+        Không đặt khóa truy cập Telegram trực tiếp
+        trong tệp HTML.
+
+        Sau khi có máy chủ trung gian, dữ liệu có thể
+        được gửi theo cấu trúc:
+
+        {
+          nguoiGui: tenNguoiBan,
+          khachHang: tenKhachHang,
+          sanPham: sanPhamDangChon,
+          goiBan: goiBan,
+          ghiChu: ghiChu
+        }
+
+        Sau đó máy chủ trung gian chuyển tiếp
+        về Telegram của TĐB.
+        ------------------------------------------------------
+      */
 
 
       console.log({
 
-        sale,
+        nguoiGui:
+          tenNguoiBan,
 
-        client,
+        khachHang:
+          tenKhachHang,
 
-        product: currentProduct,
+        sanPham:
+          sanPhamDangChon,
 
-        package: packageChoice,
+        goiBan:
+          goiBan,
 
-        note
+        ghiChu:
+          ghiChu
 
       });
 
 
-      /*
-        ======================================================
-        TELEGRAM INTEGRATION
-
-        Sau khi có Telegram Bot Token + Chat ID,
-        có thể thay đoạn console.log bằng fetch()
-        tới backend / Cloudflare Worker / Apps Script.
-
-        KHÔNG NÊN đặt BOT TOKEN trực tiếp trong HTML
-        production vì người dùng có thể xem source.
-        ======================================================
-      */
+      document
+        .getElementById(
+          "thongBaoThanhCong"
+        )
+        .style.display =
+        "block";
 
 
       document
-        .getElementById("formSuccess")
-        .style.display = "block";
-
-
-      document
-        .getElementById("interestForm")
+        .getElementById(
+          "bieuMauQuanTam"
+        )
         .reset();
 
 
-      setTimeout(() => {
+      setTimeout(
+        function() {
 
-        closeInterestForm();
+          dongBieuMau();
 
-        document
-          .getElementById("formSuccess")
-          .style.display = "none";
 
-      }, 2200);
+          document
+            .getElementById(
+              "thongBaoThanhCong"
+            )
+            .style.display =
+            "none";
+
+        },
+        2200
+      );
 
     }
 
 
+
     /* =======================================================
-       CLOSE MODAL WHEN CLICK OUTSIDE
+       BẤM RA NGOÀI CỬA SỔ
        ======================================================= */
 
     document
-      .getElementById("productModal")
+      .getElementById(
+        "cuaSoSanPham"
+      )
       .addEventListener(
         "click",
-        function (event) {
+        function(suKien) {
 
           if (
-            event.target === this
+            suKien.target === this
           ) {
 
-            closeProduct();
+            dongSanPham();
 
           }
 
@@ -3292,16 +4092,18 @@
 
 
     document
-      .getElementById("interestModal")
+      .getElementById(
+        "cuaSoNhuCau"
+      )
       .addEventListener(
         "click",
-        function (event) {
+        function(suKien) {
 
           if (
-            event.target === this
+            suKien.target === this
           ) {
 
-            closeInterestForm();
+            dongBieuMau();
 
           }
 
@@ -3309,21 +4111,22 @@
       );
 
 
+
     /* =======================================================
-       ESC KEY
+       PHÍM ESC
        ======================================================= */
 
     document.addEventListener(
       "keydown",
-      function (event) {
+      function(suKien) {
 
         if (
-          event.key === "Escape"
+          suKien.key === "Escape"
         ) {
 
-          closeProduct();
+          dongSanPham();
 
-          closeInterestForm();
+          dongBieuMau();
 
         }
 
