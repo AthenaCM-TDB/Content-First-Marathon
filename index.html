@@ -498,16 +498,29 @@ h1{
   position:absolute;
   top:14px;
   left:14px;
+  min-height:24px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   background:var(--red);
   font-size:10px;
   font-weight:950;
-  padding:6px 8px;
+  padding:5px 8px;
   border-radius:6px;
+  line-height:1;
+  white-space:nowrap;
 }
 
 .card-icon{
-  font-size:48px;
+  width:78px;
+  height:78px;
+  display:grid;
+  place-items:center;
+  font-size:44px;
+  line-height:1;
   opacity:.9;
+  text-align:center;
+  flex:0 0 78px;
 }
 
 .card-body{
@@ -538,12 +551,15 @@ h1{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:8px;
+  gap:12px;
+  min-height:28px;
 }
 
 .card-price{
   font-weight:900;
   font-size:12px;
+  line-height:1.35;
+  max-width:68%;
 }
 
 .more{
@@ -975,9 +991,15 @@ footer{
   position:absolute;
 
   right:23px;
-  top:78px;
+  top:68px;
+  width:92px;
+  height:92px;
+  display:grid;
+  place-items:center;
 
-  font-size:75px;
+  font-size:68px;
+  line-height:1;
+  text-align:center;
 
   opacity:.75;
 
@@ -1997,7 +2019,7 @@ const products = [
     "hook": "Lấy sản phẩm làm trung tâm, giúp khách hiểu đúng — tin — mua nhanh hơn.",
     "kicker": "🔥 Đang được đẩy",
     "icon": "🎯",
-    "price": "Mục tiêu 10 tỷ / năm",
+    "price": "Liên hệ báo giá",
     "types": [
         "hot",
         "best"
@@ -2013,7 +2035,7 @@ const products = [
     "customer": "CMO, Brand/Product/Marketing Manager, E-commerce Manager, chủ SME. Ngành: FMCG, Mẹ & bé, Dược-TPCN, mỹ phẩm, gia dụng, công nghệ, F&B, tài chính-bảo hiểm, Y tế, Giáo dục.",
     "pitch": "“Nếu khách đang có một sản phẩm cần bán tốt hơn, đừng bắt đầu bằng booking; hãy bắt đầu bằng việc làm rõ sản phẩm này khác gì, đáng tin ở đâu và kể câu chuyện thế nào.”",
     "package": "Định vị & USP + concept/câu chuyện + báo chí/social/community/KOL-KOC/TMĐT/AI, linh hoạt theo vòng đời. Đa kênh, ưu tiên KHTT và A01.",
-    "budget": "Mục tiêu doanh thu 10 tỷ, triển khai cả năm; BM01 không nêu ngân sách triển khai cố định.",
+    "budget": "BM01 chưa có giá bán cố định; báo giá theo scope/gói đề xuất.",
     "proof": "Bệnh viện Hồng Ngọc - Khoa IVF; Dr. Papie. Chính sách: hoa hồng cao hơn cho Sale với một số sản phẩm thuộc bộ giải pháp PRD MKT."
 },
 
@@ -2022,7 +2044,7 @@ const products = [
     "hook": "Giúp thương hiệu được AI nhìn thấy — trích dẫn — đề xuất.",
     "kicker": "🔥 Đang được đẩy",
     "icon": "🤖",
-    "price": "Mục tiêu 8,5 tỷ / năm",
+    "price": "Liên hệ báo giá",
     "types": [
         "hot",
         "best"
@@ -2037,7 +2059,7 @@ const products = [
     "customer": "CMO, Brand/Marketing/PR Manager, Digital Lead, SEO/Content Lead. Phù hợp nhãn có nhiều lượt tìm hiểu, so sánh trước mua và ngành cần độ tin cậy cao: Dược-TPCN/Y tế, Sữa & Dinh dưỡng, FMCG & Đồ uống, Tài chính-Ngân hàng, Ô tô-Xe máy, Điện tử-Công nghệ, Xây dựng-Vật liệu, Giáo dục, BĐS.",
     "pitch": "“Khi khách hỏi AI để shortlist thương hiệu, bài toán không còn chỉ là đứng trên Google. GEO giúp Athena đo xem AI đang nhìn thấy, trích dẫn và kể về thương hiệu của khách như thế nào — rồi tối ưu để cải thiện.”",
     "package": "LUVIX theo dõi Visibility, Citation, SOV, vị trí và đối thủ + đội ngũ tư vấn/sản xuất chuẩn GEO + network VCCorp và đối tác. Đa kênh, ưu tiên KHTT và A01.",
-    "budget": "Mục tiêu doanh thu 8,5 tỷ, triển khai cả năm; BM01 không nêu ngân sách triển khai cố định.",
+    "budget": "BM01 chưa có giá bán cố định; báo giá theo scope/gói đề xuất.",
     "proof": "Case: Unilever. Tài liệu: VCCorp - GEO Solution - Profile."
 },
 
@@ -2046,7 +2068,7 @@ const products = [
     "hook": "Sản phẩm xuất hiện tự nhiên, đúng ngữ cảnh, ngay trong bài viết đang có traffic.",
     "kicker": "🔥 Đang được đẩy",
     "icon": "📌",
-    "price": "Mục tiêu 4 tỷ / Q3",
+    "price": "Theo báo giá gói",
     "types": [
         "hot",
         "best"
@@ -2061,7 +2083,7 @@ const products = [
     "customer": "Y tế, Giáo dục, Dược phẩm, Bảo hiểm, Ngân hàng, Spa; FMCG/Mỹ phẩm/bán lẻ nhiều SKU; BĐS/Tài chính/Chứng khoán; Fashion/Gia dụng/Công nghệ có danh mục sản phẩm liên tục.",
     "pitch": "“Không cần viết một bài riêng cho từng SKU. Đưa sản phẩm vào đúng bài native đang có traffic, biến tính năng thành lý do mua và xuất hiện đúng lúc độc giả đang quan tâm.”",
     "package": "Native Ads + Feature Box, tích hợp trong bài viết theo ngữ cảnh. Tập trung KHTT trước, sau đó A01 → A02 → Partnership.",
-    "budget": "Mục tiêu doanh thu 4 tỷ trong Q3; BM01 không nêu giá bán cụ thể. Chính sách: hoa hồng cao cho Sale.",
+    "budget": "BM01 chưa nêu giá bán cụ thể; dùng báo giá gói khi tư vấn. Chính sách: hoa hồng cao cho Sale.",
     "proof": "Case: Shopee, IVF Hồng Ngọc. Sản phẩm tương tự: Native Ads, Feature Box."
 },
 
@@ -2139,7 +2161,7 @@ const products = [
     "hook": "Điều phối hệ sinh thái đa lớp, đa kênh để tạo hiệu ứng cộng hưởng cho cả chiến dịch.",
     "kicker": "⏳ Chờ đẩy bán",
     "icon": "🏦",
-    "price": "Mục tiêu 500 triệu / Q3",
+    "price": "Theo báo giá gói",
     "types": [
         "new",
         "growth"
@@ -2153,7 +2175,7 @@ const products = [
     "customer": "Ngân hàng top-tier duy trì vị thế với stakeholder; ngân hàng tái định vị/chuyển đổi mô hình; nhóm tài chính/BĐS có sự kiện trọng điểm mang tính định vị.",
     "pitch": "“Đừng rải booking thành nhiều mảnh. Hãy để toàn bộ điểm chạm cùng kể một câu chuyện, kéo dài market impact thay vì chỉ lấy media reach trong một ngày.”",
     "package": "Khai thác & điều phối hệ sinh thái đa lớp/đa kênh; ưu tiên KHTT, có thể thêm A01; inventory chuyên ngành.",
-    "budget": "Mục tiêu doanh thu 500 triệu trong Q3; BM01 không nêu ngân sách triển khai cố định.",
+    "budget": "BM01 chưa nêu giá bán cụ thể; dùng báo giá theo gói đề xuất.",
     "proof": "Report tham khảo: VIOD AF8 Media Performance Report. Sản phẩm booking tương tự có trên thị trường nhưng khác cơ chế vận hành."
 },
 
@@ -2419,7 +2441,7 @@ const products = [
     "hook": "AI Livestream 24/7 cho sàn TMĐT, Social và Website, tối ưu chi phí vận hành.",
     "kicker": "🆕 Sắp cập bến",
     "icon": "📡",
-    "price": "Mục tiêu 1 tỷ",
+    "price": "Theo báo giá gói",
     "types": [
         "new",
         "growth"
@@ -2433,7 +2455,7 @@ const products = [
     "customer": "Tất cả nhãn hàng có thể áp dụng nếu có use case phù hợp; đặc biệt FMCG/bán lẻ đang bán tốt trên sàn, có thể live 24/7 hoặc khung giờ đêm; dịch vụ như phần mềm, khách sạn, ứng dụng, nhà xưởng cũng có thể ứng dụng.",
     "pitch": "“Không phải thay người thật ở mọi khung giờ. AI Livestream giúp khách có thêm một ca bán hàng 24/7 với chi phí vận hành thấp hơn nhiều, đặc biệt ở giờ thấp điểm.”",
     "package": "Phòng live 24/7; phòng live VIP có TVC/sản phẩm/pin giỏ hàng; tự động trả lời comment; tùy chỉnh nhân vật/giọng nói. Có proposal và báo giá riêng.",
-    "budget": "Mục tiêu doanh thu 1 tỷ; BM01 không nêu một mức giá cố định. Theo BM01, chi phí AI Livestream khoảng 50k–200k/giờ so với người thật 400k–1 triệu/giờ.",
+    "budget": "Chi phí vận hành AI Livestream theo BM01: khoảng 50k–200k/giờ. Giá gói bán cụ thể: theo báo giá.",
     "proof": "Dou Collection: 24/7, ~10–15 triệu/ngày trên live; Vibonet: 1–3 triệu/ngày; Doppel Herz: trải nghiệm Livestream AI."
 }
 
