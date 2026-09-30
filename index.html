@@ -1451,7 +1451,7 @@ footer{
       <a class="brand-lockup" href="#" aria-label="Athena FLIX">
         <img
           class="brand-logo"
-          src="assets/athena-cm-logo.png"
+          src="athena-cm-logo.png.png"
           alt="Athena Content Marketing"
           onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"
         >
@@ -1976,7 +1976,7 @@ footer{
     <div>
       <div class="footer-brand">
         <img
-          src="assets/athena-cm-logo.png"
+          src="athena-cm-logo.png.png"
           alt="Athena Content Marketing"
           onerror="this.style.display='none'"
         >
@@ -2142,6 +2142,12 @@ footer{
 
 const TELEGRAM_URL = "https://t.me/athena_tdb";
 
+/* IMAGE FILES: all images live in the GitHub root, next to index.html. */
+const IMAGE_OVERRIDES = {
+  "PR Star": "pr-star.jpg.bmp"
+};
+
+
 /*
   ================================
   DANH SÁCH SẢN PHẨM ATHENA FLIX
@@ -2151,10 +2157,10 @@ const TELEGRAM_URL = "https://t.me/athena_tdb";
 /*
   IMAGE CONVENTION — KHÔNG CẦN SỬA TỪNG CARD
   ---------------------------------------------
-  Logo Athena CM: /assets/athena-cm-logo.png
-  Ảnh sản phẩm: /assets/products/<slug-ten-san-pham>.jpg
+  Logo Athena CM: /athena-cm-logo.png.png
+  Ảnh sản phẩm: /<slug-ten-san-pham>.jpg
   Ví dụ: Product Marketing (Trọn gói)
-  -> /assets/products/product-marketing-tron-goi.jpg
+  -> /product-marketing-tron-goi.jpg
 
   Có thể dùng .jpg cho toàn bộ thư viện để dễ quản lý.
   Nếu chưa có ảnh, card tự quay về icon hiện tại.
@@ -2661,7 +2667,7 @@ const sliderProgress = document.getElementById("sliderProgress");
 
 /* =========================
    PRODUCT IMAGE PATHS
-   Upload files to /assets/products/ on GitHub.
+   Upload files to / on GitHub.
    Filename is generated automatically from product name.
 ========================= */
 function slugifyProduct(name){
@@ -2675,7 +2681,9 @@ function slugifyProduct(name){
 }
 
 function productImage(p){
-  return p.image || `assets/products/${slugifyProduct(p.name)}.jpg`;
+  if (p.image) return p.image;
+  if (IMAGE_OVERRIDES[p.name]) return IMAGE_OVERRIDES[p.name];
+  return `${slugifyProduct(p.name)}.jpg`;
 }
 
 function handleImageError(img){
