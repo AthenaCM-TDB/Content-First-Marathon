@@ -2158,11 +2158,11 @@ const IMAGE_OVERRIDES = {
   IMAGE CONVENTION — KHÔNG CẦN SỬA TỪNG CARD
   ---------------------------------------------
   Logo Athena CM: /athena-cm-logo.png.png
-  Ảnh sản phẩm: /<slug-ten-san-pham>.jpg
+  Ảnh sản phẩm: /<slug-ten-san-pham>.jpg.bmp
   Ví dụ: Product Marketing (Trọn gói)
-  -> /product-marketing-tron-goi.jpg
+  -> /product-marketing-tron-goi.jpg.bmp
 
-  Có thể dùng .jpg cho toàn bộ thư viện để dễ quản lý.
+  Có thể dùng .jpg.bmp cho toàn bộ thư viện để dễ quản lý.
   Nếu chưa có ảnh, card tự quay về icon hiện tại.
 */
 
@@ -2683,7 +2683,7 @@ function slugifyProduct(name){
 function productImage(p){
   if (p.image) return p.image;
   if (IMAGE_OVERRIDES[p.name]) return IMAGE_OVERRIDES[p.name];
-  return `${slugifyProduct(p.name)}.jpg`;
+  return `${slugifyProduct(p.name)}.jpg.bmp`;
 }
 
 function handleImageError(img){
