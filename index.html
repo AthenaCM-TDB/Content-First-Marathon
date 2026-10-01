@@ -1455,6 +1455,56 @@ footer{
   }
 }
 
+
+/* ATHENA FLIX — HIGHLIGHT: ẢNH TRÊN / TEXT DƯỚI */
+.hero-slide{
+  display:flex !important;
+  flex-direction:column !important;
+  min-height:430px !important;
+}
+.hero-slide .slide-image{
+  position:relative !important;
+  inset:auto !important;
+  width:100% !important;
+  height:220px !important;
+  flex:0 0 220px !important;
+  object-fit:cover !important;
+  object-position:center !important;
+  order:1 !important;
+  opacity:1 !important;
+  transform:none !important;
+}
+.hero-slide:hover .slide-image{ transform:scale(1.025) !important; }
+.hero-slide .slide-content{
+  position:relative !important;
+  left:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  width:auto !important;
+  max-width:none !important;
+  padding:18px 20px 22px !important;
+  flex:1 !important;
+  order:2 !important;
+  z-index:3 !important;
+}
+.hero-slide .slide-content h2{ margin:6px 0 8px !important; line-height:1.08 !important; }
+.hero-slide .slide-content p{ margin:0 0 16px !important; line-height:1.45 !important; }
+.hero-slide:after{ display:none !important; }
+.hero-slide.has-slide-image .slide-icon{ display:none !important; }
+.hero-slide:not(.has-slide-image) .slide-icon{
+  position:absolute !important;
+  top:72px !important;
+  right:22px !important;
+  width:82px !important;
+  height:82px !important;
+  display:grid !important;
+  place-items:center !important;
+  font-size:58px !important;
+}
+@media (max-width:700px){
+  .hero-slide{ min-height:400px !important; }
+  .hero-slide .slide-image{ height:200px !important; flex-basis:200px !important; }
+}
 </style>
 </head>
 
@@ -2166,7 +2216,18 @@ const TELEGRAM_URL = "https://t.me/athena_tdb";
 
 /* IMAGE FILES: all images live in the GitHub root, next to index.html. */
 const IMAGE_OVERRIDES = {
-  "PR Star": "pr-star.jpg.bmp"
+  'Luvix - GEO solution': 'Luvix - GEO solution.jpg.bmp',
+  'IDOL14 - Back To School': 'idol14-back-to-school.jpg.bmp',
+  'ID14 - Tuyến nội dung Premium': 'id14-tuyen-noi-dung-premium.jpg.bmp',
+  'Showlife - Here To Hear và các show mới': 'showlife-here-to-hear-cac-show-moi.jpg.bmp',
+  'Family Journey Series - \"Lần này con đưa bố mẹ đi\"': 'family-journey-series.jpg.bmp',
+  'Khuếch đại truyền thông ngành BĐS - Tài chính': 'khuech-dai-truyen-thong.jpg.bmp',
+  'My Bank - CafeF': 'my-bank-cafef.jpg.bmp',
+  'PR Star': 'pr-star.jpg.bmp',
+  'Social chủ động': 'social-chu-dong.jpg.bmp',
+  'Social Partnership Phụ nữ - Gia đình (AFamily)': 'social-partnership-phu-nu-gia-dinh-afamily.jpg.bmp',
+  'Threads xây kênh - Buzz': 'threads-xay-kenh-buzzz.jpg.bmp',
+  'Livestream AI': 'livestream-ai.jpg.bmp'
 };
 
 
@@ -2752,6 +2813,8 @@ function tryNextImage(img){
   img.style.display="none";
   const visual=img.closest('.card-visual');
   if(visual) visual.classList.remove('has-image');
+  const hero=img.closest('.hero-slide');
+  if(hero) hero.classList.remove('has-slide-image');
 }
 
 function renderFeaturedSlider(){
@@ -2762,7 +2825,7 @@ function renderFeaturedSlider(){
 
     return `
       <article
-        class="hero-slide ${index === 0 ? "rank-1" : ""}"
+        class="hero-slide has-slide-image ${index === 0 ? "rank-1" : ""}"
         onclick="openProduct(${productIndex})"
       >
         <img
