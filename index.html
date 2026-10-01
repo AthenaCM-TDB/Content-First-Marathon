@@ -571,24 +571,43 @@ h1{
 }
 .slide-image{
   position:absolute;
-  inset:0;
-  width:100%;
+  top:0;
+  right:0;
+  bottom:0;
+  left:auto;
+  width:46%;
   height:100%;
   object-fit:cover;
-  opacity:.5;
-  filter:saturate(.9);
+  object-position:center;
+  display:block;
+  opacity:1;
+  filter:saturate(.92);
+  z-index:0;
+  transition:transform .35s ease, opacity .35s ease;
+}
+.hero-slide:hover .slide-image{
+  transform:scale(1.035);
 }
 .hero-slide:after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.82));
+  background:
+    linear-gradient(90deg,
+      #111114 0%,
+      #111114 40%,
+      rgba(17,17,20,.96) 49%,
+      rgba(17,17,20,.55) 61%,
+      rgba(17,17,20,.08) 82%,
+      transparent 100%);
   pointer-events:none;
+  z-index:1;
 }
 .hero-slide > *{
   position:relative;
   z-index:2;
 }
+
 .featured-image{
   width:100%;
   height:100%;
@@ -1140,10 +1159,12 @@ footer{
   position:absolute;
 
   left:24px;
-  right:24px;
+  right:auto;
   bottom:24px;
+  width:58%;
+  max-width:330px;
 
-  z-index:2;
+  z-index:3;
 }
 
 
@@ -1198,13 +1219,13 @@ footer{
 
   margin:0;
 
-  max-width:330px;
+  max-width:100%;
 
   font-size:
     clamp(
-      25px,
-      3vw,
-      38px
+      23px,
+      2.7vw,
+      34px
     );
 
   line-height:.96;
@@ -1219,9 +1240,10 @@ footer{
 
   margin:11px 0 16px;
 
-  max-width:300px;
+  max-width:100%;
 
-  font-size:13px;
+  font-size:12px;
+  line-height:1.5;
 
   color:#bab7bd;
 }
@@ -2009,7 +2031,7 @@ footer{
   <div class="modal">
 
     <div class="modal-media">
-      <img id="modalImage" src="" alt="" onerror="this.style.display='none'">
+      <img id="modalImage" src="" alt="" onerror="tryNextImage(this)">
     </div>
 
     <div class="modal-top">
@@ -2706,13 +2728,27 @@ function slugifyProduct(name){
     .replace(/^-+|-+$/g,"");
 }
 
-function productImage(p){
-  if (p.image) return p.image;
-  if (IMAGE_OVERRIDES[p.name]) return IMAGE_OVERRIDES[p.name];
-  return `${slugifyProduct(p.name)}.jpg.bmp`;
+const IMAGE_EXTENSIONS = [".jpg.bmp", ".jpg", ".png", ".webp", ".bmp"];
+
+function productImageCandidates(p){
+  if (p.image) return [p.image];
+  if (IMAGE_OVERRIDES[p.name]) return [IMAGE_OVERRIDES[p.name]];
+  const base = slugifyProduct(p.name);
+  return IMAGE_EXTENSIONS.map(ext => `${base}${ext}`);
 }
 
-function handleImageError(img){
+function productImage(p){
+  return productImageCandidates(p)[0];
+}
+
+function tryNextImage(img){
+  const candidates = (img.dataset.candidates || "").split("|").filter(Boolean);
+  const next = candidates.shift();
+  if(next){
+    img.dataset.candidates = candidates.join("|");
+    img.src = next;
+    return;
+  }
   img.style.display="none";
   const visual=img.closest('.card-visual');
   if(visual) visual.classList.remove('has-image');
@@ -2732,8 +2768,9 @@ function renderFeaturedSlider(){
         <img
           class="slide-image"
           src="${productImage(p)}"
+          data-candidates="${productImageCandidates(p).slice(1).join('|')}"
           alt="${p.name}"
-          onerror="this.style.display='none'"
+          onerror="tryNextImage(this)"
         >
 
         <div class="slide-number">#${String(index + 1).padStart(2,"0")}</div>
@@ -2883,9 +2920,10 @@ function render(list = products){
           <img
             class="card-image"
             src="${productImage(p)}"
+            data-candidates="${productImageCandidates(p).slice(1).join('|')}"
             alt="${p.name}"
             loading="lazy"
-            onerror="handleImageError(this)"
+            onerror="tryNextImage(this)"
           >
 
           <div class="rank">
@@ -2957,6 +2995,7 @@ function openProduct(index){
   const modalImage = document.getElementById("modalImage");
   modalImage.style.display = "block";
   modalImage.src = productImage(p);
+  modalImage.dataset.candidates = productImageCandidates(p).slice(1).join('|');
   modalImage.alt = p.name;
 
   document.getElementById("modalKicker").textContent =
