@@ -1611,6 +1611,44 @@ footer{
   .view-switch{ width:100%; }
   .view-btn{ flex:1; padding:9px 6px; }
 }
+
+/* =========================
+   TEAM ACCOUNT
+========================= */
+@media(max-width:620px){ .nav-right .nav-btn:not(.primary){ display:none; } }
+
+.acc-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+.acc-chip{ border:1px solid var(--line); background:#101013; color:#aaa6ad; border-radius:999px; padding:8px 13px; font-size:12px; font-weight:800; }
+.acc-chip:hover{ color:#fff; }
+.acc-chip.active{ background:var(--gold); border-color:var(--gold); color:#111; }
+
+.acc-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.acc-card{ position:relative; display:flex; flex-direction:column; background:var(--panel); border:1px solid var(--line); border-radius:18px; overflow:hidden; transition:border-color .2s, transform .2s; }
+.acc-card:hover{ border-color:#4a4330; transform:translateY(-2px); }
+.acc-photo{ position:relative; aspect-ratio:4/3; display:grid; place-items:center; background:linear-gradient(135deg,#292116,#17171b); }
+.acc-card:nth-child(3n+2) .acc-photo{ background:linear-gradient(135deg,#171e24,#17171b); }
+.acc-card:nth-child(3n) .acc-photo{ background:linear-gradient(135deg,#241820,#17171b); }
+.acc-icon{ font-size:56px; opacity:.85; }
+.acc-photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 25%; }
+.acc-sample{ position:absolute; top:12px; right:12px; z-index:2; background:rgba(0,0,0,.65); border:1px dashed var(--gold); color:var(--gold2); font-size:10px; font-weight:900; letter-spacing:.05em; text-transform:uppercase; padding:5px 8px; border-radius:6px; }
+.acc-body{ display:flex; flex-direction:column; gap:10px; padding:18px 20px 20px; flex:1; }
+.acc-team{ color:var(--gold2); font-size:11px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
+.acc-name{ margin:0; font-size:20px; letter-spacing:-.02em; line-height:1.15; }
+.acc-name span{ display:block; margin-top:3px; color:var(--muted); font-size:13px; font-weight:600; letter-spacing:0; }
+.acc-tags{ display:flex; flex-wrap:wrap; gap:6px; }
+.acc-tag{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); padding:5px 9px; border-radius:7px; font-size:11px; font-weight:800; }
+.acc-exp{ margin:0; color:#c4c1c6; font-size:13px; line-height:1.5; }
+.acc-exp b{ color:#8f8c93; font-size:11px; letter-spacing:.06em; text-transform:uppercase; display:block; margin-bottom:2px; }
+.acc-exp.is-sample{ color:#77747b; font-style:italic; }
+.acc-contact{ display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; padding-top:6px; }
+.acc-btn{ display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line); background:var(--panel2); color:var(--text); border-radius:10px; padding:9px 12px; font-size:12px; font-weight:800; }
+.acc-btn:hover{ border-color:#666; }
+.acc-btn.primary{ background:var(--gold); border-color:var(--gold); color:#111; }
+.acc-nocontact{ color:#77747b; font-size:12px; font-style:italic; }
+@media(max-width:900px){ .acc-grid{ grid-template-columns:repeat(2,1fr); } }
+@media(max-width:620px){ .acc-grid{ grid-template-columns:1fr; } .acc-photo{ aspect-ratio:16/9; } }
+
+section[id]{ scroll-margin-top:84px; }
 </style>
 </head>
 
@@ -1652,6 +1690,13 @@ footer{
       </button>
 
       <button
+        class="nav-btn"
+        onclick="scrollToId('accounts')"
+      >
+        Tìm Account
+      </button>
+
+      <button
         class="nav-btn primary"
         onclick="scrollToId('support')"
       >
@@ -1682,7 +1727,7 @@ footer{
 
     <div class="kicker">
       <span class="dot"></span>
-      Bảng xếp hạng sản phẩm tháng 09/2026
+      Bảng xếp hạng tháng 09/2026
     </div>
 
     <div class="hero-title-row">
@@ -1690,8 +1735,8 @@ footer{
       <div>
         <h1>
           LƯỚT.<br>
-          CHỌN.<br>
-          CHỐT ĐƠN.
+          PICK.<br>
+          CHỐT.
         </h1>
       </div>
 
@@ -1935,157 +1980,27 @@ footer{
 
 </section>
 <!-- =========================
-     PLAYLIST
+     TEAM ACCOUNT — SALE CHƯA CÓ ACC CHO JOB
 ========================= -->
 
-<section
-  class="section"
-  id="playlists"
->
+<section class="section" id="accounts">
 
   <div class="container">
 
     <div class="section-head">
-
       <div>
-
         <h2 class="section-title">
-          HÔM NAY MUỐN CHỐT SẢN PHẨM GÌ?
+          SALE CHƯA CÓ ACC CHO JOB? TÌM ĐÚNG TEAM
         </h2>
-
         <p class="section-desc">
-          Khách đang cần gì, pick đúng “vũ khí” rồi vào trận.
+          Xem team Account theo chuyên môn và kinh nghiệm, rồi chủ động liên hệ khi thấy phù hợp với job của bạn.
         </p>
-
       </div>
-
     </div>
 
+    <div class="acc-chips" id="accFilters"></div>
 
-    <div class="playlist">
-
-
-      <!-- TOP 1 -->
-
-      <div class="play">
-
-        <div class="play-icon">
-          🔥
-        </div>
-
-        <h3>
-          TOP 1 SERVER
-        </h3>
-
-        <p>
-          Hàng đang được Athena dồn lực đẩy.
-          Không chào bây giờ thì chờ bao giờ?
-        </p>
-
-      </div>
-
-
-      <!-- NEW -->
-
-      <div class="play">
-
-        <div class="play-icon">
-          🆕
-        </div>
-
-        <h3>
-          HÀNG MỚI CẬP BẾN
-        </h3>
-
-        <p>
-          Hàng mới về, chưa nhiều người biết.
-          Đi chào sớm là có cửa tạo khác biệt.
-        </p>
-
-      </div>
-
-
-      <!-- BEST -->
-
-      <div class="play">
-
-        <div class="play-icon">
-          ⭐
-        </div>
-
-        <h3>
-          TRÙM CHỐT ĐƠN
-        </h3>
-
-        <p>
-          Đã có người thử.
-          Đã có câu chuyện.
-          Mang đi pitch khá “nhàn”.
-        </p>
-
-      </div>
-
-
-      <!-- RARE -->
-
-      <div class="play">
-
-        <div class="play-icon">
-          💎
-        </div>
-
-        <h3>
-          HÀNG HIẾM
-        </h3>
-
-        <p>
-          Không phải món ngon nào cũng nằm ngoài mặt tiền.
-          Có vài món phải đào mới thấy.
-        </p>
-
-      </div>
-
-
-      <!-- GROWTH -->
-
-      <div class="play">
-
-        <div class="play-icon">
-          🚀
-        </div>
-
-        <h3>
-          SẢN PHẨM BÀO DOANH THU
-        </h3>
-
-        <p>
-          Những món có thể mở thêm doanh thu
-          từ chính khách hàng đang có.
-        </p>
-
-      </div>
-
-
-      <!-- STRATEGIC -->
-
-      <div class="play">
-
-        <div class="play-icon">
-          🎯
-        </div>
-
-        <h3>
-          SẢN PHẨM GÁNH TEAM
-        </h3>
-
-        <p>
-          Những sản phẩm có thể kéo cả bài toán
-          lớn hơn về cho Athena.
-        </p>
-
-      </div>
-
-    </div>
+    <div class="acc-grid" id="accGrid"></div>
 
   </div>
 
@@ -2283,7 +2198,7 @@ const IMAGE_OVERRIDES = {
   'ID14 - Tuyến nội dung Premium': 'id14-tuyen-noi-dung-premium.jpg.bmp',
   'Showlife - Here To Hear và các show mới': 'showlife-here-to-hear-cac-show-moi.jpg.bmp',
   'Family Journey Series - \"Lần này con đưa bố mẹ đi\"': 'family-journey-series.jpg.bmp',
-  'Khuếch đại truyền thông': 'khuech-dai-truyen-thong.jpg.bmp',
+  'Khuếch đại truyền thông ngành BĐS - Tài chính': 'khuech-dai-truyen-thong.jpg.bmp',
   'My Bank - CafeF': 'my-bank-cafef.jpg.bmp',
   'PR Star': 'pr-star.jpg.bmp',
   'Social chủ động': 'social-chu-dong.jpg.bmp',
@@ -2329,7 +2244,7 @@ const products = [
         "uy-tin",
         "doanh-thu"
     ],
-    "desc": "Giải pháp Product Campaign toàn diện: định vị, USP, concept, câu chuyện, báo chí, social, community, KOL/KOC, TMĐT và AI theo vòng đời sản phẩm.",
+    "desc": "Giải pháp Product Marketing toàn diện: định vị, USP, concept, câu chuyện, báo chí, social, community, KOL/KOC, TMĐT và AI theo vòng đời sản phẩm.",
     "why": "Sản phẩm thiếu khác biệt/định vị chưa rõ; truyền thông nhiều nhưng chuyển đổi thấp; thiếu content và review tạo niềm tin; ra mắt chậm hoặc khó tiếp cận đúng khách hàng; sản phẩm chững tăng trưởng hoặc tồn kho cao.",
     "customer": "CMO, Brand/Product/Marketing Manager, E-commerce Manager, chủ SME. Ngành: FMCG, Mẹ & bé, Dược-TPCN, mỹ phẩm, gia dụng, công nghệ, F&B, tài chính-bảo hiểm, Y tế, Giáo dục.",
     "pitch": "“Nếu khách đang có một sản phẩm cần bán tốt hơn, đừng bắt đầu bằng booking; hãy bắt đầu bằng việc làm rõ sản phẩm này khác gì, đáng tin ở đâu và kể câu chuyện thế nào.”",
@@ -2456,7 +2371,7 @@ const products = [
 },
 
   {
-    "name": "Khuếch đại truyền thông",
+    "name": "Khuếch đại truyền thông ngành BĐS - Tài chính",
     "hook": "Điều phối hệ sinh thái đa lớp, đa kênh để tạo hiệu ứng cộng hưởng cho cả chiến dịch.",
     "kicker": "⏳ Chờ đẩy bán",
     "icon": "🏦",
@@ -2793,7 +2708,7 @@ const products = [
     "Thương hiệu quốc gia",
     "Threads xây kênh - Buzz",
     "Social Contest Tết 2027",
-    "Khuếch đại truyền thông"
+    "Khuếch đại truyền thông ngành BĐS - Tài chính"
   ];
 
   const featuredBadges = [
@@ -3514,6 +3429,161 @@ document.getElementById("search").addEventListener("input", e => {
 
 setActive(".view-btn", "view", viewMode);
 applyFilters();
+
+
+/* =========================
+   TEAM ACCOUNT CHUYÊN MÔN
+   ---------------------------------
+   CẬP NHẬT DANH SÁCH Ở ĐÂY — thêm / bớt / sửa một khối {...} là xong.
+   - team       : tên team (bắt buộc)
+   - lead       : tên người đầu mối;  role: chức danh
+   - icon       : emoji hiện khi chưa có ảnh
+   - photo      : tên file ảnh (để trống thì tự tìm  acc-<ten-nguoi>.jpg / .webp / .png)
+   - expertise  : các nhóm chuyên môn / ngành (tự sinh nút lọc phía trên)
+   - experience : kinh nghiệm;  cases: case/khách hàng tiêu biểu
+   - telegram   : @username hoặc link t.me/...
+   - zalo, phone: số điện thoại;  email
+   - sample:true: đánh dấu "Thông tin mẫu" — XÓA dòng này khi điền thông tin thật
+========================= */
+const accountTeams = [
+  { team:"Team Account FMCG & Mẹ bé", lead:"Tên Account", role:"Chức danh", icon:"🛒", photo:"",
+    expertise:["FMCG","Mẹ & bé","F&B"],
+    experience:"Số năm kinh nghiệm, nhóm khách hàng thường làm.",
+    cases:"Khách hàng / chiến dịch tiêu biểu.",
+    telegram:"", zalo:"", phone:"", email:"", sample:true },
+
+  { team:"Team Account Dược – Y tế", lead:"Tên Account", role:"Chức danh", icon:"💊", photo:"",
+    expertise:["Dược - TPCN","Y tế","Sức khỏe"],
+    experience:"Số năm kinh nghiệm, nhóm khách hàng thường làm.",
+    cases:"Khách hàng / chiến dịch tiêu biểu.",
+    telegram:"", zalo:"", phone:"", email:"", sample:true },
+
+  { team:"Team Account Tài chính – BĐS", lead:"Tên Account", role:"Chức danh", icon:"🏦", photo:"",
+    expertise:["Tài chính - Ngân hàng","BĐS","Bảo hiểm"],
+    experience:"Số năm kinh nghiệm, nhóm khách hàng thường làm.",
+    cases:"Khách hàng / chiến dịch tiêu biểu.",
+    telegram:"", zalo:"", phone:"", email:"", sample:true },
+
+  { team:"Team Account Công nghệ – Ô tô", lead:"Tên Account", role:"Chức danh", icon:"🚗", photo:"",
+    expertise:["Công nghệ","Ô tô - Xe máy","Gia dụng"],
+    experience:"Số năm kinh nghiệm, nhóm khách hàng thường làm.",
+    cases:"Khách hàng / chiến dịch tiêu biểu.",
+    telegram:"", zalo:"", phone:"", email:"", sample:true },
+
+  { team:"Team Account Giáo dục – Gen Z", lead:"Tên Account", role:"Chức danh", icon:"🎓", photo:"",
+    expertise:["Giáo dục","Gen Z","Giải trí"],
+    experience:"Số năm kinh nghiệm, nhóm khách hàng thường làm.",
+    cases:"Khách hàng / chiến dịch tiêu biểu.",
+    telegram:"", zalo:"", phone:"", email:"", sample:true },
+
+  { team:"Team Account Làm đẹp – Thời trang", lead:"Tên Account", role:"Chức danh", icon:"💄", photo:"",
+    expertise:["Mỹ phẩm","Thời trang","Lifestyle"],
+    experience:"Số năm kinh nghiệm, nhóm khách hàng thường làm.",
+    cases:"Khách hàng / chiến dịch tiêu biểu.",
+    telegram:"", zalo:"", phone:"", email:"", sample:true }
+];
+
+function esc(v){
+  return String(v == null ? "" : v).replace(/[&<>"]/g, c => (
+    {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]
+  ));
+}
+
+function accPhotoCandidates(t){
+  if(t.photo) return [t.photo];
+  if(t.sample) return [];
+  const base = "acc-" + slugifyProduct(t.lead || t.team);
+  return [".jpg", ".webp", ".png"].map(ext => base + ext);
+}
+
+function accHandle(h){
+  return String(h || "").trim().replace(/^https?:\/\/t\.me\//, "").replace(/^@/, "");
+}
+
+function accDigits(v){
+  return String(v || "").replace(/[^\d+]/g, "");
+}
+
+function buildAccountMessage(t){
+  return [
+    `Chào ${t.lead}, mình đang có job cần Account hỗ trợ và thấy ${t.team} phù hợp.`,
+    "- Khách hàng / ngành: ",
+    "- Brief tóm tắt: ",
+    "- Ngân sách dự kiến: ",
+    "- Deadline: ",
+    "Bạn xem giúp mình có nhận được job này không nhé!"
+  ].join("\n");
+}
+
+function contactAccount(i){
+  const t = accountTeams[i];
+  const text = buildAccountMessage(t);
+  const copied = copyText(text);
+  window.open(`https://t.me/${accHandle(t.telegram)}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+  copied.then(ok => showToast(
+    ok ? "Đã copy mẫu tin nhắn — nếu ô chat chưa tự điền, chỉ cần dán vào"
+       : "Đang mở Telegram — hãy nhắn rõ job bạn cần hỗ trợ"
+  ));
+}
+
+function accCardHTML(t){
+  const i = accountTeams.indexOf(t);
+  const cands = accPhotoCandidates(t);
+
+  const photo = cands.length ? `
+    <img src="${esc(cands[0])}" data-candidates="${esc(cands.slice(1).join("|"))}"
+         alt="${esc(t.team)}" loading="lazy" onerror="tryNextImage(this)">` : "";
+
+  const msg = buildAccountMessage(t);
+  const btns = [];
+  if(t.telegram) btns.push(`<button class="acc-btn primary" onclick="contactAccount(${i})">💬 Telegram</button>`);
+  if(t.zalo)     btns.push(`<a class="acc-btn" href="https://zalo.me/${esc(accDigits(t.zalo))}" target="_blank" rel="noopener">Zalo</a>`);
+  if(t.phone)    btns.push(`<a class="acc-btn" href="tel:${esc(accDigits(t.phone))}">📞 ${esc(t.phone)}</a>`);
+  if(t.email)    btns.push(`<a class="acc-btn" href="mailto:${esc(t.email)}?subject=${encodeURIComponent("Nhờ Account hỗ trợ job - " + t.team)}&amp;body=${encodeURIComponent(msg)}">✉️ Email</a>`);
+
+  const sampleCls = t.sample ? " is-sample" : "";
+
+  return `
+    <article class="acc-card">
+      <div class="acc-photo">
+        <span class="acc-icon">${esc(t.icon || "👤")}</span>
+        ${photo}
+        ${t.sample ? '<span class="acc-sample">Thông tin mẫu</span>' : ""}
+      </div>
+      <div class="acc-body">
+        <div class="acc-team">${esc(t.team)}</div>
+        <h3 class="acc-name">${esc(t.lead)}<span>${esc(t.role)}</span></h3>
+        <div class="acc-tags">${(t.expertise || []).map(x => `<span class="acc-tag">${esc(x)}</span>`).join("")}</div>
+        ${t.experience ? `<p class="acc-exp${sampleCls}"><b>Kinh nghiệm</b>${esc(t.experience)}</p>` : ""}
+        ${t.cases ? `<p class="acc-exp${sampleCls}"><b>Case tiêu biểu</b>${esc(t.cases)}</p>` : ""}
+        <div class="acc-contact">
+          ${btns.length ? btns.join("") : '<span class="acc-nocontact">Đang cập nhật thông tin liên hệ</span>'}
+        </div>
+      </div>
+    </article>`;
+}
+
+let accTag = "all";
+
+function renderAccounts(){
+  const chipBox = document.getElementById("accFilters");
+  const gridEl  = document.getElementById("accGrid");
+  const tags = [...new Set(accountTeams.flatMap(t => t.expertise || []))];
+
+  chipBox.innerHTML = ["all", ...tags].map(t => `
+    <button class="acc-chip ${t === accTag ? "active" : ""}" data-acc="${esc(t)}">
+      ${t === "all" ? "Tất cả chuyên môn" : esc(t)}
+    </button>`).join("");
+
+  chipBox.querySelectorAll(".acc-chip").forEach(b =>
+    b.addEventListener("click", () => { accTag = b.dataset.acc; renderAccounts(); })
+  );
+
+  const list = accountTeams.filter(t => accTag === "all" || (t.expertise || []).includes(accTag));
+  gridEl.innerHTML = list.map(accCardHTML).join("");
+}
+
+renderAccounts();
 
 </script>
 
