@@ -998,7 +998,7 @@ footer{
   scroll-behavior:smooth;
   scroll-snap-type:x mandatory;
 
-  padding:10px 54px 28px;
+  padding:10px 4px 28px;
 
   scrollbar-width:none;
 }
@@ -1273,7 +1273,7 @@ footer{
 
   position:absolute;
 
-  top:calc(50% - 10px);
+  top:50%;
 
   transform:
     translateY(-50%);
@@ -1321,12 +1321,12 @@ footer{
 
 
 .slider-prev{
-  left:10px;
+  left:-17px;
 }
 
 
 .slider-next{
-  right:10px;
+  right:-17px;
 }
 
 
@@ -1502,8 +1502,6 @@ footer{
   font-size:58px !important;
 }
 @media (max-width:700px){
-  .slider-prev{ left:6px; }
-  .slider-next{ right:6px; }
   .hero-slide{ min-height:400px !important; }
   .hero-slide .slide-image{ height:200px !important; flex-basis:200px !important; }
 }
@@ -1619,10 +1617,13 @@ footer{
         ‹
       </button>
 
+
       <div
         class="hero-slider"
         id="featuredSlider"
       ></div>
+      </div>
+
 
       <button
         class="slider-arrow slider-next"
@@ -2250,6 +2251,444 @@ const IMAGE_OVERRIDES = {
 
 const products = [
 
+  {
+    "name": "Product Marketing (Trọn gói)",
+    "hook": "Lấy sản phẩm làm trung tâm, giúp khách hiểu đúng — tin — mua nhanh hơn.",
+    "kicker": "🔥 Đang được đẩy",
+    "icon": "🎯",
+    "price": "Liên hệ báo giá",
+    "types": [
+        "hot",
+        "best"
+    ],
+    "needs": [
+        "san-pham-moi",
+        "tieng-vang",
+        "uy-tin",
+        "doanh-thu"
+    ],
+    "desc": "Giải pháp Product Marketing toàn diện: định vị, USP, concept, câu chuyện, báo chí, social, community, KOL/KOC, TMĐT và AI theo vòng đời sản phẩm.",
+    "why": "Sản phẩm thiếu khác biệt/định vị chưa rõ; truyền thông nhiều nhưng chuyển đổi thấp; thiếu content và review tạo niềm tin; ra mắt chậm hoặc khó tiếp cận đúng khách hàng; sản phẩm chững tăng trưởng hoặc tồn kho cao.",
+    "customer": "CMO, Brand/Product/Marketing Manager, E-commerce Manager, chủ SME. Ngành: FMCG, Mẹ & bé, Dược-TPCN, mỹ phẩm, gia dụng, công nghệ, F&B, tài chính-bảo hiểm, Y tế, Giáo dục.",
+    "pitch": "“Nếu khách đang có một sản phẩm cần bán tốt hơn, đừng bắt đầu bằng booking; hãy bắt đầu bằng việc làm rõ sản phẩm này khác gì, đáng tin ở đâu và kể câu chuyện thế nào.”",
+    "package": "Định vị & USP + concept/câu chuyện + báo chí/social/community/KOL-KOC/TMĐT/AI, linh hoạt theo vòng đời. Đa kênh, ưu tiên KHTT và A01.",
+    "budget": "chưa update giá bán cố định; báo giá theo scope/gói đề xuất.",
+    "proof": "Bệnh viện Hồng Ngọc - Khoa IVF; Dr. Papie. Chính sách: hoa hồng cao hơn cho Sale với một số sản phẩm thuộc bộ giải pháp PRD MKT."
+},
+
+  {
+    "name": "Luvix - GEO solution",
+    "hook": "Giúp thương hiệu được AI nhìn thấy — trích dẫn — đề xuất.",
+    "kicker": "🔥 Đang được đẩy",
+    "icon": "🤖",
+    "price": "Liên hệ báo giá",
+    "types": [
+        "hot",
+        "best"
+    ],
+    "needs": [
+        "uy-tin",
+        "nhan-dien",
+        "doanh-thu"
+    ],
+    "desc": "Giải pháp GEO trọn vòng lặp: đo lường → phân tích → xây Content Strategy → sản xuất nội dung chuẩn GEO & phân phối → giám sát, tối ưu, trên nền tảng LUVIX.",
+    "why": "Thương hiệu chưa hiểu/chưa biết làm GEO; không xuất hiện hoặc đứng sau đối thủ trong câu trả lời AI; AI hiểu sai/thiếu câu chuyện; không biết tối ưu nội dung/prompt/kênh; thiếu nguồn uy tín để AI xác thực và thiếu công cụ đo trước-sau, giám sát liên tục.",
+    "customer": "CMO, Brand/Marketing/PR Manager, Digital Lead, SEO/Content Lead. Phù hợp nhãn có nhiều lượt tìm hiểu, so sánh trước mua và ngành cần độ tin cậy cao: Dược-TPCN/Y tế, Sữa & Dinh dưỡng, FMCG & Đồ uống, Tài chính-Ngân hàng, Ô tô-Xe máy, Điện tử-Công nghệ, Xây dựng-Vật liệu, Giáo dục, BĐS.",
+    "pitch": "“Khi khách hỏi AI để shortlist thương hiệu, bài toán không còn chỉ là đứng trên Google. GEO giúp Athena đo xem AI đang nhìn thấy, trích dẫn và kể về thương hiệu của khách như thế nào — rồi tối ưu để cải thiện.”",
+    "package": "LUVIX theo dõi Visibility, Citation, SOV, vị trí và đối thủ + đội ngũ tư vấn/sản xuất chuẩn GEO + network VCCorp và đối tác. Đa kênh, ưu tiên KHTT và A01.",
+    "budget": "chưa update giá bán cố định; báo giá theo scope/gói đề xuất.",
+    "proof": "Case: Unilever. Tài liệu: VCCorp - GEO Solution - Profile."
+},
+
+  {
+    "name": "Product Marketing - Featured Product",
+    "hook": "Sản phẩm xuất hiện tự nhiên, đúng ngữ cảnh, ngay trong bài viết đang có traffic.",
+    "kicker": "🔥 Đang được đẩy",
+    "icon": "📌",
+    "price": "Theo báo giá gói",
+    "types": [
+        "hot",
+        "best"
+    ],
+    "needs": [
+        "nhan-dien",
+        "san-pham-moi",
+        "uy-tin"
+    ],
+    "desc": "Độc quyền sản phẩm trong layout bài viết; target theo ngữ cảnh; chuyển USP thành “Reason to buy”; tích hợp liên kết chuyển đổi đa kênh và nhiều format hiển thị.",
+    "why": "Cần làm nổi bật tính năng/USP, ra mắt sản phẩm mới, xuất hiện đúng chức năng/ngữ cảnh/thời điểm; ngành Y tế, Giáo dục, Bảo hiểm cần thêm lớp tin cậy từ báo chí; nhiều SKU không thể sản xuất bài riêng cho từng sản phẩm.",
+    "customer": "Y tế, Giáo dục, Dược phẩm, Bảo hiểm, Ngân hàng, Spa; FMCG/Mỹ phẩm/bán lẻ nhiều SKU; BĐS/Tài chính/Chứng khoán; Fashion/Gia dụng/Công nghệ có danh mục sản phẩm liên tục.",
+    "pitch": "“Không cần viết một bài riêng cho từng SKU. Đưa sản phẩm vào đúng bài native đang có traffic, biến tính năng thành lý do mua và xuất hiện đúng lúc độc giả đang quan tâm.”",
+    "package": "Native Ads + Feature Box, tích hợp trong bài viết theo ngữ cảnh. Tập trung KHTT trước, sau đó A01 → A02 → Partnership.",
+    "budget": "chuwa update giá bán cụ thể; dùng báo giá gói khi tư vấn. Chính sách: hoa hồng cao cho Sale.",
+    "proof": "Case: Shopee, IVF Hồng Ngọc. Sản phẩm tương tự: Native Ads, Feature Box."
+},
+
+  {
+    "name": "Social chủ động",
+    "hook": "TVC AI + Native Social + phân phối trên hệ Fanpage VCCorp, cam kết KPI rõ ràng.",
+    "kicker": "🔥 Đang được đẩy",
+    "icon": "📱",
+    "price": "50 triệu / combo",
+    "types": [
+        "hot"
+    ],
+    "needs": [
+        "nhan-dien",
+        "tieng-vang",
+        "ban-hang"
+    ],
+    "desc": "All-in-one: sản xuất TVC AI + Banner + phân phối + cam kết KPI trong một gói; Native Social, bám trend chủ động, phân phối trên hệ Fanpage/TikTok VCCorp, Brand Safety.",
+    "why": "Không kịp bắt trend/sản xuất nội dung; khó đưa thương hiệu vào nội dung viral; quảng cáo truyền thống dễ bị lướt qua; cần tăng Reach/Brand Awareness nhanh và tăng tần suất ghi nhớ.",
+    "customer": "Tất cả ngành hàng được phép quảng cáo: FMCG/F&B, Mỹ phẩm, Mẹ & Bé, Thời trang/Làm đẹp, Điện tử/Công nghệ, Gia dụng, Giáo dục, BĐS/Dự án mới, Ô tô/Xe máy, Dịch vụ tiêu dùng.",
+    "pitch": "“Khách chỉ cần đưa brief; Athena lo từ TVC AI, lồng thương hiệu vào nội dung đang có traffic đến phân phối trên hệ Fanpage VCCorp — tối thiểu 1 triệu views.”",
+    "package": "TVC AI + Banner/Logo Native Social + phân phối trên Kenh14, CafeF, CafeBiz, GenK, aFamily, AutoPro... Cam kết tối thiểu 1 triệu Views; triển khai nhanh; Brand Safety.",
+    "budget": "50 triệu/combo; chi phí tối ưu và KPI tối thiểu 1 triệu views.",
+    "proof": "Case: Hanoi Center, Coca-Cola. Sản phẩm tương tự: Social Tap Ads."
+},
+
+  {
+    "name": "Hiếu Nghĩa Vàng Son",
+    "hook": "Mạng lưới nội dung chính thống quy mô lớn, đang update",
+    "kicker": "🔥 Trọng điểm",
+    "icon": "📰",
+    "price": "Theo đề xuất",
+    "types": [
+        "hot",
+        "best"
+    ],
+    "needs": [
+        "uy-tin",
+        "nhan-dien"
+    ],
+    "desc": "Tên sản phẩm trong nhóm Trọng điểm, nhưng các trường USP, vấn đề KH, chân dung KH, kênh bán, tài liệu và case đang update.",
+    "why": "hiện chưa mô tả bài toán khách hàng mà sản phẩm giải quyết.",
+    "customer": "hiện chưa có chân dung khách hàng cụ thể.",
+    "pitch": "Chưa nên chốt một pitch cụ thể khi chưa có USP/vấn đề KH; cần lấy đúng nội dung sản phẩm trước khi đưa Sales đi chào.",
+    "package": "chưa có mô tả gói/kênh bán/tài liệu.",
+    "budget": "chưa có mục tiêu doanh thu hoặc ngân sách triển khai.",
+    "proof": "chưa có case study."
+},
+
+  {
+    "name": "VietBaby Fair",
+    "hook": "Combo gian hàng 12x12m (gấp 4 lần tiêu chuẩn) + truyền thông đa kênh độc quyền, ROI tới 200%.",
+    "kicker": "🔥 Đang được đẩy",
+    "icon": "👶",
+    "price": "150 – 480 triệu / gói",
+    "types": [
+        "hot"
+    ],
+    "needs": [
+        "nhan-dien",
+        "ban-hang",
+        "tieng-vang"
+    ],
+    "desc": "Gói đồng hành cùng Afamily: gian hàng 12x12m, truyền thông đa kênh độc quyền, hoạt động offline kéo traffic, UGC, minigame online và native.",
+    "why": "mở rộng hiện diện và kết nối trực tiếp với khách hàng mẹ & bé trong dịp VietBaby Fair 2026.",
+    "customer": "Nhãn mẹ & bé, chăm sóc sức khỏe và phát triển trẻ em; quy mô trung bình–lớn; có khả năng đầu tư 150–480 triệu; đang dùng website Afamily, Facebook, TikTok, group cộng đồng, workshop/photobooth/minigame.",
+    "pitch": "“VietBaby Fair không chỉ là mua một gian hàng. Gói này biến sự hiện diện tại sự kiện thành một chiến dịch có truyền thông, kéo traffic, tạo UGC và tương tác trước–trong–sau sự kiện.”",
+    "package": "Combo gian hàng 12x12m + truyền thông đa kênh + hoạt động offline/UGC/minigame/native. Kênh bán: KHTT + A01.",
+    "budget": "150–480 triệu đồng/gói; sự kiện VietBaby Fair 2026 diễn ra tháng 10.",
+    "proof": "chưa có case study cụ thể; có VietBaby Salekit."
+},
+
+  {
+    "name": "Khuếch đại truyền thông ngành BĐS - Tài chính",
+    "hook": "Điều phối hệ sinh thái đa lớp, đa kênh để tạo hiệu ứng cộng hưởng cho cả chiến dịch.",
+    "kicker": "⏳ Chờ đẩy bán",
+    "icon": "🏦",
+    "price": "Theo báo giá gói",
+    "types": [
+        "new",
+        "growth"
+    ],
+    "needs": [
+        "nhan-dien",
+        "uy-tin"
+    ],
+    "desc": "Điều phối hệ sinh thái khuếch đại nhiều lớp/nhiều kênh; các điểm chạm cùng kể một câu chuyện; kéo dài vòng đời truyền thông; tùy biến theo mục tiêu/sự kiện và có inventory chuyên ngành cạnh tranh.",
+    "why": "Cần thương hiệu xuất hiện đúng thời điểm/đối tượng theo một vòng đời truyền thông thay vì một list booking; phù hợp khi ra mắt sản phẩm, truyền thông thương hiệu hoặc sự kiện trọng điểm cần lan tỏa nhanh, mạnh.",
+    "customer": "Ngân hàng top-tier duy trì vị thế với stakeholder; ngân hàng tái định vị/chuyển đổi mô hình; nhóm tài chính/BĐS có sự kiện trọng điểm mang tính định vị.",
+    "pitch": "“Đừng rải booking thành nhiều mảnh. Hãy để toàn bộ điểm chạm cùng kể một câu chuyện, kéo dài market impact thay vì chỉ lấy media reach trong một ngày.”",
+    "package": "Khai thác & điều phối hệ sinh thái đa lớp/đa kênh; ưu tiên KHTT, có thể thêm A01; inventory chuyên ngành.",
+    "budget": "chưa nêu giá bán cụ thể; dùng báo giá theo gói đề xuất.",
+    "proof": "Report tham khảo: VIOD AF8 Media Performance Report. Sản phẩm booking tương tự có trên thị trường nhưng khác cơ chế vận hành."
+},
+
+  {
+    "name": "IDOL14 - Back To School",
+    "hook": "Đưa dàn IDOL trẻ đổ bộ campus, unlock điểm trường qua bình chọn trực tuyến.",
+    "kicker": "🆕 Sắp cập bến",
+    "icon": "🎤",
+    "price": "Theo đề xuất",
+    "types": [
+        "new"
+    ],
+    "needs": [
+        "tieng-vang",
+        "nhan-dien"
+    ],
+    "desc": "Nền tảng All-in-one kết nối Idol & Fandom; 44 nghệ sĩ x 33 fandom. Back To School có Photobooth, Booth Activation, IDOL Meet & Greet, IDOL Performance và unlock điểm trường bằng bình chọn.",
+    "why": "Giúp nhãn hàng chiếm spotlight giới trẻ trong bối cảnh “kinh tế trải nghiệm”, đồng thời kết nối trực tiếp với cộng đồng Fandom/Idol tại campus — điểm chạm quảng cáo truyền thống khó tiếp cận.",
+    "customer": "Gen Z, sinh viên/học sinh yêu thích Idol/Fandom. Nhãn hàng nhắm tới giới trẻ/campus, cần khuấy động, tạo viral và gắn với văn hóa thần tượng.",
+    "pitch": "“Nếu TA của khách là Gen Z, đừng chỉ mua media để Gen Z nhìn thấy. Hãy đưa brand vào campus, nơi Idol/Fandom biến thương hiệu thành một phần của trải nghiệm.”",
+    "package": "Chuỗi Back To School: Photobooth + Booth Activation + IDOL Meet & Greet + IDOL Performance, trong hệ sinh thái idol14.vn, Emagazine, Video Content, PR/Social WeChoice-WeYoung-Kenh14.",
+    "budget": "không nêu ngân sách triển khai cụ thể.",
+    "proof": "WeYoung 2025: 26 Fandom, 31 LED Project, 2 Fan Meeting, 3.3M–6.8M views, 1.8M lượt vote, 562K TikTok views. WeChoice25: 15 LED Project, 53 Fandom Booth/Watching Party/Photobooth, 250K tài khoản đăng bài, 3M interactions, 100+ nghệ sĩ check-in."
+},
+
+  {
+    "name": "ID14 - Tuyến nội dung Premium",
+    "hook": "Không gian editorial premium, biến brand thành một phần tự nhiên của câu chuyện.",
+    "kicker": "🆕 Sắp cập bến",
+    "icon": "✨",
+    "price": "Theo đề xuất",
+    "types": [
+        "new"
+    ],
+    "needs": [
+        "uy-tin",
+        "nhan-dien"
+    ],
+    "desc": "Không gian nội dung Premium với văn phong báo chí chuẩn, đầu tư hình ảnh/theme/concept như tạp chí cao cấp; 3 trụ cột Insider View, Identity, Iconic và 5 chuyên mục nội dung.",
+    "why": "Giúp thương hiệu có “sân khấu” thể hiện bản sắc riêng thay vì quảng cáo hiển thị đơn thuần; đồng sáng tạo tuyến bài/series bằng ngôn ngữ biên tập chuẩn báo chí, đúng ngữ cảnh.",
+    "customer": "Thế hệ mới, đặc biệt tuyến The 30s khoảng 28–35 tuổi; quan tâm sự nghiệp, tài chính, phong cách sống. Phù hợp Beauty & Fashion, F&B, Tài chính, Đời sống cao cấp muốn định vị premium.",
+    "pitch": "“Nếu khách không muốn brand chỉ xuất hiện như một banner, hãy cho brand một tuyến nội dung riêng — có concept, visual và ngôn ngữ editorial đủ sang để người đọc muốn xem.”",
+    "package": "Powered by content territory riêng + PR Native + Brand Visual + Flagship Added-on + Theme & Concept + Editor’s Picks + Contextual Linking.",
+    "budget": "không nêu ngân sách triển khai cụ thể.",
+    "proof": "chưa có case study cụ thể."
+},
+
+  {
+    "name": "Showlife - Here To Hear và các show mới",
+    "hook": "Thương hiệu không chỉ hiện diện mà trở thành một phần câu chuyện.",
+    "kicker": "🆕 Sắp cập bến",
+    "icon": "🎙️",
+    "price": "Theo đề xuất",
+    "types": [
+        "new"
+    ],
+    "needs": [
+        "uy-tin",
+        "tieng-vang"
+    ],
+    "desc": "Hệ sinh thái show của Kênh14 Meta-Network: Here To Hear, Behind The Culture, 35 Questions và các minishow. Định vị thương hiệu từ “hiện diện” thành một phần trải nghiệm.",
+    "why": "Khi AI làm nội dung hàng loạt, niềm tin trở nên khan hiếm; thương hiệu cần chất liệu thật, đúng tần số và tạo dư âm, đồng thời kết nối với mối quan tâm thật của thế hệ trẻ qua nhiều điểm chạm.",
+    "customer": "Giới trẻ/thế hệ mới quan tâm bản sắc, văn hóa đại chúng, gia đình, sự nghiệp, giá trị sống. Nhãn muốn đồng sáng tạo IP có dấu ấn riêng và đồng hành xuyên suốt show/chuỗi nội dung.",
+    "pitch": "“Đây không phải sản phẩm đặt logo vào một show. Mục tiêu là để brand trở thành một phần câu chuyện và trải nghiệm mà khán giả đã chủ động theo dõi.”",
+    "package": "Đồng hành trên hệ sinh thái show Kênh14 Meta-Network: Talkshow, Behind The Culture, 35 Questions, các minishow; cấu trúc package theo show/chuỗi nội dung.",
+    "budget": "không nêu ngân sách triển khai cụ thể.",
+    "proof": "chưa có case study cụ thể."
+},
+
+  {
+    "name": "Family Journey Series - \"Lần này con đưa bố mẹ đi\"",
+    "hook": "Series Family Journey; hiện chỉ cung cấp tài liệu bán hàng, chưa có phần USP chi tiết.",
+    "kicker": "🆕 Sắp cập bến",
+    "icon": "👨‍👩‍👧",
+    "price": "Theo đề xuất",
+    "types": [
+        "new"
+    ],
+    "needs": [
+        "nhan-dien"
+    ],
+    "desc": "chưa điền USP, bài toán KH, chân dung KH và kênh bán; chỉ có tài liệu PPS của Family Journey Series.",
+    "why": "Chưa đủ dữ liệu trong để xác định chính xác vấn đề khách hàng cần giải quyết.",
+    "customer": "Chưa có chân dung khách hàng.",
+    "pitch": "“Đây là sản phẩm cần đọc PPS gốc trước khi pitch; không nên tự suy diễn insight/USP khi form đăng ký chưa có dữ liệu.”",
+    "package": "Tài liệu PPS Family Journey Series là nguồn hiện có; chưa có package/kênh bán cụ thể.",
+    "budget": "chưa nêu ngân sách hoặc mục tiêu doanh thu.",
+    "proof": "chưa có case study."
+},
+
+  {
+    "name": "The Investor mùa 3",
+    "hook": "Mùa 3 của The Investor; mới ghi nhận tên sản phẩm và tài liệu proposal.",
+    "kicker": "🆕 Sắp cập bến",
+    "icon": "📈",
+    "price": "Theo đề xuất",
+    "types": [
+        "new"
+    ],
+    "needs": [],
+    "desc": "chưa điền USP, bài toán KH, chân dung KH và kênh bán; hiện có proposal The Investor 3 - CafeF.",
+    "why": "Chưa đủ dữ liệu để xác định bài toán khách hàng.",
+    "customer": "Chưa có chân dung khách hàng.",
+    "pitch": "“Cần bám proposal The Investor 3 để xây pitch; chưa nên bổ sung insight ngoài nguồn gốc.”",
+    "package": "Proposal: The Investor 3 - CafeF; package cụ thể chưa được ghi.",
+    "budget": "chưa nêu ngân sách hoặc mục tiêu doanh thu.",
+    "proof": "chưa có case study."
+},
+
+  {
+    "name": "My Bank - CafeF",
+    "hook": "Dự án My Bank 2026 trên CafeF; hiện mới có tên và proposal.",
+    "kicker": "🆕 Sắp cập bến",
+    "icon": "🏧",
+    "price": "Theo đề xuất",
+    "types": [
+        "new"
+    ],
+    "needs": [],
+    "desc": "chưa điền USP, bài toán KH, chân dung KH và kênh bán; có Concept Proposal My Bank 2026.",
+    "why": "Chưa đủ dữ liệu để xác định bài toán khách hàng.",
+    "customer": "Chưa có chân dung khách hàng trong.",
+    "pitch": "“Cần đọc Concept Proposal My Bank 2026 trước khi pitch; dữ liệu hiện chưa đủ để mô tả USP.”",
+    "package": "Concept Proposal My Bank 2026 - CafeF; package cụ thể chưa được ghi trong.",
+    "budget": "chưa nêu ngân sách hoặc mục tiêu doanh thu.",
+    "proof": "chưa có case study."
+},
+
+  {
+    "name": "AI in Banking - CafeBiz",
+    "hook": "Concept AI Banking trên CafeBiz; hiện mới có proposal.",
+    "kicker": "🆕 Sắp cập bến",
+    "icon": "🏦",
+    "price": "Theo đề xuất",
+    "types": [
+        "new"
+    ],
+    "needs": [
+        "uy-tin"
+    ],
+    "desc": "chưa điền USP, bài toán KH, chân dung KH và kênh bán; có AI-Bank-Proposal-CafeBiz.pdf.",
+    "why": "Chưa đủ dữ liệu để xác định bài toán khách hàng.",
+    "customer": "Chưa có chân dung khách hàng",
+    "pitch": "“Cần bám AI-Bank-Proposal-CafeBiz để xây pitch; không tự suy diễn USP khi form chưa có dữ liệu.”",
+    "package": "AI-Bank-Proposal-CafeBiz.pdf; package cụ thể chưa được ghi.",
+    "budget": "chưa nêu ngân sách hoặc mục tiêu doanh thu.",
+    "proof": "chưa có case study."
+},
+
+  {
+    "name": "Kế nghiệp - CafeBiz",
+    "hook": "Sản phẩm Kế nghiệp trên CafeBiz; mới ghi nhận tên sản phẩm.",
+    "kicker": "🆕 Sắp cập bến",
+    "icon": "🧬",
+    "price": "Theo đề xuất",
+    "types": [
+        "new"
+    ],
+    "needs": [],
+    "desc": "chưa điền USP, bài toán KH, chân dung KH, kênh bán, tài liệu và case study.",
+    "why": "Chưa đủ dữ liệu trong để xác định bài toán khách hàng.",
+    "customer": "Chưa có chân dung khách hàng.",
+    "pitch": "“Cần người phụ trách bổ sung thông tin sản phẩm trước khi đưa Sales đi pitch.”",
+    "package": "chưa có package, kênh bán hoặc tài liệu bán hàng.",
+    "budget": "chưa nêu ngân sách hoặc mục tiêu doanh thu.",
+    "proof": "chưa có case study."
+},
+
+  {
+    "name": "PR Star",
+    "hook": "Khuếch đại nội dung truyền thông được bảo chứng đa kênh, đa nền tảng.",
+    "kicker": "🔥 Trọng điểm",
+    "icon": "⭐",
+    "price": "Theo đề xuất",
+    "types": [
+        "hot",
+        "best"
+    ],
+    "needs": [
+        "nhan-dien",
+        "uy-tin",
+        "tieng-vang"
+    ],
+    "desc": "Giải pháp khuếch đại nội dung truyền thông đa kênh/đa nền tảng, xuất bản bán tự động nhưng tuân thủ Brand Safety, giúp thông điệp nhất quán và chuẩn xác.",
+    "why": "Bảo chứng bởi trang báo/tin uy tín; phân phối tần suất cao trên đa nền tảng; rút ngắn thời gian lan tỏa; truyền tải đồng bộ theo brand guideline.",
+    "customer": "Khách hàng Mass, đa dạng ngành: Xây dựng & BĐS, Tài chính & Bảo hiểm, Bán buôn bán lẻ, Viễn thông & Truyền thông, F&B, Điện tử & Điện lạnh...",
+    "pitch": "“Nếu khách cần một thông điệp được phủ nhanh, nhiều và vẫn kiểm soát được brand safety, PR Star giải bài toán khuếch đại thay vì booking từng điểm rời rạc.”",
+    "package": "Khuếch đại nội dung trên đa kênh/đa nền tảng; ưu tiên KHTT và A02. Tài liệu gồm Profile PR Star 2026 và báo giá theo từng publisher.",
+    "budget": "không nêu ngân sách tổng; giá bán theo profile/báo giá từng publisher.",
+    "proof": "chưa có case study."
+},
+
+  {
+    "name": "Thương hiệu quốc gia",
+    "hook": "Sản phẩm Thương hiệu quốc gia; hiện mới ghi nhận tên và trạng thái Trọng điểm.",
+    "kicker": "🔥 Trọng điểm",
+    "icon": "🇻🇳",
+    "price": "Theo đề xuất",
+    "types": [
+        "hot",
+        "best"
+    ],
+    "needs": [
+        "uy-tin",
+        "nhan-dien"
+    ],
+    "desc": "chưa điền USP, bài toán KH, chân dung KH, kênh bán, tài liệu và case study.",
+    "why": "Chưa đủ dữ liệu để xác định bài toán khách hàng.",
+    "customer": "Chưa có chân dung khách hàng.",
+    "pitch": "“Cần bám concept/chính thức của sản phẩm trước khi xây pitch; không tự bổ sung thông tin.”",
+    "package": "chưa có package/kênh bán/tài liệu bán hàng cụ thể.",
+    "budget": "chưa nêu ngân sách triển khai.",
+    "proof": "chưa có case study."
+},
+
+  {
+    "name": "Threads xây kênh - Buzz",
+    "hook": "Xây kênh Threads: KPI tối ưu, chi phí sản xuất thấp hơn và khai thác tốc độ tăng trưởng/engagement của nền tảng.",
+    "kicker": "🆕 Sắp cập bến",
+    "icon": "🧵",
+    "price": "Theo đề xuất",
+    "types": [
+        "new"
+    ],
+    "needs": [
+        "nhan-dien",
+        "tieng-vang"
+    ],
+    "desc": "Giải pháp xây và quản trị kênh Threads; thị trường còn ít agency chuyên sâu, trong khi Threads có viral tự nhiên cao nhưng thuật toán khác nền tảng thông thường.",
+    "why": "Tăng nhận diện và thảo luận quanh sản phẩm/dịch vụ; tiếp cận tệp mới, đặc biệt Gen Z; tận dụng thời điểm nền tảng tăng trưởng nhanh, engagement cao và chi phí quảng cáo tối ưu.",
+    "customer": "TA chính Gen Z 14–29. Ngành phù hợp: FMCG, F&B, Tài chính-Ngân hàng, đặc biệt ngân hàng số.",
+    "pitch": "“Threads đang có cửa cho brand đi sớm: KPI quảng cáo được cam kết với chi phí thấp hơn 30–60% và chi phí sản xuất nội dung tối ưu hơn 50%.”",
+    "package": "Xây & quản trị kênh Threads; Proposal và báo giá gói có sẵn.",
+    "budget": "không nêu một ngân sách triển khai cố định; báo giá gói nằm trong tài liệu bán hàng.",
+    "proof": "Case: The Coffee House."
+},
+
+  {
+    "name": "Social Partnership Phụ nữ - Gia đình (AFamily)",
+    "hook": "Một Big Idea kéo dài thành tuyến nội dung trên aFamily, Social và Community.",
+    "kicker": "🆕 Sắp cập bến",
+    "icon": "👪",
+    "price": "Theo đề xuất",
+    "types": [
+        "new"
+    ],
+    "needs": [
+        "nhan-dien",
+        "tieng-vang",
+        "uy-tin"
+    ],
+    "desc": "Xây tuyến nội dung xuyên suốt từ một Big Idea, biến brand thành một phần tự nhiên trong câu chuyện đời sống phụ nữ & gia đình; đồng bộ aFamily - Social - Community để tối ưu chi phí sản xuất.",
+    "why": "Giải bài toán content rời rạc và chi phí sản xuất cao; một tuyến phát triển nhiều format/kênh, giữ thông điệp nhất quán và đưa brand vào câu chuyện tự nhiên hơn.",
+    "customer": "Brand/Agency xây hình ảnh & câu chuyện dài hạn, đặc biệt FMCG, Healthcare/Pharma, Beauty, Baby & Kids, Consumer Electronics, Finance; cần content có chiều sâu trên Media và lan tỏa Social/Community.",
+    "pitch": "“Thay vì mỗi kênh làm một mảnh content, hãy bắt đầu từ một Big Idea rồi kéo thành cả tuyến: Media kể sâu, Social lan tỏa, Community tạo tương tác.”",
+    "package": "Tuyến nội dung xuyên suốt trên aFamily + Social + Community; tài liệu Social Partnership 2026.",
+    "budget": "không nêu ngân sách triển khai cụ thể.",
+    "proof": "Case: IVF Hồng Ngọc."
+},
+
+  {
+    "name": "Social Contest Tết 2027",
+    "hook": "AI Contest chỉ từ 50 triệu — format mới, dễ tạo tham gia và có khả năng khuếch đại nhanh.",
+    "kicker": "🔥 Đang được đẩy",
+    "icon": "🎉",
+    "price": "Từ 50 triệu / gói",
+    "types": ["hot", "new"],
+    "needs": ["nhan-dien", "tieng-vang", "ban-hang"],
+    "desc": "Social Contest triển khai đa dạng định dạng AI như photo, video, voice, AR TikTok, CapCut và AI Generated; kết hợp hệ thống báo chí và content creators của VCCorp.",
+    "why": "Phù hợp giai đoạn cuối năm - đầu năm khi thương hiệu cần tăng nhận diện, kích thích người dùng tham gia và hỗ trợ tăng trưởng doanh số bằng voucher hoặc chương trình khuyến mãi.",
+    "customer": "FMCG, Mẹ & Bé, Ngân hàng; đặc biệt các thương hiệu bán lẻ.",
+    "pitch": "“Nếu khách cần một chiến dịch vừa có tương tác, vừa có chất liệu mới để người dùng tham gia, Social Contest có thể biến AI thành format chơi thật — thay vì chỉ dùng AI để làm nội dung.”",
+    "package": "Thiết kế Social Contest theo format phù hợp: AR TikTok, CapCut, AI Generated, photo/video/voice; kết hợp phân phối và hệ thống báo chí, content creators theo chiến dịch.",
+    "budget": "Từ 50 triệu / gói.",
+    "proof": "Tài liệu: Social Contest Tết 2027. khả năng cam kết KPI và triển khai với hệ thống báo chí, content creators độc quyền VCCorp."
+  },
 
   {
     "name": "Livestream AI",
@@ -2270,7 +2709,7 @@ const products = [
     "customer": "Tất cả nhãn hàng có thể áp dụng nếu có use case phù hợp; đặc biệt FMCG/bán lẻ đang bán tốt trên sàn, có thể live 24/7 hoặc khung giờ đêm; dịch vụ như phần mềm, khách sạn, ứng dụng, nhà xưởng cũng có thể ứng dụng.",
     "pitch": "“Không phải thay người thật ở mọi khung giờ. AI Livestream giúp khách có thêm một ca bán hàng 24/7 với chi phí vận hành thấp hơn nhiều, đặc biệt ở giờ thấp điểm.”",
     "package": "Phòng live 24/7; phòng live VIP có TVC/sản phẩm/pin giỏ hàng; tự động trả lời comment; tùy chỉnh nhân vật/giọng nói. Có proposal và báo giá riêng.",
-    "budget": "Chi phí vận hành AI Livestream theo BM01: khoảng 50k–200k/giờ. Giá gói bán cụ thể: theo báo giá.",
+    "budget": "Chi phí vận hành AI Livestream: khoảng 50k–200k/giờ. Giá gói bán cụ thể: theo báo giá.",
     "proof": "Dou Collection: 24/7, ~10–15 triệu/ngày trên live; Vibonet: 1–3 triệu/ngày; Doppel Herz: trải nghiệm Livestream AI."
 }
 
@@ -2294,10 +2733,6 @@ const products = [
     "Social Contest Tết 2027",
     "Khuếch đại truyền thông ngành BĐS - Tài chính"
   ];
-
-  const featuredDisplayNames = {
-    "Khuếch đại truyền thông ngành BĐS - Tài chính": "Khuếch đại truyền thông"
-  };
 
   const featuredBadges = [
     "🔥 SẢN PHẨM TRỌNG ĐIỂM",
@@ -2417,7 +2852,7 @@ function renderFeaturedSlider(){
             ${featuredLabels[index]}
           </div>
 
-          <h2>${featuredDisplayNames[p.name] || p.name}</h2>
+          <h2>${p.name}</h2>
 
           <p>
             ${p.hook}
