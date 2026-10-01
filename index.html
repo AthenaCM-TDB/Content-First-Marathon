@@ -1748,6 +1748,53 @@ footer{
   .block-inner,.block-inner:before,.block-num,.block-bar,.js-focus .block-body{ transition:none; }
 }
 
+/* =========================================================
+   GỌN CHỮ — chỉ hiện tiêu đề, bấm mới xem chi tiết
+========================================================= */
+.tip-text{ display:none !important; }
+.tip-text.open{ display:block !important; animation:tipIn .25s ease; }
+@keyframes tipIn{ from{opacity:0; transform:translateY(-4px);} to{opacity:1; transform:none;} }
+
+.tip-btn{
+  display:inline-flex; align-items:center; gap:6px;
+  margin-top:10px;
+  padding:6px 12px; border-radius:999px;
+  border:1px solid var(--line); background:rgba(255,255,255,.04);
+  color:var(--gold2); font:inherit; font-size:12px; font-weight:800;
+  cursor:pointer; transition:border-color .2s, background .2s;
+}
+.tip-btn:hover{ border-color:var(--gold); background:rgba(243,184,63,.1); }
+.tip-btn i{ font-style:normal; display:inline-block; transition:transform .25s; }
+.tip-btn[aria-expanded="true"] i{ transform:rotate(180deg); }
+.filter-title + .tip-btn{ margin:6px 0 14px; }
+.hero .tip-btn{ margin-top:22px; }
+
+/* Slider trending: chỉ tên sản phẩm */
+.hero-slide .slide-content p{ display:none; }
+
+/* Lưới sản phẩm: ảnh + tên, bấm card để mở chi tiết */
+.grid.view-grid .card-hook,
+.grid.view-grid .card-desc,
+.grid.view-grid .card-price{ display:none; }
+.grid.view-grid .card-body{ padding:14px 16px 16px; }
+.grid.view-grid .card-foot{ min-height:0; margin-top:10px; justify-content:flex-end; }
+
+/* Card account: thu gọn */
+.acc-grid{ align-items:start; }
+.acc-more{ display:none; }
+.acc-card.open .acc-more{ display:block; animation:tipIn .25s ease; }
+.acc-toggle{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  width:100%; margin-top:12px; padding:10px 14px;
+  border:1px solid var(--line); border-radius:12px; background:rgba(255,255,255,.03);
+  color:var(--gold2); font:inherit; font-size:13px; font-weight:800; cursor:pointer;
+  transition:border-color .2s, background .2s;
+}
+.acc-toggle:hover{ border-color:var(--gold); background:rgba(243,184,63,.08); }
+.acc-toggle i{ font-style:normal; transition:transform .25s; }
+.acc-card.open .acc-toggle i{ transform:rotate(180deg); }
+.acc-card.open .acc-more{ margin-top:12px; }
+
 section[id]{ scroll-margin-top:84px; }
 </style>
 </head>
@@ -1784,9 +1831,9 @@ section[id]{ scroll-margin-top:84px; }
 
       <button class="nav-btn" data-nav="trending" onclick="scrollToId('trending')">Top trending</button>
 
-      <button class="nav-btn" data-nav="accounts" onclick="scrollToId('accounts')">Tìm Account</button>
-
       <button class="nav-btn" data-nav="products" onclick="scrollToId('products')">Danh mục sản phẩm</button>
+
+      <button class="nav-btn" data-nav="accounts" onclick="scrollToId('accounts')">Tìm Account</button>
 
       <button
         class="nav-btn primary"
@@ -1909,40 +1956,6 @@ section[id]{ scroll-margin-top:84px; }
 </section>
 
 <!-- =========================
-     TEAM ACCOUNT — SALE CHƯA CÓ ACC CHO JOB
-========================= -->
-
-<section class="section block" id="accounts" data-block="accounts">
-
-  <div class="container"><div class="block-inner">
-
-    <div class="block-head">
-      <div class="block-num" aria-hidden="true">02</div>
-      <div class="block-head-text">
-        <div class="block-eyebrow">Tìm Account</div>
-        <h2 class="section-title">CHƯA CÓ ACC CHO JOB?   TÌM ĐÚNG TEAM</h2>
-        <p class="section-desc">Lựa chọn team Account theo chuyên môn và kinh nghiệm, rồi chủ động liên hệ khi thấy phù hợp với job của bạn.</p>
-        <span class="block-bar"></span>
-      </div>
-      
-    </div>
-
-    <div class="block-body">
-<div class="acc-chips" id="accFilters"></div>
-
-    <div class="acc-grid" id="accGrid"></div>
-</div>
-
-  </div></div>
-
-</section>
-
-
-
-
-
-
-<!-- =========================
      PRODUCT SECTION
 ========================= -->
 
@@ -1951,7 +1964,7 @@ section[id]{ scroll-margin-top:84px; }
   <div class="container"><div class="block-inner">
 
     <div class="block-head">
-      <div class="block-num" aria-hidden="true">03</div>
+      <div class="block-num" aria-hidden="true">02</div>
       <div class="block-head-text">
         <div class="block-eyebrow">Danh mục</div>
         <h2 class="section-title">DANH MỤC SẢN PHẨM MỚI H2/2026</h2>
@@ -2117,6 +2130,36 @@ section[id]{ scroll-margin-top:84px; }
   </div></div>
 
 </section>
+
+<!-- =========================
+     TEAM ACCOUNT — SALE CHƯA CÓ ACC CHO JOB
+========================= -->
+
+<section class="section block" id="accounts" data-block="accounts">
+
+  <div class="container"><div class="block-inner">
+
+    <div class="block-head">
+      <div class="block-num" aria-hidden="true">03</div>
+      <div class="block-head-text">
+        <div class="block-eyebrow">Tìm Account</div>
+        <h2 class="section-title">CHƯA CÓ ACC CHO JOB?   TÌM ĐÚNG TEAM</h2>
+        <p class="section-desc">Lựa chọn team Account theo chuyên môn và kinh nghiệm, rồi chủ động liên hệ khi thấy phù hợp với job của bạn.</p>
+        <span class="block-bar"></span>
+      </div>
+      
+    </div>
+
+    <div class="block-body">
+<div class="acc-chips" id="accFilters"></div>
+
+    <div class="acc-grid" id="accGrid"></div>
+</div>
+
+  </div></div>
+
+</section>
+
 <!-- =========================
      SUPPORT CTA
 ========================= -->
@@ -3660,12 +3703,15 @@ function accCardHTML(t){
       <div class="acc-body">
         <div class="acc-team">${esc(t.team)}</div>
         <h3 class="acc-name">${esc(t.lead)}<span>${esc(t.role)}</span></h3>
+        <button class="acc-toggle" type="button" aria-expanded="false" onclick="toggleAcc(this)"><span>Xem chuyên môn & liên hệ</span><i>⌄</i></button>
+        <div class="acc-more">
         <div class="acc-tags">${(t.expertise || []).map(x => `<span class="acc-tag">${esc(x)}</span>`).join("")}</div>
         ${t.experience ? `<p class="acc-exp${sampleCls}"><b>Kinh nghiệm</b>${esc(t.experience)}</p>` : ""}
         ${t.cases ? `<p class="acc-exp${sampleCls}"><b>Case tiêu biểu</b>${esc(t.cases)}</p>` : ""}
         <div class="acc-contact">
           ${btns.length ? btns.join("") : '<span class="acc-nocontact">Đang cập nhật thông tin liên hệ</span>'}
         </div>
+        </div><!-- /acc-more -->
       </div>
     </article>`;
 }
@@ -3727,6 +3773,46 @@ renderAccounts();
       setFocus(blocks[blocks.length-1].id);
     }
   }, { passive:true });
+})();
+
+/* =========================
+   GỌN CHỮ: nút "Xem chi tiết" cho phần mô tả
+========================= */
+function toggleAcc(btn){
+  const card = btn.closest(".acc-card");
+  const open = card.classList.toggle("open");
+  btn.setAttribute("aria-expanded", open);
+  btn.querySelector("span").textContent = open ? "Thu gọn" : "Xem chuyên môn & liên hệ";
+}
+
+(function(){
+  function makeTip(textEl, afterEl, label){
+    if(!textEl || !afterEl) return;
+    textEl.classList.add("tip-text");
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "tip-btn";
+    btn.setAttribute("aria-expanded","false");
+    btn.innerHTML = `<span>${label}</span><i>⌄</i>`;
+    btn.addEventListener("click", () => {
+      const open = textEl.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open);
+      btn.querySelector("span").textContent = open ? "Thu gọn" : label;
+    });
+    afterEl.insertAdjacentElement("afterend", btn);
+  }
+
+  // Hero: đoạn giới thiệu dài
+  const heroCopy = document.querySelector(".hero-copy");
+  makeTip(heroCopy, document.querySelector(".hero h1"), "ⓘ Handbook này dùng để làm gì?");
+
+  // Mô tả dưới tiêu đề mỗi block
+  document.querySelectorAll(".block-head-text").forEach(h => {
+    makeTip(h.querySelector(".section-desc"), h.querySelector(".section-title"), "ⓘ Xem mô tả");
+  });
+
+  // Gợi ý dưới "Đang tìm kiếm sản phẩm?"
+  makeTip(document.querySelector(".filter-sub"), document.querySelector(".filter-title"), "ⓘ Gợi ý");
 })();
 </script>
 
