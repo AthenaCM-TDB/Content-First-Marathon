@@ -1554,6 +1554,63 @@ footer{
   transition:.25s; z-index:200;
 }
 .toast.show{ opacity:1; transform:translate(-50%,0); }
+
+/* =========================
+   CHẾ ĐỘ HIỂN THỊ: LƯỚI / DANH SÁCH / DÀN TRẢI
+========================= */
+.toolbar{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin:-6px 0 14px; }
+.toolbar .result-count{ margin:0; }
+.view-switch{ display:inline-flex; gap:4px; padding:4px; background:var(--panel); border:1px solid var(--line); border-radius:12px; }
+.view-btn{ border:0; background:transparent; color:#aaa6ad; border-radius:8px; padding:8px 12px; font-size:12px; font-weight:800; white-space:nowrap; }
+.view-btn:hover{ color:#fff; }
+.view-btn.active{ background:var(--gold); color:#111; }
+
+.grid.view-list{ display:flex; flex-direction:column; gap:10px; }
+.grid.view-full{ grid-template-columns:1fr; gap:20px; }
+
+/* Danh sách: mỗi dòng 1 sản phẩm, bấm để xổ chi tiết */
+.row{ border:1px solid var(--line); border-radius:14px; background:var(--panel); overflow:hidden; transition:border-color .2s; }
+.row.open{ border-color:#4a4330; }
+.row-head{ width:100%; display:flex; align-items:center; gap:14px; padding:14px 18px; background:transparent; border:0; color:inherit; text-align:left; }
+.row-head:hover{ background:rgba(255,255,255,.025); }
+.row-icon{ font-size:26px; flex:0 0 36px; text-align:center; }
+.row-main{ flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+.row-name{ font-weight:900; font-size:16px; }
+.row-hook{ color:var(--muted); font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.row-chev{ color:var(--gold2); font-size:20px; transition:transform .2s; }
+.row.open .row-chev{ transform:rotate(180deg); }
+.row-detail{ display:none; padding:4px 18px 20px; border-top:1px solid var(--line); }
+.row.open .row-detail{ display:block; }
+
+/* Khối thông tin dùng chung cho Danh sách và Dàn trải */
+.d-desc{ color:#c4c1c6; font-size:14px; margin:14px 0 2px; }
+.d-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:0 28px; }
+.d-item{ padding:14px 0; border-bottom:1px solid var(--line); }
+.d-item p{ margin:7px 0 0; color:#c4c1c6; font-size:14px; }
+.d-key{ grid-column:1/-1; }
+.d-key p{ font-size:16px; color:#f0eee9; }
+.row-detail .modal-actions, .full-body .modal-actions{ margin-top:16px; }
+
+/* Dàn trải: mỗi sản phẩm một khối lớn, hiện hết thông tin */
+.full-card{ display:grid; grid-template-columns:300px 1fr; border:1px solid var(--line); border-radius:20px; overflow:hidden; background:var(--panel); }
+.full-media{ position:relative; min-height:240px; background:linear-gradient(135deg,#292116,#17171b); display:grid; place-items:center; }
+.full-media img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.full-icon{ font-size:64px; }
+.full-body{ padding:24px 28px; min-width:0; }
+.full-kicker{ color:var(--gold2); font-size:12px; font-weight:900; text-transform:uppercase; letter-spacing:.08em; }
+.full-body h3{ font-size:26px; letter-spacing:-.03em; line-height:1.1; margin:6px 0; }
+.full-hook{ color:var(--gold2); font-weight:700; margin:0 0 4px; }
+.full-price{ font-weight:900; font-size:14px; }
+@media(max-width:900px){
+  .full-card{ grid-template-columns:1fr; }
+  .full-media{ min-height:170px; }
+}
+@media(max-width:700px){
+  .d-grid{ grid-template-columns:1fr; }
+  .full-body{ padding:20px; }
+  .view-switch{ width:100%; }
+  .view-btn{ flex:1; padding:9px 6px; }
+}
 </style>
 </head>
 
@@ -1857,7 +1914,15 @@ footer{
     </div>
 
 
-    <div class="result-count" id="resultCount" aria-live="polite"></div>
+    <div class="toolbar">
+      <div class="result-count" id="resultCount" aria-live="polite"></div>
+
+      <div class="view-switch" role="group" aria-label="Cách hiển thị sản phẩm">
+        <button class="view-btn" data-view="grid" onclick="setView('grid')" title="Dạng lưới">▦ Lưới</button>
+        <button class="view-btn" data-view="list" onclick="setView('list')" title="Danh sách gọn, bấm để xổ chi tiết">☰ Danh sách</button>
+        <button class="view-btn" data-view="full" onclick="setView('full')" title="Dàn trải toàn bộ thông tin">▤ Dàn trải</button>
+      </div>
+    </div>
 
     <!-- PRODUCT GRID -->
 
@@ -2960,6 +3025,96 @@ window.addEventListener(
 renderFeaturedSlider();
 
 /* =========================
+   CHẾ ĐỘ HIỂN THỊ
+========================= */
+
+function loadView(){
+  try{
+    const v = localStorage.getItem("flixView");
+    if(v === "grid" || v === "list" || v === "full") return v;
+  }catch(e){}
+  /* Chưa chọn lần nào: điện thoại mặc định dạng danh sách cho gọn */
+  return window.innerWidth <= 620 ? "list" : "grid";
+}
+
+let viewMode = loadView();
+
+/* Sản phẩm chưa đủ dữ liệu thì không có câu pitch để copy */
+function isIncomplete(p){
+  return /^(chưa|hiện chưa)/i.test((p.why || "").trim());
+}
+
+function detailHTML(p, i, withDesc){
+  return `
+    ${withDesc ? `<p class="d-desc">${p.desc}</p>` : ""}
+    <div class="d-grid">
+      <div class="d-item d-key"><div class="info-label">Nói với khách thế nào?</div><p>${p.pitch}</p></div>
+      <div class="d-item"><div class="info-label">Gói đề xuất</div><p>${p.package}</p></div>
+      <div class="d-item"><div class="info-label">Ngân sách tham khảo</div><p>${p.budget}</p></div>
+      <div class="d-item"><div class="info-label">Vì sao đáng bán lúc này?</div><p>${p.why}</p></div>
+      <div class="d-item"><div class="info-label">Khách nào hợp sản phẩm?</div><p>${p.customer}</p></div>
+      <div class="d-item"><div class="info-label">Bằng chứng</div><p>${p.proof}</p></div>
+    </div>
+    <div class="modal-actions">
+      <button class="cta" onclick="contactTDB(products[${i}])">💬 Gửi sản phẩm cho TĐB</button>
+      ${isIncomplete(p) ? "" : `<button class="cta alt" onclick="copyPitch(products[${i}])">📋 Copy câu pitch</button>`}
+    </div>`;
+}
+
+function listRowHTML(p){
+  const i = products.indexOf(p);
+  return `
+    <article class="row">
+      <button class="row-head" aria-expanded="false" onclick="toggleRow(this)">
+        <span class="row-icon">${p.icon}</span>
+        <span class="row-main">
+          <span class="row-name">${p.name}</span>
+          <span class="row-hook">${p.hook}</span>
+        </span>
+        <span class="row-chev">⌄</span>
+      </button>
+      <div class="row-detail">${detailHTML(p, i, true)}</div>
+    </article>`;
+}
+
+function fullCardHTML(p){
+  const i = products.indexOf(p);
+  return `
+    <article class="full-card">
+      <div class="full-media">
+        <span class="full-icon">${p.icon}</span>
+        <img
+          src="${productImage(p)}"
+          data-candidates="${productImageCandidates(p).slice(1).join('|')}"
+          alt=""
+          loading="lazy"
+          onerror="tryNextImage(this)"
+        >
+      </div>
+      <div class="full-body">
+        <div class="full-kicker">${p.kicker}</div>
+        <h3>${p.name}</h3>
+        <p class="full-hook">${p.hook}</p>
+        <div class="full-price">${p.price}</div>
+        ${detailHTML(p, i, true)}
+      </div>
+    </article>`;
+}
+
+function toggleRow(btn){
+  const row = btn.closest(".row");
+  const open = row.classList.toggle("open");
+  btn.setAttribute("aria-expanded", open);
+}
+
+function setView(v){
+  viewMode = v;
+  try{ localStorage.setItem("flixView", v); }catch(e){}
+  setActive(".view-btn", "view", v);
+  applyFilters();
+}
+
+/* =========================
    HIỂN THỊ SẢN PHẨM
 ========================= */
 
@@ -2973,6 +3128,17 @@ function render(list = products){
         <br><br>
         <button class="cta alt" onclick="resetFilters()">Xóa bộ lọc</button>
       </div>`;
+    return;
+  }
+
+  grid.className = "grid view-" + viewMode;
+
+  if(viewMode === "list"){
+    grid.innerHTML = list.map(listRowHTML).join("");
+    return;
+  }
+  if(viewMode === "full"){
+    grid.innerHTML = list.map(fullCardHTML).join("");
     return;
   }
 
@@ -3070,7 +3236,7 @@ function openProduct(index){
 
   /* Sản phẩm chưa đủ dữ liệu thì không có câu pitch để copy */
   document.getElementById("copyPitchBtn").style.display =
-    /^(chưa|hiện chưa)/i.test((p.why || "").trim()) ? "none" : "";
+    isIncomplete(p) ? "none" : "";
 
 
   const modalImage = document.getElementById("modalImage");
@@ -3256,9 +3422,9 @@ function contactTDB(p){
   ));
 }
 
-async function copyPitch(){
-  if(!currentProduct) return;
-  const text = currentProduct.pitch.replace(/^[“"]+|[”"]+$/g, "").trim();
+async function copyPitch(p = currentProduct){
+  if(!p) return;
+  const text = p.pitch.replace(/^[“"]+|[”"]+$/g, "").trim();
   const ok = await copyText(text);
   showToast(ok ? "Đã copy câu pitch" : "Không copy được — hãy bôi đen và copy thủ công");
 }
@@ -3346,6 +3512,7 @@ document.getElementById("search").addEventListener("input", e => {
   applyFilters();
 });
 
+setActive(".view-btn", "view", viewMode);
 applyFilters();
 
 </script>
