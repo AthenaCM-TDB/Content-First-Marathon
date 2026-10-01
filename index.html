@@ -1505,6 +1505,55 @@ footer{
   .hero-slide{ min-height:400px !important; }
   .hero-slide .slide-image{ height:200px !important; flex-basis:200px !important; }
 }
+
+/* =========================
+   FIXES & UPGRADES (v2)
+========================= */
+
+/* Modal: không bị cắt phần đầu khi nội dung dài */
+.overlay{ overscroll-behavior:contain; }
+.overlay.show{ align-items:flex-start; }
+.modal{ margin:auto; }
+.info-key p{ font-size:16px; color:#f0eee9; }
+.more-info{ border-top:1px solid var(--line); margin-top:6px; }
+.more-info summary{
+  cursor:pointer; padding:16px 0; list-style:none;
+  font-size:12px; font-weight:900; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--gold2);
+}
+.more-info summary::-webkit-details-marker{ display:none; }
+.more-info summary:before{ content:"＋  "; }
+.more-info[open] summary:before{ content:"－  "; }
+
+/* Slider hero: slide không có ảnh không còn bị chồng chữ */
+.hero-slide.has-slide-image .slide-number{ color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.85); z-index:3; }
+.hero-slide .slide-badge{ z-index:4 !important; }
+.hero-slide:not(.has-slide-image){ min-height:320px !important; }
+.hero-slide:not(.has-slide-image) .slide-content{
+  padding-top:58px !important; padding-bottom:20px !important;
+}
+.hero-slide:not(.has-slide-image) .slide-icon{
+  top:auto !important; bottom:18px !important; right:18px !important;
+  width:60px !important; height:60px !important; font-size:42px !important;
+}
+
+/* Kết quả lọc */
+.result-count{ font-size:13px; color:var(--muted); margin:-6px 0 14px; }
+.empty{
+  grid-column:1/-1; text-align:center; padding:48px 20px;
+  border:1px dashed var(--line); border-radius:18px; color:var(--muted);
+}
+.empty strong{ display:block; color:var(--text); font-size:18px; margin-bottom:6px; }
+
+/* Toast */
+.toast{
+  position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px);
+  background:#f5f3ef; color:#111; padding:12px 18px; border-radius:12px;
+  font-weight:800; font-size:13px; text-align:center;
+  max-width:calc(100% - 32px); opacity:0; pointer-events:none;
+  transition:.25s; z-index:200;
+}
+.toast.show{ opacity:1; transform:translate(-50%,0); }
 </style>
 </head>
 
@@ -1622,7 +1671,6 @@ footer{
         class="hero-slider"
         id="featuredSlider"
       ></div>
-      </div>
 
 
       <button
@@ -1678,6 +1726,95 @@ footer{
     </div>
 
 
+    <!-- FILTER + SEARCH (đặt ngay trên lưới sản phẩm) -->
+
+    <div class="filter-box">
+
+
+      <div class="filter-title">
+        ĐANG CẦN CỨU SẢN PHẨM GÌ?
+      </div>
+
+
+      <div class="filter-sub">
+        Chọn đúng nhu cầu của khách để lấy đúng “vũ khí”.
+      </div>
+
+
+      <!-- FILTER BUTTONS -->
+
+      <div class="filters">
+
+
+        <button
+          class="filter active"
+          data-filter="all"
+        >
+          Tất cả
+        </button>
+
+
+        <button
+          class="filter"
+          data-filter="nhan-dien"
+        >
+          Khách cần nhận diện
+        </button>
+
+
+        <button
+          class="filter"
+          data-filter="ban-hang"
+        >
+          Khách cần bán hàng
+        </button>
+
+
+        <button
+          class="filter"
+          data-filter="san-pham-moi"
+        >
+          Khách có sản phẩm mới
+        </button>
+
+
+        <button
+          class="filter"
+          data-filter="tieng-vang"
+        >
+          Khách cần tạo tiếng vang
+        </button>
+
+
+        <button
+          class="filter"
+          data-filter="uy-tin"
+        >
+          Khách cần xây uy tín
+        </button>
+
+
+        <button
+          class="filter"
+          data-filter="doanh-thu"
+        >
+          Khách cần kéo doanh thu
+        </button>
+
+      </div>
+
+
+      <!-- SEARCH -->
+
+      <input
+        class="search"
+        id="search"
+        type="text"
+        placeholder="🔎  Gõ tên sản phẩm hoặc nhu cầu của khách..."
+      >
+
+    </div>
+
     <!-- TABS -->
 
     <div class="tabs">
@@ -1719,6 +1856,8 @@ footer{
 
     </div>
 
+
+    <div class="result-count" id="resultCount" aria-live="polite"></div>
 
     <!-- PRODUCT GRID -->
 
@@ -1888,104 +2027,7 @@ footer{
 </section>
 
 
-<!-- =========================
-     FILTER
-========================= -->
 
-<section class="section">
-
-  <div class="container">
-
-    <div class="filter-box">
-
-
-      <div class="filter-title">
-        ĐANG CẦN CỨU SẢN PHẨM GÌ?
-      </div>
-
-
-      <div class="filter-sub">
-        Chọn đúng nhu cầu của khách để lấy đúng “vũ khí”.
-      </div>
-
-
-      <!-- FILTER BUTTONS -->
-
-      <div class="filters">
-
-
-        <button
-          class="filter active"
-          data-filter="all"
-        >
-          Tất cả
-        </button>
-
-
-        <button
-          class="filter"
-          data-filter="nhan-dien"
-        >
-          Khách cần nhận diện
-        </button>
-
-
-        <button
-          class="filter"
-          data-filter="ban-hang"
-        >
-          Khách cần bán hàng
-        </button>
-
-
-        <button
-          class="filter"
-          data-filter="san-pham-moi"
-        >
-          Khách có sản phẩm mới
-        </button>
-
-
-        <button
-          class="filter"
-          data-filter="tieng-vang"
-        >
-          Khách cần tạo tiếng vang
-        </button>
-
-
-        <button
-          class="filter"
-          data-filter="uy-tin"
-        >
-          Khách cần xây uy tín
-        </button>
-
-
-        <button
-          class="filter"
-          data-filter="doanh-thu"
-        >
-          Khách cần kéo doanh thu
-        </button>
-
-      </div>
-
-
-      <!-- SEARCH -->
-
-      <input
-        class="search"
-        id="search"
-        type="text"
-        placeholder="🔎  Gõ tên sản phẩm hoặc nhu cầu của khách..."
-      >
-
-    </div>
-
-  </div>
-
-</section>
 
 
 <!-- =========================
@@ -2078,7 +2120,7 @@ footer{
   onclick="closeIfOutside(event)"
 >
 
-  <div class="modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalName">
 
     <div class="modal-media">
       <img id="modalImage" src="" alt="" onerror="tryNextImage(this)">
@@ -2118,98 +2160,53 @@ footer{
 
     <div class="modal-body">
 
-
-      <div class="info">
-
-        <div class="info-label">
-          Vì sao đáng bán lúc này?
-        </div>
-
-        <p id="modalWhy"></p>
-
-      </div>
-
-
-      <div class="info">
-
-        <div class="info-label">
-          Khách nào hợp sản phẩm?
-        </div>
-
-        <p id="modalCustomer"></p>
-
-      </div>
-
-
-      <div class="info">
-
-        <div class="info-label">
-          Nói với khách thế nào?
-        </div>
-
+      <div class="info info-key">
+        <div class="info-label">Nói với khách thế nào?</div>
         <p id="modalPitch"></p>
-
       </div>
 
-
       <div class="info">
-
-        <div class="info-label">
-          Gói đề xuất
-        </div>
-
+        <div class="info-label">Gói đề xuất</div>
         <p id="modalPackage"></p>
-
       </div>
 
-
       <div class="info">
-
-        <div class="info-label">
-          Ngân sách tham khảo
-        </div>
-
+        <div class="info-label">Ngân sách tham khảo</div>
         <p id="modalBudget"></p>
-
       </div>
 
+      <details class="more-info" id="modalMore">
+        <summary>Xem thêm: vì sao đáng bán · khách phù hợp · bằng chứng</summary>
 
-      <div class="info">
-
-        <div class="info-label">
-          Bằng chứng
+        <div class="info">
+          <div class="info-label">Vì sao đáng bán lúc này?</div>
+          <p id="modalWhy"></p>
         </div>
 
-        <p id="modalProof"></p>
+        <div class="info">
+          <div class="info-label">Khách nào hợp sản phẩm?</div>
+          <p id="modalCustomer"></p>
+        </div>
 
-      </div>
-
+        <div class="info">
+          <div class="info-label">Bằng chứng</div>
+          <p id="modalProof"></p>
+        </div>
+      </details>
 
       <div class="modal-actions">
-
-        <button
-          class="cta"
-          onclick="contactTDB()"
-        >
-          💬 Gửi sản phẩm cho TĐB
-        </button>
-
-
-        <button
-          class="cta alt"
-          onclick="closeModal()"
-        >
-          Đóng lại
-        </button>
-
+        <button class="cta" onclick="contactTDB(currentProduct)">💬 Gửi sản phẩm cho TĐB</button>
+        <button class="cta alt" id="copyPitchBtn" onclick="copyPitch()">📋 Copy câu pitch</button>
+        <button class="cta alt" onclick="closeModal()">Đóng lại</button>
       </div>
-
 
     </div>
 
   </div>
 
 </div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 
 const TELEGRAM_URL = "https://t.me/athena_tdb";
@@ -2811,6 +2808,7 @@ function tryNextImage(img){
     return;
   }
   img.style.display="none";
+  if(img.id==="modalImage") img.parentElement.style.display="none";
   const visual=img.closest('.card-visual');
   if(visual) visual.classList.remove('has-image');
   const hero=img.closest('.hero-slide');
@@ -2967,6 +2965,17 @@ renderFeaturedSlider();
 
 function render(list = products){
 
+  if(!list.length){
+    grid.innerHTML = `
+      <div class="empty">
+        <strong>Chưa có sản phẩm khớp</strong>
+        Thử bỏ bớt bộ lọc hoặc gõ từ khóa ngắn hơn.
+        <br><br>
+        <button class="cta alt" onclick="resetFilters()">Xóa bộ lọc</button>
+      </div>`;
+    return;
+  }
+
   grid.innerHTML = list.map((p) => {
 
     const index = products.indexOf(p);
@@ -2990,7 +2999,7 @@ function render(list = products){
           >
 
           <div class="rank">
-            ${p.kicker.split(" ").slice(0,2).join(" ")}
+            ${p.kicker}
           </div>
 
           <div class="card-icon">
@@ -3050,13 +3059,23 @@ render();
    MỞ CHI TIẾT SẢN PHẨM
 ========================= */
 
+let currentProduct = null;
+
 function openProduct(index){
 
   const p = products[index];
+  currentProduct = p;
+
+  document.getElementById("modalMore").open = false;
+
+  /* Sản phẩm chưa đủ dữ liệu thì không có câu pitch để copy */
+  document.getElementById("copyPitchBtn").style.display =
+    /^(chưa|hiện chưa)/i.test((p.why || "").trim()) ? "none" : "";
 
 
   const modalImage = document.getElementById("modalImage");
   modalImage.style.display = "block";
+  modalImage.parentElement.style.display = "";
   modalImage.src = productImage(p);
   modalImage.dataset.candidates = productImageCandidates(p).slice(1).join('|');
   modalImage.alt = p.name;
@@ -3104,6 +3123,7 @@ function openProduct(index){
 
 
   document.body.style.overflow = "hidden";
+  document.getElementById("modalOverlay").scrollTop = 0;
 
 }
 
@@ -3180,204 +3200,154 @@ function scrollToId(id){
    LIÊN HỆ TĐB
 ========================= */
 
-function contactTDB(){
+function buildLeadMessage(p){
+  const head = (p && p.name)
+    ? `Chào team TĐB, mình muốn pitch sản phẩm: ${p.name}`
+    : "Chào team TĐB, mình có khách muốn pitch sản phẩm trên Athena FLIX.";
+  return [
+    head,
+    "- Khách hàng / ngành: ",
+    "- Nhu cầu của khách: ",
+    "- Ngân sách dự kiến: ",
+    "- Deadline cần đề xuất: ",
+    "Nhờ team hỗ trợ mình với nhé!"
+  ].join("\n");
+}
 
-  window.open(
-    TELEGRAM_URL,
-    "_blank"
-  );
+async function copyText(text){
+  try{
+    await navigator.clipboard.writeText(text);
+    return true;
+  }catch(e){
+    try{
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    }catch(e2){
+      return false;
+    }
+  }
+}
 
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 3200);
+}
+
+/* Gửi lead: copy sẵn mẫu tin nhắn kèm tên sản phẩm + mở Telegram.
+   Mở cửa sổ ngay trong lúc bấm để trình duyệt không chặn popup. */
+function contactTDB(p){
+  const text = buildLeadMessage(p);
+  const copied = copyText(text);
+  window.open(`${TELEGRAM_URL}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+  copied.then(ok => showToast(
+    ok ? "Đã copy mẫu tin nhắn — nếu ô chat chưa tự điền, chỉ cần dán vào"
+       : "Đang mở Telegram — hãy nhắn tên sản phẩm bạn muốn pitch"
+  ));
+}
+
+async function copyPitch(){
+  if(!currentProduct) return;
+  const text = currentProduct.pitch.replace(/^[“"]+|[”"]+$/g, "").trim();
+  const ok = await copyText(text);
+  showToast(ok ? "Đã copy câu pitch" : "Không copy được — hãy bôi đen và copy thủ công");
 }
 
 
 
 /* =========================
-   TAB SẢN PHẨM
+   LỌC: TAB + NHU CẦU + TÌM KIẾM (một trạng thái duy nhất)
 ========================= */
 
-document
-  .querySelectorAll(".tab")
-  .forEach((button) => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        /*
-          Xóa trạng thái đang chọn
-        */
-
-        document
-          .querySelectorAll(".tab")
-          .forEach((item) => {
-
-            item.classList.remove("active");
-
-          });
-
-
-        /*
-          Chọn tab hiện tại
-        */
-
-        button.classList.add("active");
-
-
-        const type =
-          button.dataset.tab;
-
-
-        /*
-          Hiển thị sản phẩm
-        */
-
-        if(type === "all"){
-
-          render(products);
-
-        }else{
-
-          render(
-            products.filter(
-              (product) =>
-                product.types.includes(type)
-            )
-          );
-
-        }
-
-      }
-    );
-
-  });
-
-
-
-/* =========================
-   BỘ LỌC NHU CẦU
-========================= */
-
-let activeNeed = "all";
-
-
-document
-  .querySelectorAll(".filter")
-  .forEach((button) => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        /*
-          Bỏ trạng thái active
-        */
-
-        document
-          .querySelectorAll(".filter")
-          .forEach((item) => {
-
-            item.classList.remove("active");
-
-          });
-
-
-        /*
-          Chọn bộ lọc
-        */
-
-        button.classList.add("active");
-
-
-        activeNeed =
-          button.dataset.filter;
-
-
-        applySearch();
-
-      }
-    );
-
-  });
-
-
-
-/* =========================
-   TÌM KIẾM
-========================= */
-
-document
-  .getElementById("search")
-  .addEventListener(
-    "input",
-    applySearch
-  );
-
-
-
-function applySearch(){
-
-  const query =
-    document
-      .getElementById("search")
-      .value
-      .toLowerCase()
-      .trim();
-
-
-  const filtered =
-    products.filter((product) => {
-
-      /*
-        Kiểm tra nhu cầu
-      */
-
-      const needOK =
-        activeNeed === "all" ||
-        product.needs.includes(activeNeed);
-
-
-      /*
-        Tạo chuỗi tìm kiếm
-      */
-
-      const searchableText = [
-
-        product.name,
-
-        product.hook,
-
-        product.desc,
-
-        product.customer,
-
-        product.why,
-
-        product.pitch,
-
-        product.package
-
-      ]
-        .join(" ")
-        .toLowerCase();
-
-
-      /*
-        Kiểm tra từ khóa
-      */
-
-      const searchOK =
-        !query ||
-        searchableText.includes(query);
-
-
-      return needOK && searchOK;
-
-    });
-
-
-  render(filtered);
-
+const state = { tab:"all", need:"all", query:"" };
+
+/* Bỏ dấu để gõ "tet" vẫn ra "Tết" */
+function normalizeText(s){
+  return String(s || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d").replace(/Đ/g, "D")
+    .toLowerCase();
 }
+
+const searchIndex = new Map(
+  products.map(p => [p, normalizeText([
+    p.name, p.hook, p.desc, p.customer, p.why,
+    p.pitch, p.package, p.proof, p.kicker
+  ].join(" "))])
+);
+
+function setActive(selector, attr, value){
+  document.querySelectorAll(selector).forEach(b =>
+    b.classList.toggle("active", b.dataset[attr] === value)
+  );
+}
+
+function updateResultCount(n){
+  const el = document.getElementById("resultCount");
+  const filtering = state.tab !== "all" || state.need !== "all" || state.query.trim();
+  el.textContent = filtering
+    ? `${n} / ${products.length} sản phẩm phù hợp`
+    : `${products.length} sản phẩm`;
+}
+
+function applyFilters(){
+  const tokens = normalizeText(state.query).trim().split(/\s+/).filter(Boolean);
+
+  const list = products.filter(p => {
+    const tabOK  = state.tab === "all" || p.types.includes(state.tab);
+    const needOK = state.need === "all" || p.needs.includes(state.need);
+    const text   = searchIndex.get(p);
+    return tabOK && needOK && tokens.every(t => text.includes(t));
+  });
+
+  render(list);
+  updateResultCount(list.length);
+}
+
+function resetFilters(){
+  state.tab = "all";
+  state.need = "all";
+  state.query = "";
+  document.getElementById("search").value = "";
+  setActive(".tab", "tab", "all");
+  setActive(".filter", "filter", "all");
+  applyFilters();
+}
+
+document.querySelectorAll(".tab").forEach(button => {
+  button.addEventListener("click", () => {
+    state.tab = button.dataset.tab;
+    setActive(".tab", "tab", state.tab);
+    applyFilters();
+  });
+});
+
+document.querySelectorAll(".filter").forEach(button => {
+  button.addEventListener("click", () => {
+    state.need = button.dataset.filter;
+    setActive(".filter", "filter", state.need);
+    applyFilters();
+  });
+});
+
+document.getElementById("search").addEventListener("input", e => {
+  state.query = e.target.value;
+  applyFilters();
+});
+
+applyFilters();
+
 </script>
 
 
