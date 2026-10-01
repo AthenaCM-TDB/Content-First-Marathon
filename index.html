@@ -2031,9 +2031,9 @@ section[id]{ scroll-margin-top:84px; }
 
       <p>
 
-        Gửi thông tin khách qua đây.
+        Gửi thông tin khách tại đây.
 
-        Team Sản phẩm & TĐB sẽ vào cuộc cùng bạn:
+        Team Sản phẩm & THÚC ĐẨY BÁN sẽ cùng bạn:
 
         từ lên ý tưởng, dựng đề xuất
         đến hỗ trợ đi pitch.
@@ -2175,7 +2175,7 @@ section[id]{ scroll-margin-top:84px; }
       </details>
 
       <div class="modal-actions">
-        <button class="cta" onclick="contactTDB(currentProduct)">💬 Gửi sản phẩm cho TĐB</button>
+        <button class="cta" onclick="contactTDB(currentProduct)">💬 Liên hệ nhận Proposal + Gói bán</button>
         <button class="cta alt" id="copyPitchBtn" onclick="copyPitch()">📋 Copy câu pitch</button>
         <button class="cta alt" onclick="closeModal()">Đóng lại</button>
       </div>
@@ -2971,7 +2971,7 @@ function detailHTML(p, i, withDesc){
       <div class="d-item"><div class="info-label">Bằng chứng</div><p>${p.proof}</p></div>
     </div>
     <div class="modal-actions">
-      <button class="cta" onclick="contactTDB(products[${i}])">💬 Gửi sản phẩm cho TĐB</button>
+      <button class="cta" onclick="contactTDB(products[${i}])">💬 Liên hệ nhận Proposal + Gói bán</button>
       ${isIncomplete(p) ? "" : `<button class="cta alt" onclick="copyPitch(products[${i}])">📋 Copy câu pitch</button>`}
     </div>`;
 }
@@ -3278,13 +3278,13 @@ function scrollToId(id){
 
 
 /* =========================
-   LIÊN HỆ TĐB
+   LIÊN HỆ THÚC ĐẨY BÁN
 ========================= */
 
 function buildLeadMessage(p){
   const head = (p && p.name)
-    ? `Chào team TĐB, mình muốn pitch sản phẩm: ${p.name}`
-    : "Chào team TĐB, mình có khách muốn pitch sản phẩm trên Athena FLIX.";
+    ? `Chào team THÚC ĐẨY BÁN, mình muốn pitch sản phẩm: ${p.name}`
+    : "Chào team THÚC ĐẨY BÁN, mình có khách muốn pitch sản phẩm trên Athena FLIX.";
   return [
     head,
     "- Khách hàng / ngành: ",
