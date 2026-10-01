@@ -1648,6 +1648,106 @@ footer{
 @media(max-width:900px){ .acc-grid{ grid-template-columns:repeat(2,1fr); } }
 @media(max-width:620px){ .acc-grid{ grid-template-columns:1fr; } .acc-photo{ aspect-ratio:16/9; } }
 
+/* =========================================================
+   BLOCKS — tiêu đề rõ ràng + focus theo từng mục
+========================================================= */
+.block{
+  position:relative;
+  padding:34px 0;
+  scroll-margin-top:84px;
+}
+.block-inner{
+  position:relative;
+  padding:34px 34px 38px;
+  border:1px solid var(--line);
+  border-radius:28px;
+  background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.008));
+  transition:border-color .45s, box-shadow .45s, background .45s;
+}
+/* thanh vàng bên trái, chỉ sáng lên khi block được focus */
+.block-inner:before{
+  content:"";
+  position:absolute; left:-1px; top:34px; bottom:34px; width:4px;
+  border-radius:4px;
+  background:var(--gold);
+  opacity:0; transform:scaleY(.3);
+  transition:opacity .45s, transform .45s;
+}
+
+/* Tiêu đề block */
+.block-head{
+  display:flex; align-items:flex-start; gap:22px;
+  padding-bottom:24px; margin-bottom:26px;
+  border-bottom:1px solid var(--line);
+}
+.block-num{
+  flex:0 0 auto;
+  font-size:clamp(46px,6vw,76px);
+  font-weight:950; line-height:.85; letter-spacing:-.06em;
+  color:transparent;
+  -webkit-text-stroke:1.5px #4a4330;
+  transition:color .45s, -webkit-text-stroke-color .45s;
+}
+.block-head-text{ min-width:0; }
+.block-eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:12px; font-weight:900; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--gold2); margin-bottom:8px;
+}
+.block-eyebrow:before{
+  content:""; width:22px; height:2px; background:var(--gold); border-radius:2px;
+}
+.block .section-title{
+  font-size:clamp(26px,4vw,44px);
+  line-height:1.04; letter-spacing:-.045em; font-weight:950;
+}
+.block .section-desc{ font-size:15px; margin-top:8px; max-width:720px; }
+.block-bar{
+  display:block; height:3px; width:48px; margin-top:16px; border-radius:3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+  transition:width .6s cubic-bezier(.2,.8,.2,1);
+}
+
+/* ---- Trạng thái focus (chỉ bật khi JS chạy) ---- */
+.js-focus .block-body{
+  transition:opacity .45s, filter .45s;
+}
+.js-focus .block:not(.in-focus) .block-body{
+  opacity:.38; filter:saturate(.55);
+}
+.js-focus .block:not(.in-focus) .block-body:hover,
+.js-focus .block:not(.in-focus) .block-body:focus-within{
+  opacity:.8; filter:none;
+}
+.js-focus .block:not(.in-focus) .block-head{ opacity:.7; transition:opacity .45s; }
+
+.block.in-focus .block-inner{
+  border-color:#5a4d2b;
+  background:linear-gradient(180deg,rgba(243,184,63,.07),rgba(243,184,63,.012) 45%);
+  box-shadow:0 0 0 1px rgba(243,184,63,.18), 0 30px 80px -30px rgba(243,184,63,.28);
+}
+.block.in-focus .block-inner:before{ opacity:1; transform:scaleY(1); }
+.block.in-focus .block-num{ color:var(--gold); -webkit-text-stroke-color:var(--gold); }
+.block.in-focus .block-bar{ width:120px; }
+.block.in-focus .block-head{ opacity:1; border-bottom-color:#4a4330; }
+
+/* Nav: mục đang xem */
+.nav-btn.is-current{
+  background:rgba(243,184,63,.14);
+  border-color:var(--gold);
+  color:var(--gold2);
+}
+
+@media(max-width:700px){
+  .block{ padding:18px 0; }
+  .block-inner{ padding:22px 16px 26px; border-radius:20px; }
+  .block-head{ gap:14px; }
+  .nav-right .nav-btn:not(.primary){ display:none; }
+}
+@media (prefers-reduced-motion:reduce){
+  .block-inner,.block-inner:before,.block-num,.block-bar,.js-focus .block-body{ transition:none; }
+}
+
 section[id]{ scroll-margin-top:84px; }
 </style>
 </head>
@@ -1682,19 +1782,11 @@ section[id]{ scroll-margin-top:84px; }
 
     <div class="nav-right">
 
-      <button
-        class="nav-btn"
-        onclick="scrollToId('products')"
-      >
-        Lướt sản phẩm
-      </button>
+      <button class="nav-btn" data-nav="trending" onclick="scrollToId('trending')">Top trending</button>
 
-      <button
-        class="nav-btn"
-        onclick="scrollToId('accounts')"
-      >
-        Tìm Account
-      </button>
+      <button class="nav-btn" data-nav="accounts" onclick="scrollToId('accounts')">Tìm Account</button>
+
+      <button class="nav-btn" data-nav="products" onclick="scrollToId('products')">Danh mục sản phẩm</button>
 
       <button
         class="nav-btn primary"
@@ -1752,8 +1844,28 @@ section[id]{ scroll-margin-top:84px; }
       </p>
 
     </div>
+  </div>
+
+</section>
 
 
+<!-- =========================
+     BLOCK 01 — TOP TRENDING
+========================= -->
+
+<section class="section block" id="trending" data-block="trending">
+  <div class="container"><div class="block-inner">
+    <div class="block-head">
+      <div class="block-num" aria-hidden="true">01</div>
+      <div class="block-head-text">
+        <div class="block-eyebrow">Đang được đẩy</div>
+        <h2 class="section-title">TOP TRENDING</h2>
+        <p class="section-desc">Những món Athena muốn Sales nhìn thấy và bán ngay lúc này.</p>
+        <span class="block-bar"></span>
+      </div>
+      
+    </div>
+    <div class="block-body">
     <!-- =========================
          HORIZONTAL FEATURE SLIDER
     ========================= -->
@@ -1792,43 +1904,67 @@ section[id]{ scroll-margin-top:84px; }
       class="slider-progress"
       id="sliderProgress"
     ></div>
+    </div>
+  </div></div>
+</section>
 
+<!-- =========================
+     TEAM ACCOUNT — SALE CHƯA CÓ ACC CHO JOB
+========================= -->
 
-  </div>
+<section class="section block" id="accounts" data-block="accounts">
+
+  <div class="container"><div class="block-inner">
+
+    <div class="block-head">
+      <div class="block-num" aria-hidden="true">02</div>
+      <div class="block-head-text">
+        <div class="block-eyebrow">Tìm Account</div>
+        <h2 class="section-title">SALE CHƯA CÓ ACC CHO JOB? TÌM ĐÚNG TEAM</h2>
+        <p class="section-desc">Xem team Account theo chuyên môn và kinh nghiệm, rồi chủ động liên hệ khi thấy phù hợp với job của bạn.</p>
+        <span class="block-bar"></span>
+      </div>
+      
+    </div>
+
+    <div class="block-body">
+<div class="acc-chips" id="accFilters"></div>
+
+    <div class="acc-grid" id="accGrid"></div>
+</div>
+
+  </div></div>
 
 </section>
+
+
+
+
 
 
 <!-- =========================
      PRODUCT SECTION
 ========================= -->
 
-<section
-  class="section"
-  id="products"
->
+<section class="section block" id="products" data-block="products">
 
-  <div class="container">
+  <div class="container"><div class="block-inner">
 
-    <div class="section-head">
-
-      <div>
-
-        <h2 class="section-title">
-          TOP TRENDING
-        </h2>
-
-        <p class="section-desc">
-          Những món Athena muốn Sales nhìn thấy
-          và bán ngay lúc này.
-        </p>
-
+    <div class="block-head">
+      <div class="block-num" aria-hidden="true">03</div>
+      <div class="block-head-text">
+        <div class="block-eyebrow">Danh mục</div>
+        <h2 class="section-title">DANH MỤC TOÀN BỘ SẢN PHẨM</h2>
+        <p class="section-desc">Lọc theo bài toán của khách, tìm nhanh và xem chi tiết từng sản phẩm Athena.</p>
+        <span class="block-bar"></span>
       </div>
-
+      
     </div>
 
 
     <!-- FILTER + SEARCH (đặt ngay trên lưới sản phẩm) -->
+
+    <div class="block-body">
 
     <div class="filter-box">
 
@@ -1976,40 +2112,11 @@ section[id]{ scroll-margin-top:84px; }
       id="productGrid"
     ></div>
 
-  </div>
+    </div><!-- /block-body -->
+
+  </div></div>
 
 </section>
-<!-- =========================
-     TEAM ACCOUNT — SALE CHƯA CÓ ACC CHO JOB
-========================= -->
-
-<section class="section" id="accounts">
-
-  <div class="container">
-
-    <div class="section-head">
-      <div>
-        <h2 class="section-title">
-          SALE CHƯA CÓ ACC CHO JOB? TÌM ĐÚNG TEAM
-        </h2>
-        <p class="section-desc">
-          Xem team Account theo chuyên môn và kinh nghiệm, rồi chủ động liên hệ khi thấy phù hợp với job của bạn.
-        </p>
-      </div>
-    </div>
-
-    <div class="acc-chips" id="accFilters"></div>
-
-    <div class="acc-grid" id="accGrid"></div>
-
-  </div>
-
-</section>
-
-
-
-
-
 <!-- =========================
      SUPPORT CTA
 ========================= -->
@@ -3585,6 +3692,42 @@ function renderAccounts(){
 
 renderAccounts();
 
+
+/* =========================
+   FOCUS THEO TỪNG BLOCK
+   Chỉ 1 block "sáng" tại một thời điểm: block đang nằm ở giữa màn hình.
+========================= */
+(function(){
+  const blocks = [...document.querySelectorAll(".block")];
+  if(!blocks.length || !("IntersectionObserver" in window)) return;
+
+  document.body.classList.add("js-focus");
+  const navBtns = [...document.querySelectorAll("[data-nav]")];
+  let current = null;
+
+  function setFocus(id){
+    if(id === current) return;
+    current = id;
+    blocks.forEach(b => b.classList.toggle("in-focus", b.id === id));
+    navBtns.forEach(b => b.classList.toggle("is-current", b.dataset.nav === id));
+  }
+
+  // dải quan sát = vạch ngang ở khoảng 45% chiều cao màn hình
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) setFocus(e.target.id); });
+  }, { rootMargin:"-45% 0px -54% 0px", threshold:0 });
+
+  blocks.forEach(b => io.observe(b));
+
+  // Lên đầu trang (hero) → bỏ focus; xuống cuối trang → block cuối sáng
+  window.addEventListener("scroll", () => {
+    const y = window.scrollY;
+    if(y < blocks[0].offsetTop - window.innerHeight * 0.6){ setFocus(null); }
+    else if(window.innerHeight + y >= document.documentElement.scrollHeight - 4){
+      setFocus(blocks[blocks.length-1].id);
+    }
+  }, { passive:true });
+})();
 </script>
 
 
