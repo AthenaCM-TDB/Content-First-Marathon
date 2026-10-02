@@ -3817,5 +3817,194 @@ function toggleAcc(btn){
 </script>
 
 
+
+
+<!-- ATHENA FLIX v3 — SALES UX LAYER -->
+<style id="flix-v3-sales-ux">
+  /* Product card: scan-first, sales-first */
+  .card-body{padding:16px 16px 15px !important}
+  .card-desc{display:none !important}
+  .card-hook{margin-top:7px !important;display:-webkit-box !important;-webkit-line-clamp:2 !important;-webkit-box-orient:vertical !important;overflow:hidden !important}
+  .card-sales-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:13px;font-size:10px;font-weight:900;letter-spacing:.02em}
+  .sales-status,.price-status{display:inline-flex;align-items:center;gap:5px;padding:5px 7px;border-radius:7px;border:1px solid rgba(255,255,255,.09);background:#111115;color:#c9c5cc;white-space:nowrap}
+  .sales-status.ready{color:#bceccf;border-color:rgba(91,214,139,.28);background:rgba(91,214,139,.07)}
+  .sales-status.support{color:#f3c977;border-color:rgba(243,184,63,.24);background:rgba(243,184,63,.06)}
+  .sales-status.incomplete{color:#aaa6ad}
+  .price-status{color:var(--gold2);max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .card-foot{margin-top:14px !important}
+
+  /* Quick playlist */
+  .sales-playlist{display:flex;gap:8px;overflow-x:auto;padding:2px 0 3px;margin:0 0 14px;scrollbar-width:none}
+  .sales-playlist::-webkit-scrollbar{display:none}
+  .sales-playlist button{flex:0 0 auto;border:1px solid var(--line);background:#101013;color:#bcb8be;border-radius:999px;padding:9px 12px;font-size:11px;font-weight:900;cursor:pointer;transition:.2s}
+  .sales-playlist button:hover,.sales-playlist button.active{background:var(--gold);border-color:var(--gold);color:#111}
+  .sales-playlist-label{font-size:10px;color:#77737b;font-weight:900;letter-spacing:.09em;margin:0 0 8px;text-transform:uppercase}
+
+  /* Modal sales readiness */
+  .modal-readiness{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 18px}
+  .modal-readiness .sales-status{font-size:10px}
+  .modal-readiness .price-status{font-size:10px}
+  .modal-next{font-size:11px;color:#8f8a92;margin-top:7px}
+
+  /* Cleaner modal action hierarchy */
+  .modal-actions .cta:first-child{min-width:250px}
+
+  @media(max-width:620px){
+    .card-sales-meta{font-size:9px}
+    .sales-playlist{margin-right:-4px}
+    .modal-actions .cta:first-child{min-width:0;flex:1 1 100%}
+  }
+</style>
+
+<script id="flix-v3-sales-ux-js">
+(function(){
+  const NEED_LABELS = {
+    "nhan-dien":"nhận diện",
+    "ban-hang":"bán hàng",
+    "san-pham-moi":"sản phẩm mới",
+    "tieng-vang":"tạo tiếng vang",
+    "uy-tin":"xây uy tín",
+    "doanh-thu":"kéo doanh thu"
+  };
+
+  function fieldMissing(v){
+    const s = normalizeText(v);
+    return !s || /^(chua|hien chua|dang cap nhat|chua update|chua co)/.test(s) || s.includes("chua update gia") || s.includes("chua co gia");
+  }
+
+  function salesReadiness(p){
+    const core = [p.hook,p.customer,p.pitch,p.package,p.budget,p.proof];
+    const missing = core.filter(fieldMissing).length;
+    if(missing === 0) return {key:"ready",label:"🟢 READY TO SELL",next:"Có đủ bộ thông tin cơ bản để mang đi pitch."};
+    if(missing <= 2) return {key:"support",label:"🟡 CẦN TĐB HỖ TRỢ",next:"Có thể mở kèo, nhưng nên kéo TĐB vào để hoàn thiện đề xuất."};
+    return {key:"incomplete",label:"⚪ ĐANG HOÀN THIỆN",next:"Sales nên kiểm tra với TĐB trước khi pitch."};
+  }
+
+  function priceStatus(p){
+    const price = String(p.price || "").trim();
+    const budget = String(p.budget || "").trim();
+    if(/\d/.test(price) && /(triệu|tỷ|k|m|\/)/i.test(price)) return "💰 " + price;
+    if(/\d/.test(budget) && /(triệu|tỷ|k|giờ|combo|gói)/i.test(budget) && !/chưa update|chưa có/i.test(normalizeText(budget))) return "💰 Có mức tham khảo";
+    return "💬 Báo giá theo scope";
+  }
+
+  function salesMetaHTML(p){
+    const r = salesReadiness(p);
+    return `<div class="card-sales-meta"><span class="sales-status ${r.key}">${r.label}</span><span class="price-status">${priceStatus(p)}</span></div>`;
+  }
+
+  /* Search thật sự hiểu cả nhu cầu / loại sản phẩm */
+  const originalSearchIndex = searchIndex;
+  products.forEach(p => {
+    const extra = (p.needs || []).map(n => NEED_LABELS[n] || n).join(" ") + " " + (p.types || []).join(" ");
+    originalSearchIndex.set(p, normalizeText([originalSearchIndex.get(p) || "", extra].join(" ")));
+  });
+
+  /* Product card — scan 3 giây */
+  window.render = function(list = products){
+    if(!list.length){
+      grid.innerHTML = `<div class="empty"><strong>Chưa có sản phẩm khớp</strong>Thử bỏ bớt bộ lọc hoặc gõ từ khóa ngắn hơn.<br><br><button class="cta alt" onclick="resetFilters()">Xóa bộ lọc</button></div>`;
+      return;
+    }
+    grid.className = "grid view-" + viewMode;
+    if(viewMode === "list"){
+      grid.innerHTML = list.map(listRowHTML).join("");
+      return;
+    }
+    if(viewMode === "full"){
+      grid.innerHTML = list.map(fullCardHTML).join("");
+      return;
+    }
+    grid.innerHTML = list.map(p => {
+      const index = products.indexOf(p);
+      const readiness = salesReadiness(p);
+      return `<article class="card" onclick="openProduct(${index})">
+        <div class="card-visual has-image">
+          <img class="card-image" src="${productImage(p)}" data-candidates="${productImageCandidates(p).slice(1).join('|')}" alt="${esc(p.name)}" loading="lazy" onerror="tryNextImage(this)">
+          <div class="rank">${p.kicker}</div>
+          <div class="card-icon">${p.icon}</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">${esc(p.name)}</div>
+          <div class="card-hook">${esc(p.hook)}</div>
+          ${salesMetaHTML(p)}
+          <div class="card-foot"><span class="card-price">${esc(p.price)}</span><span class="more">Xem kèo →</span></div>
+        </div>
+      </article>`;
+    }).join("");
+  };
+
+  /* Quick playlist: hoạt động trên chính state tab hiện có */
+  const filterBox = document.querySelector(".filter-box");
+  if(filterBox && !document.getElementById("salesPlaylist")){
+    const wrap = document.createElement("div");
+    wrap.innerHTML = `<div class="sales-playlist-label">PLAYLIST · CHỌN KÈO THEO TRẠNG THÁI</div>
+      <div class="sales-playlist" id="salesPlaylist">
+        <button data-play="all" class="active">🎬 Tất cả</button>
+        <button data-play="hot">🔥 Đang đẩy</button>
+        <button data-play="ready">🟢 Ready to Sell</button>
+        <button data-play="support">🟡 Cần TĐB</button>
+      </div>`;
+    filterBox.parentNode.insertBefore(wrap, filterBox.nextSibling);
+    wrap.querySelectorAll("[data-play]").forEach(btn => btn.addEventListener("click",()=>{
+      const mode=btn.dataset.play;
+      wrap.querySelectorAll("[data-play]").forEach(b=>b.classList.toggle("active",b===btn));
+      state.tab = mode === "hot" ? "hot" : "all";
+      state.readiness = mode === "ready" || mode === "support" ? mode : "all";
+      setActive(".tab","tab",state.tab);
+      applyFilters();
+    }));
+  }
+
+  /* Override filter để playlist + nhu cầu + search kết hợp được */
+  state.readiness = "all";
+  window.applyFilters = function(){
+    const tokens = normalizeText(state.query).trim().split(/\s+/).filter(Boolean);
+    const list = products.filter(p => {
+      const tabOK = state.tab === "all" || (p.types || []).includes(state.tab);
+      const needOK = state.need === "all" || (p.needs || []).includes(state.need);
+      const text = originalSearchIndex.get(p) || "";
+      const searchOK = tokens.every(t => text.includes(t));
+      const readiness = salesReadiness(p).key;
+      const readinessOK = state.readiness === "all" || readiness === state.readiness;
+      return tabOK && needOK && searchOK && readinessOK;
+    });
+    render(list);
+    updateResultCount(list.length);
+  };
+
+  /* Giữ playlist đúng trạng thái khi tab / need được bấm */
+  document.querySelectorAll(".tab,.filter").forEach(btn=>btn.addEventListener("click",()=>{
+    const playlist = document.getElementById("salesPlaylist");
+    if(!playlist) return;
+    playlist.querySelectorAll("[data-play]").forEach(b=>b.classList.toggle("active",b.dataset.play==="all"));
+    state.readiness="all";
+  }));
+
+  /* Modal: thêm trạng thái bán ngay dưới hook */
+  const modalHook = document.getElementById("modalHook");
+  if(modalHook && !document.getElementById("modalReadiness")){
+    const el=document.createElement("div");
+    el.id="modalReadiness";
+    el.className="modal-readiness";
+    modalHook.insertAdjacentElement("afterend",el);
+  }
+
+  const oldOpenProduct = window.openProduct;
+  window.openProduct = function(index){
+    oldOpenProduct(index);
+    const p=products[index];
+    const el=document.getElementById("modalReadiness");
+    if(el && p){
+      const r=salesReadiness(p);
+      el.innerHTML=`<span class="sales-status ${r.key}">${r.label}</span><span class="price-status">${priceStatus(p)}</span><span class="modal-next">${r.next}</span>`;
+    }
+  };
+
+  /* Re-render bằng schema mới */
+  applyFilters();
+})();
+</script>
+
 </body>
 </html>
