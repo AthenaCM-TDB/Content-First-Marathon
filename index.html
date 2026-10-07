@@ -2009,7 +2009,7 @@ section[id]{ scroll-margin-top:84px; }
           class="filter"
           data-filter="nhan-dien"
         >
-          Khách cần nhận diện
+          Khách cần nhận diện / tạo tiếng vang
         </button>
 
 
@@ -2017,7 +2017,7 @@ section[id]{ scroll-margin-top:84px; }
           class="filter"
           data-filter="ban-hang"
         >
-          Khách cần bán hàng
+          Khách cần bán hàng / kéo doanh thu
         </button>
 
 
@@ -2031,25 +2031,9 @@ section[id]{ scroll-margin-top:84px; }
 
         <button
           class="filter"
-          data-filter="tieng-vang"
-        >
-          Khách cần tạo tiếng vang
-        </button>
-
-
-        <button
-          class="filter"
           data-filter="uy-tin"
         >
           Khách cần xây uy tín
-        </button>
-
-
-        <button
-          class="filter"
-          data-filter="doanh-thu"
-        >
-          Khách cần kéo doanh thu
         </button>
 
       </div>
@@ -2346,12 +2330,7 @@ const products = [
         "hot",
         "best"
     ],
-    "needs": [
-        "san-pham-moi",
-        "tieng-vang",
-        "uy-tin",
-        "doanh-thu"
-    ],
+    "needs": ["san-pham-moi", "nhan-dien", "uy-tin", "ban-hang"],
     "desc": "Giải pháp Product Marketing toàn diện: định vị, USP, concept, câu chuyện, báo chí, social, community, KOL/KOC, TMĐT và AI theo vòng đời sản phẩm.",
     "why": "Sản phẩm thiếu khác biệt/định vị chưa rõ; truyền thông nhiều nhưng chuyển đổi thấp; thiếu content và review tạo niềm tin; ra mắt chậm hoặc khó tiếp cận đúng khách hàng; sản phẩm chững tăng trưởng hoặc tồn kho cao.",
     "customer": "CMO, Brand/Product/Marketing Manager, E-commerce Manager, chủ SME. Ngành: FMCG, Mẹ & bé, Dược-TPCN, mỹ phẩm, gia dụng, công nghệ, F&B, tài chính-bảo hiểm, Y tế, Giáo dục.",
@@ -2371,11 +2350,7 @@ const products = [
         "hot",
         "best"
     ],
-    "needs": [
-        "uy-tin",
-        "nhan-dien",
-        "doanh-thu"
-    ],
+    "needs": ["uy-tin", "nhan-dien", "ban-hang"],
     "desc": "Giải pháp GEO trọn vòng lặp: đo lường → phân tích → xây Content Strategy → sản xuất nội dung chuẩn GEO & phân phối → giám sát, tối ưu, trên nền tảng LUVIX.",
     "why": "Thương hiệu chưa hiểu/chưa biết làm GEO; không xuất hiện hoặc đứng sau đối thủ trong câu trả lời AI; AI hiểu sai/thiếu câu chuyện; không biết tối ưu nội dung/prompt/kênh; thiếu nguồn uy tín để AI xác thực và thiếu công cụ đo trước-sau, giám sát liên tục.",
     "customer": "CMO, Brand/Marketing/PR Manager, Digital Lead, SEO/Content Lead. Phù hợp nhãn có nhiều lượt tìm hiểu, so sánh trước mua và ngành cần độ tin cậy cao: Dược-TPCN/Y tế, Sữa & Dinh dưỡng, FMCG & Đồ uống, Tài chính-Ngân hàng, Ô tô-Xe máy, Điện tử-Công nghệ, Xây dựng-Vật liệu, Giáo dục, BĐS.",
@@ -2395,11 +2370,7 @@ const products = [
         "hot",
         "best"
     ],
-    "needs": [
-        "nhan-dien",
-        "san-pham-moi",
-        "uy-tin"
-    ],
+    "needs": ["nhan-dien", "san-pham-moi", "uy-tin"],
     "desc": "Độc quyền sản phẩm trong layout bài viết; target theo ngữ cảnh; chuyển USP thành “Reason to buy”; tích hợp liên kết chuyển đổi đa kênh và nhiều format hiển thị.",
     "why": "Cần làm nổi bật tính năng/USP, ra mắt sản phẩm mới, xuất hiện đúng chức năng/ngữ cảnh/thời điểm; ngành Y tế, Giáo dục, Bảo hiểm cần thêm lớp tin cậy từ báo chí; nhiều SKU không thể sản xuất bài riêng cho từng sản phẩm.",
     "customer": "Y tế, Giáo dục, Dược phẩm, Bảo hiểm, Ngân hàng, Spa; FMCG/Mỹ phẩm/bán lẻ nhiều SKU; BĐS/Tài chính/Chứng khoán; Fashion/Gia dụng/Công nghệ có danh mục sản phẩm liên tục.",
@@ -2418,11 +2389,7 @@ const products = [
     "types": [
         "hot"
     ],
-    "needs": [
-        "nhan-dien",
-        "tieng-vang",
-        "ban-hang"
-    ],
+    "needs": ["nhan-dien", "ban-hang"],
     "desc": "All-in-one: sản xuất TVC AI + Banner + phân phối + cam kết KPI trong một gói; Native Social, bám trend chủ động, phân phối trên hệ Fanpage/TikTok VCCorp, Brand Safety.",
     "why": "Không kịp bắt trend/sản xuất nội dung; khó đưa thương hiệu vào nội dung viral; quảng cáo truyền thống dễ bị lướt qua; cần tăng Reach/Brand Awareness nhanh và tăng tần suất ghi nhớ.",
     "customer": "Tất cả ngành hàng được phép quảng cáo: FMCG/F&B, Mỹ phẩm, Mẹ & Bé, Thời trang/Làm đẹp, Điện tử/Công nghệ, Gia dụng, Giáo dục, BĐS/Dự án mới, Ô tô/Xe máy, Dịch vụ tiêu dùng.",
@@ -2442,10 +2409,7 @@ const products = [
         "hot",
         "best"
     ],
-    "needs": [
-        "uy-tin",
-        "nhan-dien"
-    ],
+    "needs": ["uy-tin", "nhan-dien"],
     "desc": "Tên sản phẩm trong nhóm Trọng điểm, nhưng các trường USP, vấn đề KH, chân dung KH, kênh bán, tài liệu và case đang update.",
     "why": "hiện chưa mô tả bài toán khách hàng mà sản phẩm giải quyết.",
     "customer": "hiện chưa có chân dung khách hàng cụ thể.",
@@ -2464,11 +2428,7 @@ const products = [
     "types": [
         "hot"
     ],
-    "needs": [
-        "nhan-dien",
-        "ban-hang",
-        "tieng-vang"
-    ],
+    "needs": ["nhan-dien", "ban-hang"],
     "desc": "Gói đồng hành cùng Afamily: gian hàng 12x12m, truyền thông đa kênh độc quyền, hoạt động offline kéo traffic, UGC, minigame online và native.",
     "why": "mở rộng hiện diện và kết nối trực tiếp với khách hàng mẹ & bé trong dịp VietBaby Fair 2026.",
     "customer": "Nhãn mẹ & bé, chăm sóc sức khỏe và phát triển trẻ em; quy mô trung bình–lớn; có khả năng đầu tư 150–480 triệu; đang dùng website Afamily, Facebook, TikTok, group cộng đồng, workshop/photobooth/minigame.",
@@ -2488,10 +2448,7 @@ const products = [
         "new",
         "growth"
     ],
-    "needs": [
-        "nhan-dien",
-        "uy-tin"
-    ],
+    "needs": ["nhan-dien", "uy-tin"],
     "desc": "Điều phối hệ sinh thái khuếch đại nhiều lớp/nhiều kênh; các điểm chạm cùng kể một câu chuyện; kéo dài vòng đời truyền thông; tùy biến theo mục tiêu/sự kiện và có inventory chuyên ngành cạnh tranh.",
     "why": "Cần thương hiệu xuất hiện đúng thời điểm/đối tượng theo một vòng đời truyền thông thay vì một list booking; phù hợp khi ra mắt sản phẩm, truyền thông thương hiệu hoặc sự kiện trọng điểm cần lan tỏa nhanh, mạnh.",
     "customer": "Ngân hàng top-tier duy trì vị thế với stakeholder; ngân hàng tái định vị/chuyển đổi mô hình; nhóm tài chính/BĐS có sự kiện trọng điểm mang tính định vị.",
@@ -2510,10 +2467,7 @@ const products = [
     "types": [
         "new"
     ],
-    "needs": [
-        "tieng-vang",
-        "nhan-dien"
-    ],
+    "needs": ["nhan-dien"],
     "desc": "Nền tảng All-in-one kết nối Idol & Fandom; 44 nghệ sĩ x 33 fandom. Back To School có Photobooth, Booth Activation, IDOL Meet & Greet, IDOL Performance và unlock điểm trường bằng bình chọn.",
     "why": "Giúp nhãn hàng chiếm spotlight giới trẻ trong bối cảnh “kinh tế trải nghiệm”, đồng thời kết nối trực tiếp với cộng đồng Fandom/Idol tại campus — điểm chạm quảng cáo truyền thống khó tiếp cận.",
     "customer": "Gen Z, sinh viên/học sinh yêu thích Idol/Fandom. Nhãn hàng nhắm tới giới trẻ/campus, cần khuấy động, tạo viral và gắn với văn hóa thần tượng.",
@@ -2532,10 +2486,7 @@ const products = [
     "types": [
         "new"
     ],
-    "needs": [
-        "uy-tin",
-        "nhan-dien"
-    ],
+    "needs": ["uy-tin", "nhan-dien"],
     "desc": "Không gian nội dung Premium với văn phong báo chí chuẩn, đầu tư hình ảnh/theme/concept như tạp chí cao cấp; 3 trụ cột Insider View, Identity, Iconic và 5 chuyên mục nội dung.",
     "why": "Giúp thương hiệu có “sân khấu” thể hiện bản sắc riêng thay vì quảng cáo hiển thị đơn thuần; đồng sáng tạo tuyến bài/series bằng ngôn ngữ biên tập chuẩn báo chí, đúng ngữ cảnh.",
     "customer": "Thế hệ mới, đặc biệt tuyến The 30s khoảng 28–35 tuổi; quan tâm sự nghiệp, tài chính, phong cách sống. Phù hợp Beauty & Fashion, F&B, Tài chính, Đời sống cao cấp muốn định vị premium.",
@@ -2554,10 +2505,7 @@ const products = [
     "types": [
         "new"
     ],
-    "needs": [
-        "uy-tin",
-        "tieng-vang"
-    ],
+    "needs": ["uy-tin", "nhan-dien"],
     "desc": "Hệ sinh thái show của Kênh14 Meta-Network: Here To Hear, Behind The Culture, 35 Questions và các minishow. Định vị thương hiệu từ “hiện diện” thành một phần trải nghiệm.",
     "why": "Khi AI làm nội dung hàng loạt, niềm tin trở nên khan hiếm; thương hiệu cần chất liệu thật, đúng tần số và tạo dư âm, đồng thời kết nối với mối quan tâm thật của thế hệ trẻ qua nhiều điểm chạm.",
     "customer": "Giới trẻ/thế hệ mới quan tâm bản sắc, văn hóa đại chúng, gia đình, sự nghiệp, giá trị sống. Nhãn muốn đồng sáng tạo IP có dấu ấn riêng và đồng hành xuyên suốt show/chuỗi nội dung.",
@@ -2576,9 +2524,7 @@ const products = [
     "types": [
         "new"
     ],
-    "needs": [
-        "nhan-dien"
-    ],
+    "needs": ["nhan-dien"],
     "desc": "chưa điền USP, bài toán KH, chân dung KH và kênh bán; chỉ có tài liệu PPS của Family Journey Series.",
     "why": "Chưa đủ dữ liệu trong để xác định chính xác vấn đề khách hàng cần giải quyết.",
     "customer": "Chưa có chân dung khách hàng.",
@@ -2635,9 +2581,7 @@ const products = [
     "types": [
         "new"
     ],
-    "needs": [
-        "uy-tin"
-    ],
+    "needs": ["uy-tin"],
     "desc": "chưa điền USP, bài toán KH, chân dung KH và kênh bán; có AI-Bank-Proposal-CafeBiz.pdf.",
     "why": "Chưa đủ dữ liệu để xác định bài toán khách hàng.",
     "customer": "Chưa có chân dung khách hàng",
@@ -2676,11 +2620,7 @@ const products = [
         "hot",
         "best"
     ],
-    "needs": [
-        "nhan-dien",
-        "uy-tin",
-        "tieng-vang"
-    ],
+    "needs": ["nhan-dien", "uy-tin"],
     "desc": "Giải pháp khuếch đại nội dung truyền thông đa kênh/đa nền tảng, xuất bản bán tự động nhưng tuân thủ Brand Safety, giúp thông điệp nhất quán và chuẩn xác.",
     "why": "Bảo chứng bởi trang báo/tin uy tín; phân phối tần suất cao trên đa nền tảng; rút ngắn thời gian lan tỏa; truyền tải đồng bộ theo brand guideline.",
     "customer": "Khách hàng Mass, đa dạng ngành: Xây dựng & BĐS, Tài chính & Bảo hiểm, Bán buôn bán lẻ, Viễn thông & Truyền thông, F&B, Điện tử & Điện lạnh...",
@@ -2700,10 +2640,7 @@ const products = [
         "hot",
         "best"
     ],
-    "needs": [
-        "uy-tin",
-        "nhan-dien"
-    ],
+    "needs": ["uy-tin", "nhan-dien"],
     "desc": "chưa điền USP, bài toán KH, chân dung KH, kênh bán, tài liệu và case study.",
     "why": "Chưa đủ dữ liệu để xác định bài toán khách hàng.",
     "customer": "Chưa có chân dung khách hàng.",
@@ -2722,10 +2659,7 @@ const products = [
     "types": [
         "new"
     ],
-    "needs": [
-        "nhan-dien",
-        "tieng-vang"
-    ],
+    "needs": ["nhan-dien"],
     "desc": "Giải pháp xây và quản trị kênh Threads; thị trường còn ít agency chuyên sâu, trong khi Threads có viral tự nhiên cao nhưng thuật toán khác nền tảng thông thường.",
     "why": "Tăng nhận diện và thảo luận quanh sản phẩm/dịch vụ; tiếp cận tệp mới, đặc biệt Gen Z; tận dụng thời điểm nền tảng tăng trưởng nhanh, engagement cao và chi phí quảng cáo tối ưu.",
     "customer": "TA chính Gen Z 14–29. Ngành phù hợp: FMCG, F&B, Tài chính-Ngân hàng, đặc biệt ngân hàng số.",
@@ -2744,11 +2678,7 @@ const products = [
     "types": [
         "new"
     ],
-    "needs": [
-        "nhan-dien",
-        "tieng-vang",
-        "uy-tin"
-    ],
+    "needs": ["nhan-dien", "uy-tin"],
     "desc": "Xây tuyến nội dung xuyên suốt từ một Big Idea, biến brand thành một phần tự nhiên trong câu chuyện đời sống phụ nữ & gia đình; đồng bộ aFamily - Social - Community để tối ưu chi phí sản xuất.",
     "why": "Giải bài toán content rời rạc và chi phí sản xuất cao; một tuyến phát triển nhiều format/kênh, giữ thông điệp nhất quán và đưa brand vào câu chuyện tự nhiên hơn.",
     "customer": "Brand/Agency xây hình ảnh & câu chuyện dài hạn, đặc biệt FMCG, Healthcare/Pharma, Beauty, Baby & Kids, Consumer Electronics, Finance; cần content có chiều sâu trên Media và lan tỏa Social/Community.",
@@ -2765,7 +2695,7 @@ const products = [
     "icon": "🎉",
     "price": "Từ 50 triệu / gói",
     "types": ["hot", "new"],
-    "needs": ["nhan-dien", "tieng-vang", "ban-hang"],
+    "needs": ["nhan-dien", "ban-hang"],
     "desc": "Social Contest triển khai đa dạng định dạng AI như photo, video, voice, AR TikTok, CapCut và AI Generated; kết hợp hệ thống báo chí và content creators của VCCorp.",
     "why": "Phù hợp giai đoạn cuối năm - đầu năm khi thương hiệu cần tăng nhận diện, kích thích người dùng tham gia và hỗ trợ tăng trưởng doanh số bằng voucher hoặc chương trình khuyến mãi.",
     "customer": "FMCG, Mẹ & Bé, Ngân hàng; đặc biệt các thương hiệu bán lẻ.",
@@ -2785,10 +2715,7 @@ const products = [
         "new",
         "growth"
     ],
-    "needs": [
-        "ban-hang",
-        "doanh-thu"
-    ],
+    "needs": ["ban-hang"],
     "desc": "Phần mềm AI Livestream có thể customize; phòng live 24/7, phòng live VIP, tự động trả lời comment real-time, có sẵn nhân vật/giọng nói và tối ưu chi phí.",
     "why": "Giảm chi phí vận hành livestream 5–10 lần so với người thật; tăng khả năng live ngoài giờ/24/7; tối ưu doanh thu kênh TMĐT và tận dụng voucher/chương trình khuyến mãi của sàn.",
     "customer": "Tất cả nhãn hàng có thể áp dụng nếu có use case phù hợp; đặc biệt FMCG/bán lẻ đang bán tốt trên sàn, có thể live 24/7 hoặc khung giờ đêm; dịch vụ như phần mềm, khách sạn, ứng dụng, nhà xưởng cũng có thể ứng dụng.",
@@ -3808,12 +3735,10 @@ function toggleAcc(btn){
 <script id="flix-v3-sales-ux-js">
 (function(){
   const NEED_LABELS = {
-    "nhan-dien":"nhận diện",
-    "ban-hang":"bán hàng",
+    "nhan-dien":"nhận diện / tạo tiếng vang",
+    "ban-hang":"bán hàng / kéo doanh thu",
     "san-pham-moi":"sản phẩm mới",
-    "tieng-vang":"tạo tiếng vang",
-    "uy-tin":"xây uy tín",
-    "doanh-thu":"kéo doanh thu"
+    "uy-tin":"xây uy tín"
   };
 
   function fieldMissing(v){
