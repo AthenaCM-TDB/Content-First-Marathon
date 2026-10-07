@@ -2291,12 +2291,16 @@ const IMAGE_OVERRIDES = {
   'Showlife - Here To Hear và các show mới': 'showlife-here-to-hear-cac-show-moi.jpg.bmp',
   'Family Journey Series - \"Lần này con đưa bố mẹ đi\"': 'family-journey-series.jpg.bmp',
   'Khuếch đại truyền thông': 'khuech-dai-truyen-thong.jpg.bmp',
+  'AI in Banking - CafeBiz': ['AI-in-banking-cafebiz.jpg.bmp', 'ai-in-banking-cafebiz.jpg.bmp'],
   'My Bank - CafeF': 'my-bank-cafef.jpg.bmp',
   'PR Star': 'pr-star.jpg.bmp',
   'Social chủ động': 'social-chu-dong.jpg.bmp',
   'Social Partnership Phụ nữ - Gia đình (AFamily)': 'social-partnership-phu-nu-gia-dinh-afamily.jpg.bmp',
   'Threads xây kênh - Buzz': 'threads-xay-kenh-buzzz.jpg.bmp',
-  'Livestream AI': 'livestream-ai.jpg.bmp'
+  'Livestream AI': 'livestream-ai.jpg.bmp',
+  'VietBaby Fair': ['VietBaby-Fair.jpg', 'vietbaby-fair.jpg'],
+  'Thương hiệu quốc gia': ['Thương-hiệu-quốc-gia.jpg', 'thuong-hieu-quoc-gia.jpg'],
+  'Social Contest Tết 2027': ['Social-contest-tet-2027.bmp', 'Social-Contest-Tết-2027.bmp', 'social-contest-tet-2027.jpg']
 };
 
 
@@ -2805,7 +2809,10 @@ const IMAGE_EXTENSIONS = [".jpg.bmp", ".jpg", ".png", ".webp", ".bmp"];
 
 function productImageCandidates(p){
   if (p.image) return [p.image];
-  if (IMAGE_OVERRIDES[p.name]) return [IMAGE_OVERRIDES[p.name]];
+  if (IMAGE_OVERRIDES[p.name]) {
+    const override = IMAGE_OVERRIDES[p.name];
+    return Array.isArray(override) ? override : [override];
+  }
   const base = slugifyProduct(p.name);
   return IMAGE_EXTENSIONS.map(ext => `${base}${ext}`);
 }
