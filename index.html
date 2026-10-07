@@ -1983,19 +1983,18 @@ section[id]{ scroll-margin-top:84px; }
 
 
       <div class="filter-title">
-        ĐANG TÌM KIẾM SẢN PHẨM?
+        KHÁCH ĐANG CẦN GIẢI QUYẾT GÌ?
       </div>
 
 
       <div class="filter-sub">
-        Chọn đúng bài toán của nhãn hàng để có trang bị đúng.
+        Chọn đúng bài toán → tìm đúng sản phẩm để mang đi chào.
       </div>
 
 
       <!-- FILTER BUTTONS -->
 
       <div class="filters">
-
 
         <button
           class="filter active"
@@ -2004,52 +2003,32 @@ section[id]{ scroll-margin-top:84px; }
           Tất cả
         </button>
 
+        <button
+          class="filter"
+          data-filter="nhan-dien-tieng-vang"
+        >
+          📣 Tăng nhận diện & tạo tiếng vang
+        </button>
 
         <button
           class="filter"
-          data-filter="nhan-dien"
+          data-filter="ban-hang-doanh-thu"
         >
-          Khách cần nhận diện
+          💰 Tăng bán hàng & doanh thu
         </button>
-
-
-        <button
-          class="filter"
-          data-filter="ban-hang"
-        >
-          Khách cần bán hàng
-        </button>
-
 
         <button
           class="filter"
           data-filter="san-pham-moi"
         >
-          Khách có sản phẩm mới
+          🚀 Ra mắt sản phẩm mới
         </button>
-
-
-        <button
-          class="filter"
-          data-filter="tieng-vang"
-        >
-          Khách cần tạo tiếng vang
-        </button>
-
 
         <button
           class="filter"
           data-filter="uy-tin"
         >
-          Khách cần xây uy tín
-        </button>
-
-
-        <button
-          class="filter"
-          data-filter="doanh-thu"
-        >
-          Khách cần kéo doanh thu
+          ⭐ Xây uy tín thương hiệu
         </button>
 
       </div>
@@ -3537,7 +3516,13 @@ function applyFilters(){
 
   const list = products.filter(p => {
     const tabOK  = state.tab === "all" || p.types.includes(state.tab);
-    const needOK = state.need === "all" || p.needs.includes(state.need);
+    const needOK = state.need === "all" || (
+      state.need === "nhan-dien-tieng-vang"
+        ? (p.needs.includes("nhan-dien") || p.needs.includes("tieng-vang"))
+        : state.need === "ban-hang-doanh-thu"
+          ? (p.needs.includes("ban-hang") || p.needs.includes("doanh-thu"))
+          : p.needs.includes(state.need)
+    );
     const text   = searchIndex.get(p);
     return tabOK && needOK && tokens.every(t => text.includes(t));
   });
