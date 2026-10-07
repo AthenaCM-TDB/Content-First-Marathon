@@ -1983,18 +1983,19 @@ section[id]{ scroll-margin-top:84px; }
 
 
       <div class="filter-title">
-        KHÁCH ĐANG CẦN GIẢI QUYẾT GÌ?
+        ĐANG TÌM KIẾM SẢN PHẨM?
       </div>
 
 
       <div class="filter-sub">
-        Chọn đúng bài toán → tìm đúng sản phẩm để mang đi chào.
+        Chọn đúng bài toán của nhãn hàng để có trang bị đúng.
       </div>
 
 
       <!-- FILTER BUTTONS -->
 
       <div class="filters">
+
 
         <button
           class="filter active"
@@ -2003,32 +2004,52 @@ section[id]{ scroll-margin-top:84px; }
           Tất cả
         </button>
 
-        <button
-          class="filter"
-          data-filter="nhan-dien-tieng-vang"
-        >
-          📣 Tăng nhận diện & tạo tiếng vang
-        </button>
 
         <button
           class="filter"
-          data-filter="ban-hang-doanh-thu"
+          data-filter="nhan-dien"
         >
-          💰 Tăng bán hàng & doanh thu
+          Khách cần nhận diện
         </button>
+
+
+        <button
+          class="filter"
+          data-filter="ban-hang"
+        >
+          Khách cần bán hàng
+        </button>
+
 
         <button
           class="filter"
           data-filter="san-pham-moi"
         >
-          🚀 Ra mắt sản phẩm mới
+          Khách có sản phẩm mới
         </button>
+
+
+        <button
+          class="filter"
+          data-filter="tieng-vang"
+        >
+          Khách cần tạo tiếng vang
+        </button>
+
 
         <button
           class="filter"
           data-filter="uy-tin"
         >
-          ⭐ Xây uy tín thương hiệu
+          Khách cần xây uy tín
+        </button>
+
+
+        <button
+          class="filter"
+          data-filter="doanh-thu"
+        >
+          Khách cần kéo doanh thu
         </button>
 
       </div>
@@ -2045,49 +2066,7 @@ section[id]{ scroll-margin-top:84px; }
 
     </div>
 
-    <!-- TABS -->
-
-    <div class="tabs">
-
-      <button
-        class="tab active"
-        data-tab="all"
-      >
-        TẤT CẢ
-      </button>
-
-      <button
-        class="tab"
-        data-tab="hot"
-      >
-        TRỌNG ĐIỂM
-      </button>
-
-      <button
-        class="tab"
-        data-tab="best"
-      >
-        ĐỘC QUYỀN
-      </button>
-
-      <button
-        class="tab"
-        data-tab="new"
-      >
-        SẢN PHẨM MỚI
-      </button>
-
-      <button
-        class="tab"
-        data-tab="growth"
-      >
-        DOANH SỐ CAO
-      </button>
-
-    </div>
-
-
-    <div class="toolbar">
+<div class="toolbar">
       <div class="result-count" id="resultCount" aria-live="polite"></div>
 
       <div class="view-switch" role="group" aria-label="Cách hiển thị sản phẩm">
@@ -2318,7 +2297,7 @@ section[id]{ scroll-margin-top:84px; }
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 
-const TELEGRAM_URL = "https://t.me/mem464";
+const TELEGRAM_URL = "https://t.me/athena_tdb";
 
 /* IMAGE FILES: all images live in the GitHub root, next to index.html. */
 const IMAGE_OVERRIDES = {
@@ -2333,9 +2312,7 @@ const IMAGE_OVERRIDES = {
   'Social chủ động': 'social-chu-dong.jpg.bmp',
   'Social Partnership Phụ nữ - Gia đình (AFamily)': 'social-partnership-phu-nu-gia-dinh-afamily.jpg.bmp',
   'Threads xây kênh - Buzz': 'threads-xay-kenh-buzzz.jpg.bmp',
-  'Livestream AI': 'livestream-ai.jpg.bmp',
-  'Thương hiệu quốc gia': 'Thương-hiệu-quốc-gia.jpg',
-  'Social Contest Tết 2027': 'Social-contest-tet-2027.bmp'
+  'Livestream AI': 'livestream-ai.jpg.bmp'
 };
 
 
@@ -3518,13 +3495,7 @@ function applyFilters(){
 
   const list = products.filter(p => {
     const tabOK  = state.tab === "all" || p.types.includes(state.tab);
-    const needOK = state.need === "all" || (
-      state.need === "nhan-dien-tieng-vang"
-        ? (p.needs.includes("nhan-dien") || p.needs.includes("tieng-vang"))
-        : state.need === "ban-hang-doanh-thu"
-          ? (p.needs.includes("ban-hang") || p.needs.includes("doanh-thu"))
-          : p.needs.includes(state.need)
-    );
+    const needOK = state.need === "all" || p.needs.includes(state.need);
     const text   = searchIndex.get(p);
     return tabOK && needOK && tokens.every(t => text.includes(t));
   });
@@ -3819,15 +3790,7 @@ function toggleAcc(btn){
   .sales-status.incomplete{color:#aaa6ad}
   .price-status{color:var(--gold2);max-width:100%;overflow:hidden;text-overflow:ellipsis}
   .card-foot{margin-top:14px !important}
-
-  /* Quick playlist */
-  .sales-playlist{display:flex;gap:8px;overflow-x:auto;padding:2px 0 3px;margin:0 0 14px;scrollbar-width:none}
-  .sales-playlist::-webkit-scrollbar{display:none}
-  .sales-playlist button{flex:0 0 auto;border:1px solid var(--line);background:#101013;color:#bcb8be;border-radius:999px;padding:9px 12px;font-size:11px;font-weight:900;cursor:pointer;transition:.2s}
-  .sales-playlist button:hover,.sales-playlist button.active{background:var(--gold);border-color:var(--gold);color:#111}
-  .sales-playlist-label{font-size:10px;color:#77737b;font-weight:900;letter-spacing:.09em;margin:0 0 8px;text-transform:uppercase}
-
-  /* Modal sales readiness */
+/* Modal sales readiness */
   .modal-readiness{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 18px}
   .modal-readiness .sales-status{font-size:10px}
   .modal-readiness .price-status{font-size:10px}
@@ -3838,7 +3801,6 @@ function toggleAcc(btn){
 
   @media(max-width:620px){
     .card-sales-meta{font-size:9px}
-    .sales-playlist{margin-right:-4px}
     .modal-actions .cta:first-child{min-width:0;flex:1 1 100%}
   }
 </style>
@@ -3921,52 +3883,18 @@ function toggleAcc(btn){
     }).join("");
   };
 
-  /* Quick playlist: hoạt động trên chính state tab hiện có */
-  const filterBox = document.querySelector(".filter-box");
-  if(filterBox && !document.getElementById("salesPlaylist")){
-    const wrap = document.createElement("div");
-    wrap.innerHTML = `<div class="sales-playlist-label">PLAYLIST · CHỌN KÈO THEO TRẠNG THÁI</div>
-      <div class="sales-playlist" id="salesPlaylist">
-        <button data-play="all" class="active">🎬 Tất cả</button>
-        <button data-play="hot">🔥 Đang đẩy</button>
-        <button data-play="ready">🟢 Ready to Sell</button>
-        <button data-play="support">🟡 Cần TĐB</button>
-      </div>`;
-    filterBox.parentNode.insertBefore(wrap, filterBox.nextSibling);
-    wrap.querySelectorAll("[data-play]").forEach(btn => btn.addEventListener("click",()=>{
-      const mode=btn.dataset.play;
-      wrap.querySelectorAll("[data-play]").forEach(b=>b.classList.toggle("active",b===btn));
-      state.tab = mode === "hot" ? "hot" : "all";
-      state.readiness = mode === "ready" || mode === "support" ? mode : "all";
-      setActive(".tab","tab",state.tab);
-      applyFilters();
-    }));
-  }
-
-  /* Override filter để playlist + nhu cầu + search kết hợp được */
-  state.readiness = "all";
+  /* Filter theo nhu cầu + tìm kiếm */
   window.applyFilters = function(){
     const tokens = normalizeText(state.query).trim().split(/\s+/).filter(Boolean);
     const list = products.filter(p => {
-      const tabOK = state.tab === "all" || (p.types || []).includes(state.tab);
       const needOK = state.need === "all" || (p.needs || []).includes(state.need);
       const text = originalSearchIndex.get(p) || "";
       const searchOK = tokens.every(t => text.includes(t));
-      const readiness = salesReadiness(p).key;
-      const readinessOK = state.readiness === "all" || readiness === state.readiness;
-      return tabOK && needOK && searchOK && readinessOK;
+      return needOK && searchOK;
     });
     render(list);
     updateResultCount(list.length);
   };
-
-  /* Giữ playlist đúng trạng thái khi tab / need được bấm */
-  document.querySelectorAll(".tab,.filter").forEach(btn=>btn.addEventListener("click",()=>{
-    const playlist = document.getElementById("salesPlaylist");
-    if(!playlist) return;
-    playlist.querySelectorAll("[data-play]").forEach(b=>b.classList.toggle("active",b.dataset.play==="all"));
-    state.readiness="all";
-  }));
 
   /* Modal: thêm trạng thái bán ngay dưới hook */
   const modalHook = document.getElementById("modalHook");
