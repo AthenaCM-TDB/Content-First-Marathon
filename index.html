@@ -710,6 +710,45 @@ h1{
 }
 
 /* =========================
+   PLAYLIST
+========================= */
+
+.playlist{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.play{
+  min-height:145px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:16px;
+  padding:20px;
+  transition:.2s;
+}
+
+.play:hover{
+  border-color:#4b4b52;
+  transform:translateY(-3px);
+}
+
+.play-icon{
+  font-size:23px;
+}
+
+.play h3{
+  margin:10px 0 5px;
+  font-size:16px;
+}
+
+.play p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* =========================
    FILTER
 ========================= */
 
@@ -1944,7 +1983,7 @@ section[id]{ scroll-margin-top:84px; }
 
 
       <div class="filter-title">
-        KHÁCH ĐANG CẦN GIẢI QUYẾT GÌ?
+        ĐANG TÌM KIẾM SẢN PHẨM?
       </div>
 
 
@@ -1956,11 +1995,63 @@ section[id]{ scroll-margin-top:84px; }
       <!-- FILTER BUTTONS -->
 
       <div class="filters">
-        <button class="filter active" data-filter="all">Tất cả</button>
-        <button class="filter" data-filter="nhan-dien">Tăng nhận diện & tạo tiếng vang</button>
-        <button class="filter" data-filter="ban-hang">Tăng bán hàng & doanh thu</button>
-        <button class="filter" data-filter="san-pham-moi">Ra mắt sản phẩm mới</button>
-        <button class="filter" data-filter="uy-tin">Xây uy tín thương hiệu</button>
+
+
+        <button
+          class="filter active"
+          data-filter="all"
+        >
+          Tất cả
+        </button>
+
+
+        <button
+          class="filter"
+          data-filter="nhan-dien"
+        >
+          Khách cần nhận diện
+        </button>
+
+
+        <button
+          class="filter"
+          data-filter="ban-hang"
+        >
+          Khách cần bán hàng
+        </button>
+
+
+        <button
+          class="filter"
+          data-filter="san-pham-moi"
+        >
+          Khách có sản phẩm mới
+        </button>
+
+
+        <button
+          class="filter"
+          data-filter="tieng-vang"
+        >
+          Khách cần tạo tiếng vang
+        </button>
+
+
+        <button
+          class="filter"
+          data-filter="uy-tin"
+        >
+          Khách cần xây uy tín
+        </button>
+
+
+        <button
+          class="filter"
+          data-filter="doanh-thu"
+        >
+          Khách cần kéo doanh thu
+        </button>
+
       </div>
 
 
@@ -1970,54 +2061,12 @@ section[id]{ scroll-margin-top:84px; }
         class="search"
         id="search"
         type="text"
-        placeholder="Gõ tên sản phẩm hoặc nhu cầu của khách..."
+        placeholder="🔎  Gõ tên sản phẩm hoặc nhu cầu của khách..."
       >
 
     </div>
 
-    <!-- TABS -->
-
-    <div class="tabs">
-
-      <button
-        class="tab active"
-        data-tab="all"
-      >
-        TẤT CẢ
-      </button>
-
-      <button
-        class="tab"
-        data-tab="hot"
-      >
-        TRỌNG ĐIỂM
-      </button>
-
-      <button
-        class="tab"
-        data-tab="best"
-      >
-        ĐỘC QUYỀN
-      </button>
-
-      <button
-        class="tab"
-        data-tab="new"
-      >
-        SẢN PHẨM MỚI
-      </button>
-
-      <button
-        class="tab"
-        data-tab="growth"
-      >
-        DOANH SỐ CAO
-      </button>
-
-    </div>
-
-
-    <div class="toolbar">
+<div class="toolbar">
       <div class="result-count" id="resultCount" aria-live="polite"></div>
 
       <div class="view-switch" role="group" aria-label="Cách hiển thị sản phẩm">
@@ -2771,15 +2820,15 @@ const products = [
   ];
 
   const featuredBadges = [
-    "SẢN PHẨM TRỌNG ĐIỂM",
-    "SẢN PHẨM TIỀM NĂNG",
-    "SẢN PHẨM TIỀM NĂNG",
-    "SẢN PHẨM TIỀM NĂNG",
-    "SẢN PHẨM TRỌNG ĐIỂM",
-    "SẢN PHẨM TRỌNG ĐIỂM",
-    "SẢN PHẨM TRỌNG ĐIỂM",
-    "SẢN PHẨM TIỀM NĂNG",
-    "SẢN PHẨM TRỌNG ĐIỂM"
+    "🔥 SẢN PHẨM TRỌNG ĐIỂM",
+    "✨ SẢN PHẨM TIỀM NĂNG",
+    "✨ SẢN PHẨM TIỀM NĂNG",
+    "✨ SẢN PHẨM TIỀM NĂNG",
+    "🔥 SẢN PHẨM TRỌNG ĐIỂM",
+    "🔥 SẢN PHẨM TRỌNG ĐIỂM",
+    "🔥 SẢN PHẨM TRỌNG ĐIỂM",
+    "✨ SẢN PHẨM TIỀM NĂNG",
+    "🔥 SẢN PHẨM TRỌNG ĐIỂM"
   ];
 
   const featuredLabels = [
@@ -2793,6 +2842,8 @@ const products = [
     "SOCIAL CONTEST",
     "KHUẾCH ĐẠI"
   ];
+
+  const featuredIcons = ["🤖","✨","🎙️","📈","⭐","🇻🇳","🧵","🎉","📣"];
 
   const featuredProducts = featuredNames
     .map(name => products.find(p => p.name === name))
@@ -3739,8 +3790,7 @@ function toggleAcc(btn){
   .sales-status.incomplete{color:#aaa6ad}
   .price-status{color:var(--gold2);max-width:100%;overflow:hidden;text-overflow:ellipsis}
   .card-foot{margin-top:14px !important}
-
-  /* Modal sales readiness */
+/* Modal sales readiness */
   .modal-readiness{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 18px}
   .modal-readiness .sales-status{font-size:10px}
   .modal-readiness .price-status{font-size:10px}
@@ -3758,10 +3808,12 @@ function toggleAcc(btn){
 <script id="flix-v3-sales-ux-js">
 (function(){
   const NEED_LABELS = {
-    "nhan-dien":"tăng nhận diện và tạo tiếng vang",
-    "ban-hang":"tăng bán hàng và doanh thu",
-    "san-pham-moi":"ra mắt sản phẩm mới",
-    "uy-tin":"xây uy tín thương hiệu"
+    "nhan-dien":"nhận diện",
+    "ban-hang":"bán hàng",
+    "san-pham-moi":"sản phẩm mới",
+    "tieng-vang":"tạo tiếng vang",
+    "uy-tin":"xây uy tín",
+    "doanh-thu":"kéo doanh thu"
   };
 
   function fieldMissing(v){
@@ -3772,17 +3824,17 @@ function toggleAcc(btn){
   function salesReadiness(p){
     const core = [p.hook,p.customer,p.pitch,p.package,p.budget,p.proof];
     const missing = core.filter(fieldMissing).length;
-    if(missing === 0) return {key:"ready",label:"READY TO SELL",next:"Có đủ bộ thông tin cơ bản để mang đi pitch."};
-    if(missing <= 2) return {key:"support",label:"CẦN TĐB HỖ TRỢ",next:"Có thể mở kèo, nhưng nên kéo TĐB vào để hoàn thiện đề xuất."};
+    if(missing === 0) return {key:"ready",label:"🟢 READY TO SELL",next:"Có đủ bộ thông tin cơ bản để mang đi pitch."};
+    if(missing <= 2) return {key:"support",label:"🟡 CẦN TĐB HỖ TRỢ",next:"Có thể mở kèo, nhưng nên kéo TĐB vào để hoàn thiện đề xuất."};
     return {key:"incomplete",label:"⚪ ĐANG HOÀN THIỆN",next:"Sales nên kiểm tra với TĐB trước khi pitch."};
   }
 
   function priceStatus(p){
     const price = String(p.price || "").trim();
     const budget = String(p.budget || "").trim();
-    if(/\d/.test(price) && /(triệu|tỷ|k|m|\/)/i.test(price)) return price;
-    if(/\d/.test(budget) && /(triệu|tỷ|k|giờ|combo|gói)/i.test(budget) && !/chưa update|chưa có/i.test(normalizeText(budget))) return "Có mức tham khảo";
-    return "Báo giá theo scope";
+    if(/\d/.test(price) && /(triệu|tỷ|k|m|\/)/i.test(price)) return "💰 " + price;
+    if(/\d/.test(budget) && /(triệu|tỷ|k|giờ|combo|gói)/i.test(budget) && !/chưa update|chưa có/i.test(normalizeText(budget))) return "💰 Có mức tham khảo";
+    return "💬 Báo giá theo scope";
   }
 
   function salesMetaHTML(p){
@@ -3818,7 +3870,8 @@ function toggleAcc(btn){
       return `<article class="card" onclick="openProduct(${index})">
         <div class="card-visual has-image">
           <img class="card-image" src="${productImage(p)}" data-candidates="${productImageCandidates(p).slice(1).join('|')}" alt="${esc(p.name)}" loading="lazy" onerror="tryNextImage(this)">
-          <div class="rank">${String(p.kicker || "").replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, "").trim()}</div>
+          <div class="rank">${p.kicker}</div>
+          <div class="card-icon">${p.icon}</div>
         </div>
         <div class="card-body">
           <div class="card-name">${esc(p.name)}</div>
@@ -3830,18 +3883,14 @@ function toggleAcc(btn){
     }).join("");
   };
 
-  /* Override filter để playlist + nhu cầu + search kết hợp được */
-  state.readiness = "all";
+  /* Filter theo nhu cầu + tìm kiếm */
   window.applyFilters = function(){
     const tokens = normalizeText(state.query).trim().split(/\s+/).filter(Boolean);
     const list = products.filter(p => {
-      const tabOK = state.tab === "all" || (p.types || []).includes(state.tab);
       const needOK = state.need === "all" || (p.needs || []).includes(state.need);
       const text = originalSearchIndex.get(p) || "";
       const searchOK = tokens.every(t => text.includes(t));
-      const readiness = salesReadiness(p).key;
-      const readinessOK = state.readiness === "all" || readiness === state.readiness;
-      return tabOK && needOK && searchOK && readinessOK;
+      return needOK && searchOK;
     });
     render(list);
     updateResultCount(list.length);
