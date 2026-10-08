@@ -2335,12 +2335,12 @@ const products = [
     ],
     "needs": ["ban-hang", "san-pham-moi"],
     "desc": "Giải pháp Product Marketing toàn diện: định vị, USP, concept, câu chuyện, báo chí, social, community, KOL/KOC, TMĐT và AI theo vòng đời sản phẩm.",
-    "why": "Sản phẩm thiếu khác biệt/định vị chưa rõ; truyền thông nhiều nhưng chuyển đổi thấp; thiếu content và review tạo niềm tin; ra mắt chậm hoặc khó tiếp cận đúng khách hàng; sản phẩm chững tăng trưởng hoặc tồn kho cao.",
-    "customer": "CMO, Brand/Product/Marketing Manager, E-commerce Manager, chủ SME. Ngành: FMCG, Mẹ & bé, Dược-TPCN, mỹ phẩm, gia dụng, công nghệ, F&B, tài chính-bảo hiểm, Y tế, Giáo dục.",
-    "pitch": "“Nếu khách đang có một sản phẩm cần bán tốt hơn, đừng bắt đầu bằng booking; hãy bắt đầu bằng việc làm rõ sản phẩm này khác gì, đáng tin ở đâu và kể câu chuyện thế nào.”",
-    "package": "Định vị & USP + concept/câu chuyện + báo chí/social/community/KOL-KOC/TMĐT/AI, linh hoạt theo vòng đời. Đa kênh, ưu tiên KHTT và A01.",
-    "budget": "chưa update giá bán cố định; báo giá theo scope/gói đề xuất.",
-    "proof": "Bệnh viện Hồng Ngọc - Khoa IVF; Dr. Papie. Chính sách: hoa hồng cao hơn cho Sale với một số sản phẩm thuộc bộ giải pháp PRD MKT."
+    "why": "Nhu cầu thị trường tăng: Nhiều nhãn hàng đang cần giải pháp mới để tăng doanh số, ra mắt sản phẩm hoặc giữ sức mua trong bối cảnh cạnh tranh cao. Product Campaign là giải pháp mới, khác biệt so với media truyền thống, giúp Sale có “vũ khí” mới để tiếp cận khách.",
+    "customer": "Các nhãn hàng có sản phẩm thiếu khác biệt/định vị chưa rõ; truyền thông nhiều nhưng chuyển đổi thấp; thiếu content và review tạo niềm tin; ra mắt chậm hoặc khó tiếp cận đúng khách hàng; sản phẩm chững tăng trưởng hoặc tồn kho cao. Đáp ứng đa dạng bài toán của khách: Có đủ 8 bài toán lớn (ra mắt, định vị, tăng phủ, trial, giữ nhiệt…), dễ map với nhu cầu thực tế của từng nhãn. Nhắm tới đối tượng CMO, Brand/Product/Marketing Manager, E-commerce Manager, chủ SME. Ngành: FMCG, Mẹ & bé, Dược-TPCN, mỹ phẩm, gia dụng, công nghệ, F&B, tài chính-bảo hiểm, Y tế, Giáo dục. Được hỗ trợ từ đội chuyên môn: Có khung giải pháp, case study, tài liệu hỗ trợ đầy đủ, Sale không phải tự nghĩ giải pháp từ đầu. Chính sách/hoa hồng cho sale cao hơn so với các sản phẩm hiện hữu.",
+    "pitch": "“Giải pháp này giúp sản phẩm của anh/chị nổi bật đúng điểm mạnh, khách hàng hiểu nhanh và dễ quyết định mua hơn, đặc biệt phù hợp nếu anh/chị đang muốn tăng doanh số hoặc ra mắt sản phẩm mới.”",
+    "package": "Định vị & USP sản phẩm, xây dựng concept/câu chuyện riêng, truyền thông đa kênh: báo chí, social, community, KOL-KOC, TMĐT, AI — linh hoạt theo từng giai đoạn sản phẩm. Ưu tiên nhóm khách hàng mục tiêu và phù hợp cả agency chiến lược (A01).",
+    "budget": "Ngân sách mỗi campaign từ 150 triệu đến vài tỷ, giúp Sale tăng doanh số cá nhân nhanh hơn. Hiện nay chưa update giá bán cố định; báo giá theo scope/gói đề xuất.",
+    "proof": "Bệnh viện Hồng Ngọc - Khoa IVF; Dr. Papie."
 },
 
   {
@@ -3755,8 +3755,8 @@ function toggleAcc(btn){
   function salesReadiness(p){
     const core = [p.hook,p.customer,p.pitch,p.package,p.budget,p.proof];
     const missing = core.filter(fieldMissing).length;
-    if(missing === 0) return {key:"ready",label:"🟢 READY TO SELL",next:"Có đủ bộ thông tin cơ bản để mang đi pitch."};
-    if(missing <= 2) return {key:"support",label:"🟡 CẦN TĐB HỖ TRỢ",next:"Có thể mở kèo, nhưng nên kéo TĐB vào để hoàn thiện đề xuất."};
+    if(missing === 0) return {key:"ready",label:"🟢 READY TO SELL",next:"Có đủ bộ thông tin cơ bản để mang chào bán."};
+    if(missing <= 2) return {key:"support",label:"🟡 CẦN TĐB HỖ TRỢ",next:"Có thể đẩy bán tới nhãn, nhưng cần kéo Thúc đẩy bán vào để hoàn thiện đề xuất."};
     return {key:"incomplete",label:"⚪ ĐANG HOÀN THIỆN",next:"Sales nên kiểm tra với TĐB trước khi pitch."};
   }
 
