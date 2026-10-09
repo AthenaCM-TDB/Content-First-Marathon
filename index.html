@@ -2265,11 +2265,7 @@ section[id]{ scroll-margin-top:84px; }
         </div>
       </details>
 
-      <div class="modal-actions">
-        <button class="cta" onclick="contactTDB(currentProduct)">💬 Liên hệ nhận Proposal + Gói bán</button>
-        <button class="cta alt" id="copyPitchBtn" onclick="copyPitch()">📋 Copy câu pitch</button>
-        <button class="cta alt" onclick="closeModal()">Đóng lại</button>
-      </div>
+      <div class="modal-actions" id="modalActions"></div>
 
     </div>
 
@@ -2301,6 +2297,103 @@ const IMAGE_OVERRIDES = {
   'Thương hiệu quốc gia': ['Thương-hiệu-quốc-gia.jpg', 'thuong-hieu-quoc-gia.jpg'],
   'Social Contest Tết 2027': ['Social-contest-tet-2027.bmp', 'Social-Contest-Tết-2027.bmp', 'social-contest-tet-2027.jpg']
 };
+
+/* =========================================================
+   LINK TÀI LIỆU THEO SẢN PHẨM — chỉ cần sửa ở đây
+   profile / quote: "link" hoặc [{label, url}, ...] nếu có nhiều link
+   chatbot: link Chatbot Copilot riêng của sản phẩm ("" = chưa có, nút sẽ xám)
+   casestudy: link file casestudy ("" = chưa có, nút sẽ xám)
+   Thiếu profile / quote -> nút tự mở Telegram TĐB để xin tài liệu.
+========================================================= */
+const PRODUCT_LINKS = {
+  'Product Campaign': { profile:'https://docs.google.com/presentation/d/1_lLX6tEqKi52UBBqG7c0BdZ7vDO-hm8RW9KP-3yAzPc/edit?slide=id.g385c9a1e8c3_4_3#slide=id.g385c9a1e8c3_4_3', quote:'', chatbot:'https://triact.aiservice.vn/invite/uZV_tcItNxWQKjWB7GkANl6kVytNUA0buEmLPwV_htw', casestudy:'' },
+  'Luvix - GEO solution': { profile:'https://drive.google.com/file/d/1LGrvsXg8QZwL91gVv68K1cqAkxbyIolt/view?usp=drive_link', quote:'', chatbot:'https://triact.aiservice.vn/invite/d2qf8-AIxnuZ31EV3FdEKt5rT8mv8cnzIl3wpjms45U', casestudy:'' },
+  'Product Marketing - Featured Product': { profile:'https://docs.google.com/spreadsheets/d/16LOukuPGhvih2o0zl3O0F9geaMWDqrcs1rZRr9TgScc/edit?gid=241681465#gid=241681465', quote:'', chatbot:'', casestudy:'' },
+  'Social chủ động': { profile:'https://docs.google.com/presentation/d/1VgA7I4_kdYQ4-9CbKt_h0I8FMvIiEtrVSzvfiPdk404/edit?slide=id.p1#slide=id.p1', quote:'', chatbot:'', casestudy:'' },
+  'Hiếu Nghĩa Vàng Son': { profile:'', quote:'', chatbot:'', casestudy:'' },
+  'VietBaby Fair': { profile:'', quote:'', chatbot:'', casestudy:'' },
+  'Khuếch đại truyền thông': { profile:[
+      { label:'Profile (slide)', url:'https://docs.google.com/presentation/d/1vdgqcQOw07kfOl7-DrFwUgd6eN8ua94b/edit?slide=id.p7#slide=id.p7' },
+      { label:'Trang giới thiệu', url:'https://socialathena.com/Product/Khuyechdaitruyenthong/' }
+    ], quote:'', chatbot:'', casestudy:'' },
+  'IDOL14 - Back To School': { profile:'https://docs.google.com/presentation/d/18Zmy3wJe0s-tmpkWx1Xsn9ZS934GmSRIo8puxAe2S-E/edit?slide=id.g3d8c35a135f_0_144#slide=id.g3d8c35a135f_0_144', quote:'', chatbot:'', casestudy:'' },
+  'ID14 - Tuyến nội dung Premium': { profile:'https://docs.google.com/presentation/d/1gRPZgmWmqhi5VHJ6xnNItIapdnqnS4xL3iVLitf-ONc/edit?slide=id.p#slide=id.p', quote:'', chatbot:'', casestudy:'' },
+  'Showlife - Here To Hear và các show mới': { profile:'https://docs.google.com/presentation/d/1Mm7nAsXN9S9KuPEQag3J1h-gUN6BCoNnWAPScLmsFRg/edit?slide=id.p#slide=id.p', quote:'', chatbot:'', casestudy:'' },
+  'Family Journey Series - "Lần này con đưa bố mẹ đi"': { profile:'https://docs.google.com/presentation/d/1sp6OExWIkVltMd6bsjF67uOrtwgIRynEkV-XC9_md5I/edit?usp=sharing', quote:'', chatbot:'', casestudy:'' },
+  'The Investor mùa 3': { profile:'https://docs.google.com/presentation/d/188yWHZnVn9F0kzJSyNr3h7sflVdG-ecYqGtV1dZs-JI/edit?slide=id.g3f955ce4ae7_3_309#slide=id.g3f955ce4ae7_3_309', quote:'', chatbot:'', casestudy:'' },
+  'My Bank - CafeF': { profile:'https://docs.google.com/presentation/d/1fg3-EVhIrbo5BD3tc5edigisp5jA8t5o/edit?slide=id.p1#slide=id.p1', quote:'', chatbot:'', casestudy:'' },
+  'AI in Banking - CafeBiz': { profile:'https://drive.google.com/file/d/1bW5gBpMX9lUr5LM1rQYE7C1acccmuTTx/view?usp=sharing', quote:'', chatbot:'', casestudy:'' },
+  'Kế nghiệp - CafeBiz': { profile:'', quote:'', chatbot:'', casestudy:'' },
+  'PR Star': { profile:[
+      { label:'Afamily', url:'https://admicro.vn/baogia?lang=vi&file=330-afamily-admicro-prs-jul2026-pdf' },
+      { label:'Autopro', url:'https://admicro.vn/baogia?lang=vi&file=332-autopro-admicro-prs-jul2026-pdf' },
+      { label:'CafeBiz', url:'https://admicro.vn/baogia?lang=vi&file=329-cafebiz-admicro-prs-jul2026-pdf' },
+      { label:'CafeF', url:'https://admicro.vn/baogia?lang=vi&file=328-cafef-admicro-prs-jul2026-pdf' },
+      { label:'GameK', url:'https://admicro.vn/baogia?lang=vi&file=331-gamek-admicro-prs-jul2026-pdf' },
+      { label:'GenK', url:'https://admicro.vn/baogia?lang=vi&file=325-genk-admicro-prs-jul2026-pdf' },
+      { label:'Kenh14', url:'https://admicro.vn/baogia?lang=vi&file=327-kenh14-admicro-prs-jul2026-pdf' },
+      { label:'Soha', url:'https://admicro.vn/baogia?lang=vi&file=326-soha-admicro-prs-jul2026-pdf' }
+    ], quote:'', chatbot:'', casestudy:'' },
+  'Thương hiệu quốc gia': { profile:'', quote:'', chatbot:'', casestudy:'' },
+  'Threads xây kênh - Buzz': { profile:'https://rebrand.ly/threadscity', quote:'https://docs.google.com/spreadsheets/d/1cVuxQqAlnejMWE-yHPukkOKx6zxOHo-Y/edit?usp=sharing&ouid=104368109802330684054&rtpof=true&sd=true', chatbot:'', casestudy:'' },
+  'Social Partnership Phụ nữ - Gia đình (AFamily)': { profile:'https://canva.link/socialpartnership2026', quote:'', chatbot:'', casestudy:'' },
+  'Social Contest Tết 2027': { profile:'https://docs.google.com/presentation/d/1b8-6l7s0-NrxIPdzS4e80VEg1eV66dRJ/edit?slide=id.g3fb9b9e77fe_0_16#slide=id.g3fb9b9e77fe_0_16', quote:'', chatbot:'', casestudy:'' },
+  'Livestream AI': { profile:'https://docs.google.com/presentation/d/1aPdJdLW5nC_k5wlLm_poBCSs2Df0ENf-/edit?slide=id.p1#slide=id.p1', quote:'https://docs.google.com/spreadsheets/d/19NQT9yofL5o3NyXHE9mPpJxRE_FjzFlwp2eGuWMN28o/edit?usp=sharing', chatbot:'', casestudy:'' }
+};
+
+function docList(p, kind){
+  const v = (PRODUCT_LINKS[p.name] || {})[kind];
+  if(!v) return [];
+  return Array.isArray(v) ? v : [{ label:'Mở tài liệu', url:v }];
+}
+
+const DOC_TOPIC = { profile:'profile', quote:'báo giá' };
+
+function openDoc(i, kind, k){
+  const p = products[i];
+  const list = docList(p, kind);
+  if(list[k || 0]) window.open(list[k || 0].url, '_blank', 'noopener');
+}
+
+function requestDoc(i, kind){
+  contactTDB(products[i], DOC_TOPIC[kind]);
+}
+
+function openExtra(i, kind){
+  const url = (PRODUCT_LINKS[products[i].name] || {})[kind];
+  if(url) window.open(url, '_blank', 'noopener');
+}
+
+function actionsHTML(p, withClose){
+  const i = products.indexOf(p);
+  const L = PRODUCT_LINKS[p.name] || {};
+
+  const docBtn = (kind, label) => {
+    const list = docList(p, kind);
+    if(list.length > 1){
+      return `<details class="link-menu"><summary class="cta alt">${label} ▾</summary>
+        <div class="link-menu-list">${list.map((x, k) =>
+          `<button type="button" onclick="openDoc(${i},'${kind}',${k})">${x.label}</button>`).join('')}</div></details>`;
+    }
+    if(list.length === 1){
+      return `<button class="cta alt" onclick="openDoc(${i},'${kind}',0)">${label}</button>`;
+    }
+    return `<button class="cta alt" title="Chưa có file — bấm để xin team TĐB" onclick="requestDoc(${i},'${kind}')">${label}</button>`;
+  };
+
+  const extraBtn = (kind, label, emptyHint) => L[kind]
+    ? `<button class="cta alt" onclick="openExtra(${i},'${kind}')">${label}</button>`
+    : `<button class="cta alt is-empty" disabled title="${emptyHint}">${label}</button>`;
+
+  return `
+    <button class="cta" onclick="contactTDB(products[${i}])">💬 Liên hệ tư vấn</button>
+    ${docBtn('quote', '💰 Nhận báo giá')}
+    ${docBtn('profile', '📄 Nhận profile sản phẩm')}
+    ${extraBtn('chatbot', '🤖 Chatbot Copilot', 'Sản phẩm chưa có chatbot riêng')}
+    ${extraBtn('casestudy', '📚 Casestudy', 'Chưa có file casestudy')}
+    ${withClose ? '<button class="cta alt" onclick="closeModal()">Đóng lại</button>' : ''}`;
+}
+
 
 
 /*
@@ -3011,10 +3104,7 @@ function detailHTML(p, i, withDesc){
       <div class="d-item"><div class="info-label">Khách nào hợp sản phẩm?</div><p>${p.customer}</p></div>
       <div class="d-item"><div class="info-label">CaseStudy</div><p>${p.proof}</p></div>
     </div>
-    <div class="modal-actions">
-      <button class="cta" onclick="contactTDB(products[${i}])">💬 Liên hệ nhận Proposal + Gói bán</button>
-      ${isIncomplete(p) ? "" : `<button class="cta alt" onclick="copyPitch(products[${i}])">📋 Copy câu pitch</button>`}
-    </div>`;
+    <div class="modal-actions">${actionsHTML(p, false)}</div>`;
 }
 
 function listRowHTML(p){
@@ -3190,9 +3280,7 @@ function openProduct(index){
 
   document.getElementById("modalMore").open = false;
 
-  /* Sản phẩm chưa đủ dữ liệu thì không có câu pitch để copy */
-  document.getElementById("copyPitchBtn").style.display =
-    isIncomplete(p) ? "none" : "";
+  document.getElementById("modalActions").innerHTML = actionsHTML(p, true);
 
 
   const modalImage = document.getElementById("modalImage");
@@ -3322,9 +3410,11 @@ function scrollToId(id){
    LIÊN HỆ THÚC ĐẨY BÁN
 ========================= */
 
-function buildLeadMessage(p){
+function buildLeadMessage(p, topic){
   const head = (p && p.name)
-    ? `Chào team THÚC ĐẨY BÁN, mình muốn pitch sản phẩm: ${p.name}`
+    ? (topic
+        ? `Chào team THÚC ĐẨY BÁN, mình cần ${topic} của sản phẩm: ${p.name}`
+        : `Chào team THÚC ĐẨY BÁN, mình muốn pitch sản phẩm: ${p.name}`)
     : "Chào team THÚC ĐẨY BÁN, mình có khách muốn pitch sản phẩm trên Athena FLIX.";
   return [
     head,
@@ -3368,8 +3458,8 @@ function showToast(msg){
 
 /* Gửi lead: copy sẵn mẫu tin nhắn kèm tên sản phẩm + mở Telegram.
    Mở cửa sổ ngay trong lúc bấm để trình duyệt không chặn popup. */
-function contactTDB(p){
-  const text = buildLeadMessage(p);
+function contactTDB(p, topic){
+  const text = buildLeadMessage(p, topic);
   const copied = copyText(text);
   window.open(`${TELEGRAM_URL}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
   copied.then(ok => showToast(
@@ -3736,6 +3826,14 @@ function toggleAcc(btn){
     .card-sales-meta{font-size:9px}
     .modal-actions .cta:first-child{min-width:0;flex:1 1 100%}
   }
+
+  .modal-actions .cta.is-empty{opacity:.4;cursor:not-allowed}
+  .link-menu{position:relative}
+  .link-menu > summary{list-style:none;cursor:pointer}
+  .link-menu > summary::-webkit-details-marker{display:none}
+  .link-menu-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;max-width:340px}
+  .link-menu-list button{border:1px solid var(--line);background:var(--panel2);color:#fff;border-radius:999px;padding:7px 12px;font-weight:800;font-size:12px;cursor:pointer}
+  .link-menu-list button:hover{border-color:var(--gold);color:var(--gold)}
 </style>
 
 <script id="flix-v3-sales-ux-js">
