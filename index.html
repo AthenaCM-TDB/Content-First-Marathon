@@ -414,7 +414,54 @@ html{scroll-behavior:smooth}
 }
 
 
-/* ===== CFM RACE-FIRST REDESIGN ===== */
+
+/* ===== PODIUM + RACE COUNTDOWN PRIORITY ===== */
+.raceTopline{display:flex;align-items:stretch;gap:0;max-width:1200px;margin:0 auto 28px;padding:0 24px;color:#fff}
+.raceTopCountdown{min-width:190px;display:flex;flex-direction:column;justify-content:center;padding:20px 25px;background:linear-gradient(135deg,#ffcc00,#ff6b00);color:#111;border-radius:16px 0 0 16px;box-shadow:0 12px 35px #ff780033}
+.raceTopCountdown span{font-size:10px;font-weight:1000;letter-spacing:.15em}
+.raceTopCountdown strong{font-size:clamp(42px,6vw,68px);line-height:.95;font-weight:1000;letter-spacing:-.06em}
+.raceTopCountdown small{font-size:10px;font-weight:1000;letter-spacing:.13em}
+.raceTopCopy{flex:1;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:20px 25px;background:linear-gradient(110deg,#191a1e,#25262b);border:1px solid #414248;border-left:0;border-radius:0 16px 16px 0}
+.raceTopCopy b{color:#ffd400;font-size:clamp(14px,2vw,20px);font-weight:1000}
+.raceTopCopy span{font-size:14px;font-weight:800}
+.raceTopCopy small{font-size:11px;color:#b8bac0}
+.leaderboardPodium{display:grid;grid-template-columns:1fr 1.08fr 1fr;align-items:end;gap:12px;margin:0 0 28px}
+.podiumCard{position:relative;min-height:200px;overflow:hidden;isolation:isolate;border-radius:9px;padding:22px 18px 16px;color:#fff;background:linear-gradient(110deg,#007d6e 0%,#00bba5 100%);box-shadow:0 16px 40px #0004;display:flex;flex-direction:column;justify-content:space-between;transition:transform .45s ease,box-shadow .45s ease}
+.podiumCard:before{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(#fff4 0.7px,transparent .7px);background-size:4px 4px;opacity:.25}
+.podiumCard:after{content:"";position:absolute;z-index:-1;right:-10%;top:-30%;width:70%;height:150%;background:linear-gradient(115deg,transparent,#ffffff30,transparent);transform:rotate(18deg)}
+.podiumCard.first{min-height:240px;background:linear-gradient(110deg,#006f60,#00bca3 70%,#007e70);transform:translateY(-8px)}
+.podiumCard.third{background:linear-gradient(110deg,#690018,#e90032 75%,#97001d)}
+.podiumCard.second{background:linear-gradient(110deg,#007565,#00b99c 75%,#007566)}
+.podiumCard:hover{transform:translateY(-8px);box-shadow:0 24px 50px #0006}
+.podiumRank{font-size:clamp(16px,2vw,23px);font-weight:1000;line-height:1}
+.podiumRank small{font-size:9px;vertical-align:super}
+.podiumName{position:relative;z-index:1;max-width:78%;font-size:clamp(22px,3.2vw,38px);font-weight:1000;line-height:.98;letter-spacing:-.04em;text-wrap:balance;text-shadow:0 2px 12px #0003}
+.podiumCard.first .podiumName{font-size:clamp(27px,4vw,46px)}
+.podiumDept{font-size:11px;font-weight:800;opacity:.9;margin-top:7px}
+.podiumScore{font-size:clamp(23px,3vw,34px);font-weight:1000;line-height:1}
+.podiumScore small{font-size:10px;letter-spacing:.1em}
+.podiumFlag{font-size:16px;margin-top:10px}
+.podiumLoading{grid-column:1/-1;padding:35px;text-align:center;color:#bbb;background:#1b1c20;border:1px solid #383a40;border-radius:12px}
+.rewardAfter{padding:44px 0 36px;background:radial-gradient(circle at 50% 0,#ff9b00 0,transparent 42%),#15100a}
+.rewardBox{position:relative;overflow:hidden;padding:28px 30px;background:linear-gradient(120deg,#21170b,#111114 70%);border:1px solid #8b5c12;box-shadow:0 20px 55px #0005}
+.rewardBox h3{font-size:clamp(27px,4vw,44px);color:#ffd400;line-height:.95;letter-spacing:-.04em;margin:0 0 22px}
+.rewardBox:after{content:"FINISH";position:absolute;right:20px;top:8px;font-size:clamp(50px,10vw,110px);font-weight:1000;letter-spacing:-.08em;color:#fff;opacity:.035;pointer-events:none}
+.rewardBox .rewardItem{position:relative;z-index:1;border-color:#57401b;background:#ffffff08}
+@media(max-width:700px){
+ .raceTopline{padding:0 16px;margin-bottom:22px}
+ .raceTopCountdown{min-width:112px;padding:15px 12px}
+ .raceTopCountdown strong{font-size:42px}
+ .raceTopCopy{padding:14px 13px}
+ .raceTopCopy span{font-size:11px}
+ .raceTopCopy small{font-size:9px}
+ .leaderboardPodium{grid-template-columns:1fr;gap:10px;align-items:stretch}
+ .podiumCard,.podiumCard.first{min-height:145px;transform:none;padding:17px}
+ .podiumCard.first{order:-1}
+ .podiumName,.podiumCard.first .podiumName{font-size:28px;max-width:85%}
+ .podiumScore{font-size:25px}
+ .rewardBox{padding:22px 18px}
+}
+\n/* ===== CFM RACE-FIRST REDESIGN ===== */
 .leaderboardStage,#tactics,.raceGuideSection,#journey,.rewardAfter{transition:filter .45s ease,box-shadow .45s ease}
 .leaderboardStage.is-focused{box-shadow:inset 0 0 0 2px #ffb300}
 #tactics.is-focused{box-shadow:inset 0 4px 0 #ffb300}
@@ -681,10 +728,9 @@ html{scroll-behavior:smooth}
     </div>
   </div>
 </div>
-<div class="live raceTelemetry">
-  <div class="metric"><strong id="metricRegistered">—</strong><span>Đã đăng ký</span><small id="metricRegisteredNote">Đang đồng bộ</small></div>
-  <div class="metric"><strong id="metricTraining">—</strong><span>Hoàn thành Training</span><small>Content First</small></div>
-  <div class="metric"><strong id="metricActions">—</strong><span>Thành tích được ghi nhận</span><small>Live race</small></div>
+<div class="raceTopline">
+  <div class="raceTopCountdown"><span>02 · SALES RACE</span><strong id="raceCountdownTop">--</strong><small id="raceCountdownTopUnit">NGÀY CÒN LẠI</small></div>
+  <div class="raceTopCopy"><b>RACE LIVE · 20/09–31/12/2026</b><span>Thực chiến · Tích KM · Bứt tốc doanh số</span><small>Đếm ngược đến thời điểm kết thúc chặng đua</small></div>
 </div>
 </section>
 
@@ -696,6 +742,9 @@ html{scroll-behavior:smooth}
       <h2>TOP RUNNER<br><span>AI ĐANG DẪN ĐẦU?</span></h2>
       <p>Bảng xếp hạng được đồng bộ tự động. Mỗi lần dữ liệu đổi, thứ hạng sẽ dịch chuyển để ghi nhận cuộc bứt tốc mới nhất.</p></div>
       <div class="leaderboardLive"><i></i> CẬP NHẬT MỖI 60 GIÂY</div>
+    </div>
+    <div id="leaderboardPodium" class="leaderboardPodium" aria-label="Ba Runner dẫn đầu">
+      <div class="podiumLoading">Đang tải Top Runner…</div>
     </div>
     <div class="rankPosterBoard">
       <div class="rankListArea">
@@ -724,12 +773,11 @@ html{scroll-behavior:smooth}
 
 
 
-<section class="tactics" id="tactics"><div class="w">
-<div class="raceStart"><div class="phase racePhase">
-<div class="phaseTop"><b>02 · SALES RACE</b><em class="phaseFlag" id="raceFlag">RACE COUNTDOWN</em></div>
-<div class="phaseClock"><strong class="clockNum" id="raceCountdown">--</strong><small class="clockUnit" id="raceCountdownUnit">NGÀY CÒN LẠI</small></div>
-<span class="phaseMeta">20/9 · Thực chiến, tích Km, bứt tốc doanh số<br>Đếm ngược tới khi chặng đua kết thúc 31/12.</span>
-</div><div class="raceConnector"><span>↓</span><b>RACE MISSIONS</b></div></div>
+<section class="rewardAfter" id="reward"><div class="w"><div class="box rewardBox"><h3>PHẦN THƯỞNG<br>CHO NGƯỜI VỀ ĐÍCH</h3>
+<div class="rewardItem"><i>🏅</i><b>Certificate Sale Content First</b></div>
+<div class="rewardItem"><i>🎁</i><b>Phần thưởng dành cho Top Sale</b></div>
+<div class="rewardItem"><i>⭐</i><b>Cơ hội trở thành Core Sale nòng cốt</b></div>
+<div class="rewardItem"><i>🚀</i><b>Ưu tiên tham gia các dự án chiến lược</b></div></div></div></section>\n<section class="tactics" id="tactics"><div class="w">
 <div class="head"><div><div class="k">RACE MISSIONS · 20/9–31/12</div><h2>BỨT TỐC DOANH SỐ,<br>BỎ TÚI DEAL XỊN</h2></div><p>Mỗi Tactic là một cột mốc bứt phá. Tạo hành động thực tế – nhận KM thưởng ngay!</p></div>
 <div class="tacticSwipeHint"><span>Vuốt ngang để xem các Tactic</span><span>→</span></div>
 <div class="cards" id="tacticCards">
@@ -869,11 +917,7 @@ html{scroll-behavior:smooth}
     </div>
   </div>
 </div></div>
-<section class="rewardAfter" id="reward"><div class="w"><div class="box rewardBox"><h3>PHẦN THƯỞNG<br>CHO NGƯỜI VỀ ĐÍCH</h3>
-<div class="rewardItem"><i>🏅</i><b>Certificate Sale Content First</b></div>
-<div class="rewardItem"><i>🎁</i><b>Phần thưởng dành cho Top Sale</b></div>
-<div class="rewardItem"><i>⭐</i><b>Cơ hội trở thành Core Sale nòng cốt</b></div>
-<div class="rewardItem"><i>🚀</i><b>Ưu tiên tham gia các dự án chiến lược</b></div></div></div></section>
+
 <div class="datebar"><div class="w dateIn"><div class="calendar">🗓️</div><div class="dateText"><b>SALES RACE: 01/08–31/12/2026　 |　 TRAINING: NỘI DUNG THAM KHẢO</b><br><span>Cập nhật thành tích · Tích KM · Bứt tốc doanh số</span></div><a class="pill orange" href="#join">ĐĂNG KÝ NGAY →</a></div></div>
 </main><footer><div class="w">Athena CM · Content First Marathon</div></footer>
 <a class="mobile" href="#join">ĐĂNG KÝ NGAY →</a>
@@ -930,6 +974,16 @@ function renderLeaderboard(rows,nameMap={}){
   const oldRects=new Map();
   document.querySelectorAll(".rankEntry").forEach(el=>oldRects.set(el.dataset.runner,el.getBoundingClientRect()));
   const top=rows.slice(0,50);
+  const podium=document.getElementById("leaderboardPodium");
+  if(podium){
+    const podiumClasses=["second","first","third"];
+    const podiumIndices=[1,0,2];
+    podium.innerHTML=podiumIndices.filter(i=>top[i]).map(i=>{
+      const r=top[i], name=saleDisplayName(r,nameMap), km=formatKmValue(rowKm(r));
+      const ordinal=["1","2","3"][i], cls=podiumClasses[podiumIndices.indexOf(i)];
+      return `<article class="podiumCard ${cls}"><div class="podiumRank">${ordinal}<small>${i===0?"ST":i===1?"ND":"RD"}</small></div><div><div class="podiumName">${esc(name)}</div><div class="podiumDept">${esc(r.team||r.department||"ATHENA CM")}</div></div><div class="podiumScore">${esc(km)} <small>KM</small></div></article>`;
+    }).join("") || '<div class="podiumLoading">Chưa có dữ liệu Top Runner.</div>';
+  }
   const htmlFor=(r,i)=>{
     const id=runnerId(r)||("runner-"+i);
     const km=formatKmValue(rowKm(r));
@@ -973,10 +1027,6 @@ async function loadCFM(){
     const res=await fetch(CFM.API_URL+"?t="+Date.now(),{cache:"no-store"});
     if(!res.ok) throw new Error("HTTP "+res.status);
     const d=await res.json();
-    setText("metricRegistered",d.metrics?.registered ?? 0);
-    setText("metricTraining",d.metrics?.completedTraining ?? 0);
-    setText("metricActions",d.metrics?.tacticsRecorded ?? 0);
-    setText("metricRegisteredNote","Cập nhật tự động");
     renderLeaderboard(d.leaderboard||[],buildNameMap(d));
     status.textContent="DATA · cập nhật "+new Date().toLocaleTimeString("vi-VN",{hour:"2-digit",minute:"2-digit"});
   }catch(e){
@@ -1068,15 +1118,17 @@ function buildScoreGuide(){
 
 function updateRaceClock(){
   const now=new Date();
-  const start=new Date(2026,8,16,0,0,0);
   const finish=new Date(2026,11,31,23,59,59);
-  const num=document.getElementById("raceCountdown");
-  const unit=document.getElementById("raceCountdownUnit");
-  const flag=document.getElementById("raceFlag");
-  if(!num)return;
+  const num=document.getElementById("raceCountdownTop")||document.getElementById("raceCountdown");
+  const unit=document.getElementById("raceCountdownTopUnit")||document.getElementById("raceCountdownUnit");
+  if(!num||!unit)return;
   if(now <= finish){
-    num.textContent=Math.max(0,Math.ceil((finish-now)/86400000)); unit.textContent="NGÀY CÒN LẠI"; flag.textContent=now < start ? "RACE COUNTDOWN" : "RACE LIVE";
-  }else{ num.textContent="FINISH"; unit.textContent="H2/2026"; flag.textContent="ĐÃ VỀ ĐÍCH"; }
+    num.textContent=Math.max(0,Math.ceil((finish-now)/86400000));
+    unit.textContent="NGÀY CÒN LẠI";
+  }else{
+    num.textContent="FINISH";
+    unit.textContent="H2/2026";
+  }
 }
 updateRaceClock();
 setInterval(updateRaceClock,60000);
