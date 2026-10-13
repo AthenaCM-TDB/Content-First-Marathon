@@ -707,9 +707,41 @@ html{scroll-behavior:smooth}
   .manifestStage{padding:14px}
   .manifestStage strong{font-size:16px}
 }
+
+/* Fix 2026-10-13: visible race stats, medal podium, bright reward section */
+.raceTopline{display:grid!important;grid-template-columns:minmax(150px,.75fr) minmax(210px,1fr) minmax(340px,1.7fr)!important;gap:12px!important;align-items:stretch!important}
+.raceTopCountdown{border-radius:16px!important;min-width:0!important}
+.raceTopCopy{border-radius:16px!important;min-width:0!important}
+.raceTelemetry{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:0!important;align-items:stretch;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:linear-gradient(135deg,#202126,#34343a)!important;padding:12px 8px!important;min-width:0}
+.raceTelemetry .metric{padding:8px 7px;border-right:1px solid rgba(255,255,255,.18)!important;min-width:0}
+.raceTelemetry .metric:last-child{border-right:0!important}
+.raceTelemetry .metric strong{display:block!important;color:#ffd43b!important;font-size:clamp(25px,3vw,40px)!important;line-height:1.05}
+.raceTelemetry .metric span{display:block;color:#fff!important;font-size:11px!important;font-weight:850;line-height:1.3;margin-top:7px}
+.raceTelemetry .metric small{display:block;color:#ffc75e!important;font-size:9px!important;line-height:1.25;margin-top:5px}
+.podiumCard.first{background:linear-gradient(115deg,#6d4300 0%,#f8c928 48%,#fff0a3 72%,#b67a00 100%)!important;color:#201400!important;border:1px solid #ffe88a;box-shadow:0 18px 44px #d39a2345!important}
+.podiumCard.first .podiumDept,.podiumCard.first .podiumScore{color:#201400!important}
+.podiumCard.second{background:linear-gradient(115deg,#515965 0%,#d8dde4 48%,#f7f8fa 70%,#8a929d 100%)!important;color:#171a20!important;border:1px solid #f0f2f6}
+.podiumCard.second .podiumDept,.podiumCard.second .podiumScore{color:#171a20!important}
+.podiumCard.third{background:linear-gradient(115deg,#633c22 0%,#c9854c 48%,#f0c49b 70%,#8c512d 100%)!important;color:#251307!important;border:1px solid #f3c9a7}
+.podiumCard.third .podiumDept,.podiumCard.third .podiumScore{color:#251307!important}
+.podiumCard.first:before,.podiumCard.second:before,.podiumCard.third:before{background-image:radial-gradient(#fff9 .7px,transparent .7px);opacity:.28}
+.rewardAfter{padding:clamp(28px,5vw,64px) 0!important;background:radial-gradient(ellipse at 15% 20%,#fff0b5 0,transparent 35%),radial-gradient(ellipse at 90% 80%,#ffd15c55 0,transparent 36%),linear-gradient(135deg,#fff8e3,#fff 52%,#fff0c2)!important}
+.rewardBox{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px!important;padding:clamp(20px,4vw,42px)!important;border-radius:24px!important;background:linear-gradient(135deg,#fffdf7,#fff0c4)!important;border:1px solid #f1c45b!important;box-shadow:0 24px 60px #a66b1722!important}
+.rewardBox h3{grid-column:1/-1;color:#30200b!important;font-size:clamp(28px,4.2vw,48px)!important;line-height:1.02!important;margin-bottom:10px!important}
+.rewardBox:after{color:#b77a00!important;opacity:.08!important}
+.rewardBox .rewardItem{display:flex!important;align-items:center;gap:14px!important;margin:0!important;padding:18px!important;border:1px solid #f0d38a!important;border-radius:16px!important;background:linear-gradient(120deg,#fff,#fff8e7)!important;color:#2c2110!important;box-shadow:0 8px 22px #9d74131a!important;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease!important}
+.rewardBox .rewardItem:hover{transform:translateY(-5px);border-color:#e3a916!important;box-shadow:0 16px 28px #9d74132b!important}
+.rewardBox .rewardItem i{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#ffdc67,#ffb31b);font-style:normal;font-size:25px;box-shadow:0 5px 15px #d89a2430}
+.rewardBox .rewardItem b{font-size:clamp(13px,1.4vw,16px)!important;line-height:1.4;color:#2c2110!important}
+.scoreGuideCards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.scoreGuideCard{animation:guideRise .55s both;animation-delay:calc(var(--guide-index,0)*45ms);transition:transform .25s ease,box-shadow .25s ease}
+.scoreGuideCard:hover{transform:translateY(-4px);box-shadow:0 15px 30px #0002}
+@keyframes guideRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){.raceTopline{grid-template-columns:1fr 1.4fr!important}.raceTelemetry{grid-column:1/-1}}
+@media(max-width:600px){.raceTopline{grid-template-columns:1fr!important}.raceTelemetry{grid-column:auto}.rewardBox{grid-template-columns:1fr!important}.rewardBox h3{grid-column:auto}.scoreGuideCards{grid-template-columns:1fr}.raceTelemetry .metric strong{font-size:28px!important}.raceTelemetry .metric span{font-size:10px!important}}
 </style>
 </head><body>
-<header><nav class="w nav"><div class="brand brandLogo"><span class="athenaMark">A</span><span>ATHENA CM · <b>CONTENT FIRST MARATHON</b></span></div><div class="links"><a href="#rank">Bảng xếp hạng</a><a href="#tactics">Tactic & KM</a><a href="#join">Cách tham gia</a><a href="#journey">Training</a><a href="#contactTDB">Liên hệ</a></div><a class="pill orange" href="https://t.me/ContentFirstMarathon_bot" target="_blank" rel="noopener">Đăng ký ngay →</a></nav></header>
+<header><nav class="w nav"><div class="brand brandLogo"><span class="athenaMark">A</span><span>ATHENA CM · <b>CONTENT FIRST MARATHON</b></span></div><div class="links"><a href="#rank">Bảng xếp hạng</a><a href="#join">Tactic & KM</a><a href="#join">Cách tham gia</a><a href="#journey">Training</a><a href="#contactTDB">Liên hệ</a></div><a class="pill orange" href="https://t.me/ContentFirstMarathon_bot" target="_blank" rel="noopener">Đăng ký ngay →</a></nav></header>
 
 <main>
 <section class="hero kvHero">
@@ -731,6 +763,11 @@ html{scroll-behavior:smooth}
 <div class="raceTopline">
   <div class="raceTopCountdown"><span>02 · SALES RACE</span><strong id="raceCountdownTop">--</strong><small id="raceCountdownTopUnit">NGÀY CÒN LẠI</small></div>
   <div class="raceTopCopy"><b>RACE LIVE · 20/09–31/12/2026</b><span>Thực chiến · Tích KM · Bứt tốc doanh số</span><small>Đếm ngược đến thời điểm kết thúc chặng đua</small></div>
+  <div class="raceTelemetry" aria-label="Thống kê Sales Race">
+    <div class="metric"><strong id="registeredCount">77</strong><span>Đã đăng ký</span><small>Cập nhật tự động</small></div>
+    <div class="metric"><strong id="trainingCount">0</strong><span>Hoàn thành Training</span><small>Content First</small></div>
+    <div class="metric"><strong id="achievementCount">21</strong><span>Thành tích được ghi nhận</span><small>Runner đã ghi điểm</small></div>
+  </div>
 </div>
 </section>
 
@@ -777,26 +814,13 @@ html{scroll-behavior:smooth}
 <div class="rewardItem"><i>🏅</i><b>Certificate Sale Content First</b></div>
 <div class="rewardItem"><i>🎁</i><b>Phần thưởng dành cho Top Sale</b></div>
 <div class="rewardItem"><i>⭐</i><b>Cơ hội trở thành Core Sale nòng cốt</b></div>
-<div class="rewardItem"><i>🚀</i><b>Ưu tiên tham gia các dự án chiến lược</b></div></div></div></section>\n<section class="tactics" id="tactics"><div class="w">
-<div class="head"><div><div class="k">RACE MISSIONS · 20/9–31/12</div><h2>BỨT TỐC DOANH SỐ,<br>BỎ TÚI DEAL XỊN</h2></div><p>Mỗi Tactic là một cột mốc bứt phá. Tạo hành động thực tế – nhận KM thưởng ngay!</p></div>
-<div class="tacticSwipeHint"><span>Vuốt ngang để xem các Tactic</span><span>→</span></div>
-<div class="cards" id="tacticCards">
-<div class="card"><div class="ci">🏁</div><h3>Cam kết DS Content</h3><p>Đăng ký mục tiêu doanh số Content First.</p><div class="points">+200m</div></div>
-<div class="card"><div class="ci">💡</div><h3>Brief mới</h3><p>Mang về Brief SP Content/Product Marketing hợp lệ.</p><div class="points">+300m</div></div>
-<div class="card"><div class="ci">🔥</div><h3>Đốt thực chạy</h3><p>Giải ngân hợp đồng đã ký.</p><div class="points">+500m</div></div>
-<div class="card new"><div class="ci">🚀</div><h3>Bán SP mới</h3><p>Chốt deal giải pháp Content First / Product Marketing.</p><div class="points">+1Km</div></div>
-<div class="card"><div class="ci">📈</div><h3>Tăng trưởng nhãn</h3><p>Tăng trưởng doanh số trên nhãn hàng hiện có (so với cùng kỳ).</p><div class="points">+1Km</div></div>
-<div class="card"><div class="ci">🤝</div><h3>Mở nhãn mới</h3><p>Ký hợp đồng với nhãn hàng mới.</p><div class="points">+1.5Km</div></div>
-<div class="card"><div class="ci">🎯</div><h3>Đạt cam kết DS</h3><p>Hoàn thành 100% chỉ tiêu doanh số đã đăng ký.</p><div class="points">+2Km</div></div>
-<div class="card more"><div class="ci">🔒</div><h3>Tactic Bí Mật</h3><p><b>[SẮP MỞ]</b><br>Thử thách nhân đôi sẽ xuất hiện bất ngờ!</p><div class="points">??? Km</div></div></div></div></section>
-
-<section id="join" class="raceGuideSection">
+<div class="rewardItem"><i>🚀</i><b>Ưu tiên tham gia các dự án chiến lược</b></div></div></div></section>\n<section id="join" class="raceGuideSection">
  <div class="w">
   <div class="guideHeading"><div class="k">HƯỚNG DẪN THAM GIA · GHI NHẬN KM</div><h2>VÀO ĐƯỜNG ĐUA.<br><span>GHI ĐIỂM ĐÚNG CÁCH.</span></h2><p>Làm đúng từng bước để thành tích được ghi nhận và xuất hiện trên bảng xếp hạng.</p></div>
   <div class="guideGrid">
    <div class="guideSteps">
     <article class="guideStep"><span class="guideNo">01</span><div><h3>Đăng ký tham gia</h3><p>Quét mã QR hoặc mở Telegram Bot Content First Marathon. Làm theo hướng dẫn của bot để đăng ký runner và cung cấp thông tin nhận diện theo yêu cầu.</p><a href="https://t.me/ContentFirstMarathon_bot" target="_blank" rel="noopener">MỞ TELEGRAM BOT →</a></div></article>
-    <article class="guideStep"><span class="guideNo">02</span><div><h3>Chọn tactic đã thực hiện</h3><p>Đối chiếu kết quả thực tế với tactic tương ứng bên trên: Brief mới, thực chạy, bán sản phẩm mới, tăng trưởng nhãn, mở nhãn mới hoặc hoàn thành cam kết doanh số.</p></div></article>
+    <article class="guideStep"><span class="guideNo">02</span><div><h3>Chọn tactic đã thực hiện</h3><p>Đối chiếu kết quả thực tế với tactic tương ứng trong phần Cách tích KM: Brief mới, thực chạy, bán sản phẩm mới, tăng trưởng nhãn, mở nhãn mới hoặc hoàn thành cam kết doanh số.</p></div></article>
     <article class="guideStep"><span class="guideNo">03</span><div><h3>Gửi thông tin để ghi nhận KM</h3><p>Cập nhật kết quả qua bot theo luồng hướng dẫn. Chuẩn bị thông tin hợp đồng/brief/nhãn hàng và bằng chứng liên quan nếu được yêu cầu để team kiểm tra tính hợp lệ.</p></div></article>
     <article class="guideStep"><span class="guideNo">04</span><div><h3>Kiểm tra bảng xếp hạng</h3><p>Bảng xếp hạng tự đồng bộ định kỳ. Nếu kết quả chưa hiển thị hoặc KM chưa đúng, liên hệ team Thúc đẩy bán Athena để được hỗ trợ rà soát.</p></div></article>
    </div>
@@ -1099,23 +1123,19 @@ window.addEventListener('DOMContentLoaded',()=>{
 
 function buildScoreGuide(){
  const target=document.getElementById("scoreGuideCards");
- const source=document.querySelectorAll("#tacticCards .card");
- if(!target||!source.length)return;
- target.innerHTML=Array.from(source).map(card=>{
-   const title=card.querySelector("h3")?.textContent.trim()||"Tactic";
-   const desc=card.querySelector("p")?.textContent.trim()||"";
-   const points=card.querySelector(".points")?.textContent.trim()||"";
-   let step="Gửi kết quả qua Telegram Bot theo hướng dẫn.";
-   if(/Brief/i.test(title)) step="Chuẩn bị brief mới hợp lệ và thông tin nhãn hàng/sản phẩm.";
-   else if(/thực chạy/i.test(title)) step="Chuẩn bị thông tin hợp đồng đã ký và doanh số giải ngân.";
-   else if(/Bán SP mới/i.test(title)) step="Nêu rõ sản phẩm Content First/Product Marketing đã chốt.";
-   else if(/Tăng trưởng/i.test(title)) step="Chuẩn bị số liệu đối chiếu doanh số cùng kỳ.";
-   else if(/Mở nhãn/i.test(title)) step="Chuẩn bị thông tin nhãn hàng mới và hợp đồng liên quan.";
-   else if(/cam kết/i.test(title)) step="Đối chiếu kết quả với chỉ tiêu doanh số đã đăng ký.";
-   return `<article class="scoreGuideCard"><b>${esc(title)}</b><strong>${esc(points)}</strong><p>${esc(desc)} ${esc(step)}</p><span>GỬI QUA BOT ĐỂ GHI NHẬN</span></article>`;
- }).join("");
+ if(!target)return;
+ const tactics=[
+  ["Cam kết DS Content","+200m","Đăng ký mục tiêu doanh số Content First. Gửi thông tin cam kết qua Telegram Bot để được ghi nhận."],
+  ["Brief mới","+300m","Mang về brief SP Content/Product Marketing hợp lệ. Chuẩn bị thông tin brief và nhãn hàng."],
+  ["Đốt thực chạy","+500m","Giải ngân hợp đồng đã ký. Cung cấp thông tin hợp đồng và kết quả giải ngân khi được yêu cầu."],
+  ["Bán SP mới","+1Km","Chốt deal giải pháp Content First / Product Marketing. Gửi thông tin deal qua bot."],
+  ["Tăng trưởng nhãn","+1Km","Ghi nhận tăng trưởng doanh số nhãn hiện có so với cùng kỳ; chuẩn bị số liệu đối chiếu."],
+  ["Mở nhãn mới","+1.5Km","Ký hợp đồng với nhãn hàng mới; gửi thông tin nhãn và hợp đồng liên quan."],
+  ["Đạt cam kết DS","+2Km","Hoàn thành 100% chỉ tiêu doanh số đã đăng ký; đối chiếu kết quả trước khi gửi."],
+  ["Tactic Bí Mật","??? Km","Thử thách nhân đôi sẽ được công bố khi mở màn."]
+ ];
+ target.innerHTML=tactics.map(([title,points,desc],i)=>`<article class="scoreGuideCard" style="--guide-index:${i}"><b>${esc(title)}</b><strong>${esc(points)}</strong><p>${esc(desc)}</p><span>GỬI QUA BOT ĐỂ GHI NHẬN</span></article>`).join("");
 }
-
 function updateRaceClock(){
   const now=new Date();
   const finish=new Date(2026,11,31,23,59,59);
