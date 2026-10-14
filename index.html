@@ -764,6 +764,47 @@ html{scroll-behavior:smooth}
 @media(max-width:900px){.raceTopline{grid-template-columns:1fr 1.4fr!important}.raceTelemetry{grid-column:1/-1}}
 @media(max-width:600px){.raceTopline{grid-template-columns:1fr!important}.raceTelemetry{grid-column:auto}.rewardBox{grid-template-columns:1fr!important}.rewardBox h3{grid-column:auto}.scoreGuideCards{grid-template-columns:1fr}.raceTelemetry .metric strong{font-size:28px!important}.raceTelemetry .metric span{font-size:10px!important}}
 </style>
+
+<style id="visual-tightening-v7">
+/* V7: compact hero and purposeful KV framing */
+.kvHero{
+  position:relative!important; width:min(1200px,calc(100% - 40px))!important;
+  min-height:390px!important; margin:22px auto 0!important;
+  border-radius:24px!important; overflow:hidden!important;
+  background:linear-gradient(115deg,#17150d 0%,#5e390d 45%,#ff8a1d 100%)!important;
+  box-shadow:0 18px 50px rgba(41,27,8,.16)!important;
+}
+.kvBackdrop{
+  position:absolute!important; inset:0!important; width:100%!important; height:100%!important;
+  border-radius:0!important; opacity:1!important;
+  background-color:transparent!important;
+  background-image:linear-gradient(90deg,rgba(17,17,17,.96) 0%,rgba(28,23,13,.88) 34%,rgba(39,27,8,.42) 61%,rgba(39,27,8,.02) 100%),url("content-first-marathon-kv.png")!important;
+  background-repeat:no-repeat!important;
+  background-size:100% 100%,auto 112%!important;
+  background-position:center,right center!important;
+}
+.kvHeroIn{
+  position:relative!important; z-index:2!important; min-height:390px!important;
+  display:flex!important; align-items:center!important; background:transparent!important;
+}
+.kvCopy{width:min(58%,620px)!important; padding:36px 0 38px 38px!important; color:#fff!important}
+.kvCopy .eye{color:#ffd400!important;font-size:10px!important;letter-spacing:.15em!important}
+.kvMessage strong{display:block!important;max-width:620px!important;font-size:clamp(38px,5vw,64px)!important;line-height:.91!important;letter-spacing:-.055em!important;margin:14px 0!important;text-wrap:balance}
+.kvMessage p{max-width:460px!important;color:rgba(255,255,255,.86)!important;font-size:14px!important;line-height:1.55!important}
+.kvHero .actions{margin-top:20px!important}
+/* Bring the leaderboard closer so the page doesn't feel empty */
+.leaderboardStage{margin-top:0!important;padding-top:34px!important}
+.raceTopSection{padding-bottom:0!important}
+@media(max-width:700px){
+ .kvHero{width:calc(100% - 24px)!important;min-height:470px!important;margin-top:16px!important;border-radius:18px!important}
+ .kvHeroIn{min-height:470px!important;align-items:flex-end!important}
+ .kvBackdrop{background-image:linear-gradient(0deg,rgba(12,12,12,.98) 0%,rgba(18,15,10,.82) 43%,rgba(30,20,8,.06) 100%),url("content-first-marathon-kv.png")!important;background-size:100% 100%,auto 72%!important;background-position:center,right top!important}
+ .kvCopy{width:100%!important;padding:220px 20px 26px!important}
+ .kvMessage strong{font-size:clamp(34px,9vw,48px)!important}
+ .leaderboardStage{padding-top:28px!important}
+}
+@media(prefers-reduced-motion:reduce){.kvHero,.kvBackdrop{scroll-behavior:auto!important;transition:none!important}}
+</style>
 </head><body>
 <header><nav class="w nav"><div class="brand brandLogo"><span class="athenaMark">A</span><span>ATHENA CM · <b>CONTENT FIRST MARATHON</b></span></div><div class="links"><a href="#rank">Bảng xếp hạng</a><a href="#join">Tactic & KM</a><a href="#join">Cách tham gia</a><a href="#journey">Training</a><a href="#contactTDB">Liên hệ</a></div><a class="pill orange" href="https://t.me/ContentFirstMarathon_bot" target="_blank" rel="noopener">Đăng ký ngay →</a></nav></header>
 
