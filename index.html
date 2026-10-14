@@ -1100,6 +1100,12 @@ async function loadCFM(){
     if(!res.ok) throw new Error("HTTP "+res.status);
     const d=await res.json();
     renderLeaderboard(d.leaderboard||[],buildNameMap(d));
+    if(d.metrics){
+      [["registeredCount","registered"],["trainingCount","completedTraining"],["achievementCount","tacticsRecorded"]].forEach(([id,key])=>{
+        const el=document.getElementById(id), v=Number(d.metrics[key]);
+        if(el && Number.isFinite(v) && el.dataset.val!==String(v)){ el.dataset.counted="1"; el.dataset.val=String(v); animateNumber(el,v); }
+      });
+    }
     status.textContent="DATA · cập nhật "+new Date().toLocaleTimeString("vi-VN",{hour:"2-digit",minute:"2-digit"});
   }catch(e){
     console.error(e); status.textContent="DATA · lỗi đồng bộ";
